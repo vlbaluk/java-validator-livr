@@ -1,0 +1,26 @@
+group 'livr'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: "groovy"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    baseName = 'LIVR'
+    version = '2.0'
+}
+
+dependencies {
+    compile('org.apache.commons:commons-lang3:3.6')
+    compile('com.google.guava:guava:23.0')
+    compile('com.googlecode.json-simple:json-simple:1.1')
+    testCompile('junit:junit:4.12')
+    testCompile('org.spockframework:spock-core:1.1-groovy-2.4-rc-2')
+    testCompile('org.skyscreamer:jsonassert:1.5.0')
+}
