@@ -113,4 +113,13 @@ class BaseFuncTest extends Specification {
             JSONAssert.assertEquals(res, out, false);
         }
     }
+
+    def "null check test"() {
+        when:
+        def validator = LIVR.validator().prepare();
+        def result = validator.validate(null);
+        then:
+        assert result == null;
+        JSONAssert.assertEquals(validator.getErrors().toJSONString(), "{\"base\":\"FORMAT_ERROR\"}", false);
+    }
 }

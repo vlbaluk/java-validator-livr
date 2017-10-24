@@ -33,7 +33,7 @@ public class Meta {
                     } else {
                         return validator.getErrors();
                     }
-                } catch (IOException | ParseException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 return null;
@@ -134,7 +134,7 @@ public class Meta {
                         return "";
                     }
 
-                } catch (IOException | ParseException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 return null;
@@ -244,7 +244,7 @@ public class Meta {
                         return validator.getErrors();
                     }
 
-                } catch (IOException | ParseException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 return null;

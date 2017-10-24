@@ -15,7 +15,6 @@ import java.util.function.Function;
  */
 public class Validator {
     Map<String, Function> DEFAULT_RULES = new HashMap<>();
-    boolean IS_DEFAULT_AUTO_TRIM = false;
     JSONObject livrRules = new JSONObject();
     Map<String, List<FunctionKeeper>> validators;
     Map<String, Function> validatorBuilders;
@@ -42,14 +41,11 @@ public class Validator {
         return this;
     }
 
-    public Validator init(String livrRules, boolean isAutoTrim) {
+    public Validator init(String livrRules, boolean isAutoTrim) throws ParseException {
         this.isPrepared = false;
 
-        try {
-            this.livrRules = (JSONObject) parser.parse(livrRules);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.livrRules = (JSONObject) parser.parse(livrRules);
+
         this.validators = new HashMap<>();
         this.validatorBuilders = new HashMap<>();
         this.errors = null;
@@ -72,13 +68,12 @@ public class Validator {
         return DEFAULT_RULES;
     }
 
-    void registerAliasedDefaultRule(JSONObject alias) throws IOException {
+    public void registerAliasedDefaultRule(JSONObject alias) throws IOException {
         if (((String) alias.get("name")).isEmpty()) throw new IOException("Alias name required");
         String name = (String) alias.get("name");
         DEFAULT_RULES.put(name, _buildAliasedRule(alias));
     }
 
-    //
     Function _buildAliasedRule(JSONObject alias) throws IOException {
         if (((String) alias.get("name")).isEmpty()) throw new IOException("Alias name required");
         if (alias.get("rules") == null) throw new IOException("Alias rules required");
@@ -118,21 +113,6 @@ public class Validator {
         return aliasFunction;
     }
 
-//    public Function getFunctionByName(String functionName) {
-//        if (DEFAULT_RULES.get(functionName) != null) return DEFAULT_RULES.get(functionName);
-//        return null;
-//    }
-//
-//    public Function getFunctionByObject(JSONObject function) {
-//        function.keySet();
-//        if (DEFAULT_RULES.get(functionName) != null) return DEFAULT_RULES.get(functionName);
-//        return null;
-//    }
-
-    public void defaultAutoTrim(boolean isAutoTrim) {
-        IS_DEFAULT_AUTO_TRIM = !isAutoTrim;
-    }
-
     public Validator prepare() throws IOException {
         JSONObject allRules = this.livrRules;
 
@@ -169,17 +149,24 @@ public class Validator {
         return this;
     }
 
-
-    public JSONObject validate(Object dto) throws IOException, ParseException {
-        if (!this.isPrepared) this.prepare();
-        if (!LIVRUtils.isObject(dto)) {
+    public JSONObject validate(Object str) throws IOException {
+        try {
+            if (str == null) {
+                throw new ParseException(0);
+            }
+            return validate((JSONObject) parser.parse(str + ""));
+        } catch (ParseException e) {
             this.errors = new JSONObject();
             this.errors.put("base", "FORMAT_ERROR");
             return null;
         }
-        JSONObject data = dto instanceof String ? (JSONObject) parser.parse((String) dto) : (JSONObject) dto;
+    }
+
+    public JSONObject validate(JSONObject data) throws IOException, ParseException {
+        if (!this.isPrepared) this.prepare();
+
         if (this.isAutoTrim) {
-            data = (JSONObject) this._autoTrim(data);
+            data = (JSONObject) _autoTrim(data);
         }
 
         JSONObject errors = new JSONObject();
@@ -219,14 +206,16 @@ public class Validator {
         return this.errors;
     }
 
-    //
     public Validator registerRules(Map<String, Function> rules) {
         validatorBuilders.putAll(rules);
         return this;
     }
 
+    public void registerAliasedRule(String alias) throws IOException, ParseException {
+        registerAliasedRule((JSONObject) parser.parse(alias));
+    }
 
-    void registerAliasedRule(JSONObject alias) throws IOException {
+    public void registerAliasedRule(JSONObject alias) throws IOException {
         if (((String) alias.get("name")).isEmpty()) throw new IOException("Alias name required");
         String name = (String) alias.get("name");
         this.validatorBuilders.put(name, _buildAliasedRule(alias));
@@ -236,7 +225,6 @@ public class Validator {
         return this.validatorBuilders;
     }
 
-    //
     public Map _parseRule(Object livrRule) {
         String name;
         List<Object> args = new ArrayList<>();
@@ -252,7 +240,6 @@ public class Validator {
             } else args = Lists.newArrayList(args1);
         } else {
             name = (String) livrRule;
-//            args = null;
         }
         Map map = new HashMap<String, Object>();
         map.put("name", name);
@@ -269,18 +256,6 @@ public class Validator {
         return jsonArray;
     }
 
-    public List<Object> convertToArray(JSONArray jsonObject) {
-        ArrayList<Object> list = new ArrayList<Object>();
-        JSONArray jsonArray = jsonObject;
-        if (jsonArray != null) {
-            int len = jsonArray.size();
-            for (int i = 0; i < len; i++) {
-                list.add(jsonArray.get(i));
-            }
-        }
-        return list;
-    }
-
     public FunctionKeeper _buildValidator(String name, List<Object> args) throws IOException {
 
         if (this.validatorBuilders.get(name) == null) {
@@ -288,19 +263,16 @@ public class Validator {
         }
 
         Function func = this.validatorBuilders.get(name);
-//        if (args == null) {
-//            args = new ArrayList<>();
-//        }
+
         args.add(this.getRules());
         func = (Function) func.apply(args);
 
-        return new FunctionKeeper(null, func); // changed to get rules
+        return new FunctionKeeper(null, func);
     }
 
-    //
-    public Object _autoTrim(Object data) {
+    public static Object _autoTrim(Object data) {
         Class dataType = data.getClass();
-//
+
         if (dataType != JSONObject.class) {
             if (data != null) {
                 return (data + "").trim();
@@ -311,14 +283,14 @@ public class Validator {
             JSONArray trimmedData = new JSONArray();
 
             for (Object entry : ((JSONArray) data).toArray()) {
-                trimmedData.add(this._autoTrim(entry));
+                trimmedData.add(Validator._autoTrim(entry));
             }
             return trimmedData;
         } else if (dataType == JSONObject.class) {
             JSONObject trimmedData = new JSONObject();
 
             for (Object key : ((JSONObject) data).keySet()) {
-                trimmedData.put(key, this._autoTrim(((JSONObject) data).get(key)));
+                trimmedData.put(key, Validator._autoTrim(((JSONObject) data).get(key)));
             }
             return trimmedData;
         }
@@ -326,15 +298,6 @@ public class Validator {
         return data;
     }
 
-
-    public static Map<String, Object> jsonToMap(JSONObject json) {
-        Map<String, Object> retMap = new HashMap<String, Object>();
-
-        if (json != null) {
-            retMap = toMap(json);
-        }
-        return retMap;
-    }
 
     public static Map<String, Object> toMap(JSONObject object) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -367,5 +330,4 @@ public class Validator {
         }
         return list;
     }
-//    };
 }

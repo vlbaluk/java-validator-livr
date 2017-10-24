@@ -7,13 +7,40 @@ apply plugin: "groovy"
 
 sourceCompatibility = 1.8
 
+
 repositories {
     mavenCentral()
+}
+
+/*
+ * Creates a jar that can be used as a library on java projects.
+ * This jar already includes all the dependencies.
+ */
+task libJar(type: Jar, dependsOn: jar) {
+    classifier = "lib";
+    from {
+        configurations.compile.collect { zipTree(it) }
+    };
+    with jar;
+}
+
+/*
+ * Necessary to generate the source and javadoc jars
+ */
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = "sources";
+    from sourceSets.main.allSource;
 }
 
 jar {
     baseName = 'LIVR'
     version = '2.0'
+}
+
+artifacts {
+    archives jar;
+    archives sourcesJar;
+    archives libJar;
 }
 
 dependencies {

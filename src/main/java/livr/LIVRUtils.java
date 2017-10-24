@@ -42,11 +42,6 @@ public class LIVRUtils {
         return map.isEmpty();
     }
 
-    public static String escapeRegExp(String str) {
-        return str.replace("/[\\-\\[\\]\\/\\{\\}\\(\\)\\*\\+\\?\\.\\\\\\^\\$\\|]/g", "\\$&");
-//        return str.replace("/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g", "\\$&");
-    }
-
     public static boolean isNoValue(Object value) {
         return value == null || (value + "").equals("");
     }
