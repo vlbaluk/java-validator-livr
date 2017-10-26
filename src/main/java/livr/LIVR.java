@@ -11,7 +11,6 @@ import java.util.function.Function;
  */
 public class LIVR {
     static Map<String, Function> rules = new HashMap<>();
-    static Validator val = new Validator(rules);
 
     static {
         rules.put("required", CommonRules.required);
@@ -56,7 +55,13 @@ public class LIVR {
         rules.put("leave_only", Modifiers.leave_only);
     }
 
+    public static void registerDefaultRules(Map<String, Function> rules) {
+        rules.putAll(rules);
+    }
+
     public static Validator validator() {
+        Validator val = new Validator();
+        val.registerDefaultRules(rules);
         return val;
     }
 }

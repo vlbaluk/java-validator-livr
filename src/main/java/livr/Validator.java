@@ -14,7 +14,7 @@ import java.util.function.Function;
  * Created by vladislavbaluk on 9/29/2017.
  */
 public class Validator {
-    Map<String, Function> DEFAULT_RULES = new HashMap<>();
+    static Map<String, Function> DEFAULT_RULES = new HashMap<>();
     JSONObject livrRules = new JSONObject();
     Map<String, List<FunctionKeeper>> validators;
     Map<String, Function> validatorBuilders;
@@ -221,7 +221,7 @@ public class Validator {
         this.validatorBuilders.put(name, _buildAliasedRule(alias));
     }
 
-    Map<String, Function> getRules() {
+    public Map<String, Function> getRules() {
         return this.validatorBuilders;
     }
 
