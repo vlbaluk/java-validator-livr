@@ -12,7 +12,10 @@ import java.util.Map;
  * Created by vladislavbaluk on 9/28/2017.
  */
 public class LIVRUtils {
-    private static JSONParser parser = new JSONParser();
+
+    public static JSONParser newParser() {
+        return new JSONParser();
+    }
 
     public static boolean isPrimitiveValue(Object value) {
         if (value.getClass() == String.class || value.getClass() == Boolean.class) return true;
@@ -32,7 +35,7 @@ public class LIVRUtils {
         }
 
         try {
-            return parser.parse(String.valueOf(value)) != null;
+            return newParser().parse(String.valueOf(value)) != null;
         } catch (ParseException e) {
             return false;
         }

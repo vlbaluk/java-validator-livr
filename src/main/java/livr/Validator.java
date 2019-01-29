@@ -14,14 +14,14 @@ import java.util.function.Function;
  * Created by vladislavbaluk on 9/29/2017.
  */
 public class Validator {
-    static Map<String, Function> DEFAULT_RULES = new HashMap<>();
+    Map<String, Function> DEFAULT_RULES = new HashMap<>();
     JSONObject livrRules = new JSONObject();
     Map<String, List<FunctionKeeper>> validators;
     Map<String, Function> validatorBuilders;
     JSONObject errors;
     boolean isPrepared = false;
     boolean isAutoTrim = false;
-    private static JSONParser parser = new JSONParser();
+    private JSONParser parser = new JSONParser();
 
 
     public Validator(Map<String, Function> defaultRules) {
