@@ -1,8 +1,9 @@
-package livr.Rules;
+package io.github.livr.rules;
 
-import livr.FunctionKeeper;
-import livr.LIVRUtils;
 import org.json.simple.JSONArray;
+
+import io.github.livr.FunctionKeeper;
+import io.github.livr.LIVRUtils;
 
 import java.util.List;
 import java.util.function.Function;

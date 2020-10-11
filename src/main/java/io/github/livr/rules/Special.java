@@ -1,11 +1,11 @@
-package livr.Rules;
-
-import livr.FunctionKeeper;
-import livr.LIVRUtils;
+package io.github.livr.rules;
 
 import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
+
+import io.github.livr.FunctionKeeper;
+import io.github.livr.LIVRUtils;
 
 /**
  * Created by vladislavbaluk on 9/28/2017.

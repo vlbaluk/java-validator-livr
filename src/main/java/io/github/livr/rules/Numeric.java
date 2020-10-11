@@ -1,9 +1,10 @@
-package livr.Rules;
+package io.github.livr.rules;
 
-import livr.FunctionKeeper;
-import livr.LIVRUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.json.simple.JSONArray;
+
+import io.github.livr.FunctionKeeper;
+import io.github.livr.LIVRUtils;
 
 import java.math.BigDecimal;
 import java.util.Iterator;

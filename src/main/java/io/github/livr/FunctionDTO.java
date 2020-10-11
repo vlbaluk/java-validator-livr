@@ -1,4 +1,4 @@
-package livr;
+package io.github.livr;
 
 import org.json.simple.JSONObject;
 

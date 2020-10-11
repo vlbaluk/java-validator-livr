@@ -1,9 +1,11 @@
-package livr.Rules;
+package io.github.livr.rules;
 
 import com.google.common.collect.Lists;
-import livr.FunctionKeeper;
-import livr.LIVRUtils;
-import livr.Validator;
+
+import io.github.livr.FunctionKeeper;
+import io.github.livr.LIVRUtils;
+import io.github.livr.Validator;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;

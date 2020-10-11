@@ -1,4 +1,4 @@
-package livr;
+package io.github.livr;
 
 import com.google.common.collect.Lists;
 import org.json.simple.JSONArray;

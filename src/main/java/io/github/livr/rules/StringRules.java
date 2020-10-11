@@ -1,8 +1,10 @@
-package livr.Rules;
+package io.github.livr.rules;
 
 import com.google.common.collect.Lists;
-import livr.FunctionKeeper;
-import livr.LIVRUtils;
+
+import io.github.livr.FunctionKeeper;
+import io.github.livr.LIVRUtils;
+
 import org.json.simple.JSONArray;
 
 import java.util.Iterator;
