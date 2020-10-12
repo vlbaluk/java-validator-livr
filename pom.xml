@@ -5,7 +5,7 @@
 
 	<groupId>com.github.gaborkolarovics</groupId>
 	<artifactId>livr-spring-validator</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>LIVR springframework validator</name>
 	<url>https://github.com/gaborkolarovics/livr-spring-validator</url>
 	<description>
