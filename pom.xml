@@ -8,7 +8,7 @@
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>LIVR springframework validator</name>
-	<url>https://github.com/gaborkolarovics/livr-spring-validator</url>
+	<url>https://github.com/gaborkolarovics/livr-validator</url>
 	<description>
 Language Independent Validation Rules (v2.0)
 
@@ -33,9 +33,9 @@ Springframework annotation validator support
 	</developers>
 
 	<scm>
-		<connection>scm:git:https://github.com/gaborkolarovics/livr-spring-validator.git</connection>
-		<developerConnection>scm:git:https://github.com/gaborkolarovics/livr-spring-validator.git</developerConnection>
-		<url>https://github.com/gaborkolarovics/livr-spring-validator/tree/master</url>
+		<connection>scm:git:https://github.com/gaborkolarovics/livr-validator.git</connection>
+		<developerConnection>scm:git:https://github.com/gaborkolarovics/livr-validator.git</developerConnection>
+		<url>https://github.com/gaborkolarovics/livr-validator/tree/master</url>
 	</scm>
 
 	<distributionManagement>
