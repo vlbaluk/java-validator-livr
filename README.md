@@ -37,7 +37,7 @@ Features:
 ```xml
 <dependency>
 	<groupId>com.github.gaborkolarovics</groupId>
-	<artifactId>livr-spring</artifactId>
+	<artifactId>livr-validator</artifactId>
 	<version>1.0.0</version>
 </dependency>
 ```
