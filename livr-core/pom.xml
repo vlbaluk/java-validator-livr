@@ -6,11 +6,39 @@
 	<parent>
 		<groupId>com.github.gaborkolarovics</groupId>
 		<artifactId>livr-validator-parent</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.1.0</version>
 	</parent>
 
 	<artifactId>livr-core</artifactId>
 	<packaging>jar</packaging>
+	<name>Java LIVR validator</name>
+	<url>https://github.com/gaborkolarovics/livr-validator</url>
+	<description>
+Language Independent Validation Rules (v2.0)
+	</description>
+
+	<licenses>
+		<license>
+			<name>GNU Affero General Public License, Version 3.0</name>
+			<url>https://www.gnu.org/licenses/agpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Vladislav Baluk</name>
+		</developer>
+		<developer>
+			<name>Gábor Kolárovics</name>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/gaborkolarovics/livr-validator.git</connection>
+		<developerConnection>scm:git:https://github.com/gaborkolarovics/livr-validator.git</developerConnection>
+		<url>https://github.com/gaborkolarovics/livr-validator/tree/master</url>
+	</scm>
 
 	<dependencies>
 
@@ -31,5 +59,30 @@
 		</dependency>
 
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

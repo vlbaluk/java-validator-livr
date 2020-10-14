@@ -5,14 +5,14 @@
 
 	<groupId>com.github.gaborkolarovics</groupId>
 	<artifactId>livr-validator-parent</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<packaging>pom</packaging>
-	<name>LIVR springframework validator</name>
+	<name>LIVR javax validator</name>
 	<url>https://github.com/gaborkolarovics/livr-validator</url>
 	<description>
 Language Independent Validation Rules (v2.0)
 
-Springframework annotation validator support
+javax annotation validator support
 	</description>
 
 	<licenses>
@@ -55,6 +55,11 @@ Springframework annotation validator support
 		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
 
+	<modules>
+		<module>livr-core</module>
+		<module>livr-validator</module>
+	</modules>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -62,32 +67,27 @@ Springframework annotation validator support
 				<artifactId>commons-lang3</artifactId>
 				<version>3.11</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.googlecode.json-simple</groupId>
 				<artifactId>json-simple</artifactId>
 				<version>1.1.1</version>
 			</dependency>
-
 			<dependency>
 				<groupId>javax.validation</groupId>
 				<artifactId>validation-api</artifactId>
 				<version>2.0.1.Final</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
 				<version>2.11.3</version>
 			</dependency>
-
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.13.1</version>
 				<scope>test</scope>
 			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 
@@ -150,12 +150,7 @@ Springframework annotation validator support
 					<artifactId>maven-release-plugin</artifactId>
 				</plugin>
 			</plugins>
-
 		</pluginManagement>
 	</build>
 
-	<modules>
-		<module>livr-core</module>
-		<module>livr-validator</module>
-	</modules>
 </project>

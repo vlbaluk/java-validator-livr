@@ -38,7 +38,7 @@ Features:
 <dependency>
 	<groupId>com.github.gaborkolarovics</groupId>
 	<artifactId>livr-validator</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 </dependency>
 ```
 
