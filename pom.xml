@@ -7,12 +7,12 @@
 	<artifactId>livr-validator-parent</artifactId>
 	<version>1.1.0</version>
 	<packaging>pom</packaging>
-	<name>LIVR javax validator</name>
+	<name>LIVR javax validator parent</name>
 	<url>https://github.com/gaborkolarovics/livr-validator</url>
 	<description>
-Language Independent Validation Rules (v2.0)
+		Language Independent Validation Rules (v2.0)
 
-javax annotation validator support
+		javax annotation validator support
 	</description>
 
 	<licenses>
@@ -53,6 +53,8 @@ javax annotation validator support
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
+
+		<aggregate.report.dir>target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
 	</properties>
 
 	<modules>
@@ -152,5 +154,56 @@ javax annotation validator support
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<properties>
+				<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+				<sonar.organization>gaborkolarovics</sonar.organization>
+				<sonar.projectKey>gaborkolarovics_livr-validator</sonar.projectKey>
+				<sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
+			</properties>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.8.5</version>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.sonarsource.scanner.maven</groupId>
+						<artifactId>sonar-maven-plugin</artifactId>
+						<version>3.7.0.1746</version>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>sonar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>

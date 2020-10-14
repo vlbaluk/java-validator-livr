@@ -298,21 +298,15 @@ public class Validator {
 		Class dataType = data.getClass();
 
 		if (dataType != JSONObject.class) {
-			if (data != null) {
-				return (data + "").trim();
-			} else {
-				return data;
-			}
+			return (data + "").trim();
 		} else if (dataType == JSONArray.class) {
 			JSONArray trimmedData = new JSONArray();
-
 			for (Object entry : ((JSONArray) data).toArray()) {
 				trimmedData.add(Validator._autoTrim(entry));
 			}
 			return trimmedData;
 		} else if (dataType == JSONObject.class) {
 			JSONObject trimmedData = new JSONObject();
-
 			for (Object key : ((JSONObject) data).keySet()) {
 				trimmedData.put(key, Validator._autoTrim(((JSONObject) data).get(key)));
 			}

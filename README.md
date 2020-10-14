@@ -1,4 +1,6 @@
-# livr-spring-validator
+# livr-validator
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gaborkolarovics_livr-validator&metric=alert_status)](https://sonarcloud.io/dashboard?id=gaborkolarovics_livr-validator)
 
 # NAME
 LIVR.validator - Lightweight validator supporting Language Independent Validation Rules Specification (LIVR)
