@@ -2,6 +2,7 @@ package livr;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -13,8 +14,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-import com.google.common.collect.Lists;
 
 /**
  * @author vladislavbaluk (creator)
@@ -255,10 +254,14 @@ public class Validator {
 
 			if (args1.getClass() == JSONArray.class) {
 				args1 = removeRedundantBracers((JSONArray) args1);
-				args = Lists.newArrayList();
-				args.add(args1);
-			} else
-				args = Lists.newArrayList(args1);
+				List<Object> arrayList = new ArrayList<>();
+				Collections.addAll(arrayList, args1);
+				args = arrayList;
+			} else {
+				List<Object> arrayList = new ArrayList<>();
+				Collections.addAll(arrayList, args1);
+				args = arrayList;
+			}
 		} else {
 			name = (String) livrRule;
 		}

@@ -1,300 +1,316 @@
 package livr.rules;
 
-import com.google.common.collect.Lists;
-
-import livr.FunctionKeeper;
-import livr.LIVRUtils;
-import livr.Validator;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
-import java.util.*;
-import java.util.function.Function;
+import livr.FunctionKeeper;
+import livr.LIVRUtils;
+import livr.Validator;
 
 /**
  * Created by vladislavbaluk on 9/28/2017.
  */
 public class MetaRules {
-    public static Function<List<Object>, Function> nested_object = (List<Object> objects) -> {
-        try {
-            Validator validator = new Validator((Map<String, Function>) objects.get(1)).init((JSONObject) objects.get(0), false).prepare();
+	public static Function<List<Object>, Function> nested_object = (List<Object> objects) -> {
+		try {
+			Validator validator = new Validator((Map<String, Function>) objects.get(1))
+					.init((JSONObject) objects.get(0), false).prepare();
 
-            return (Function<FunctionKeeper, Object>) (wrapper) -> {
-                if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
-                if (!LIVRUtils.isObject(wrapper.getValue())) return "FORMAT_ERROR";
+			return (Function<FunctionKeeper, Object>) (wrapper) -> {
+				if (LIVRUtils.isNoValue(wrapper.getValue()))
+					return "";
+				if (!LIVRUtils.isObject(wrapper.getValue()))
+					return "FORMAT_ERROR";
 
-                try {
-                    JSONObject result = validator.validate(wrapper.getValue());
+				try {
+					JSONObject result = validator.validate(wrapper.getValue());
 
-                    if (result != null) {
-                        wrapper.getFieldResultArr().add(result);
-                        return "";
-                    } else {
-                        return validator.getErrors();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            };
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    };
+					if (result != null) {
+						wrapper.getFieldResultArr().add(result);
+						return "";
+					} else {
+						return validator.getErrors();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return null;
+			};
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	};
 
-    public static Function<List<Object>, Function> list_of = (List<Object> objects) -> {
-        try {
-            JSONObject field = new JSONObject();
-            JSONArray array = new JSONArray();
-            array.addAll(Lists.newArrayList(objects.get(0)));
-            if (objects.get(0).getClass() == JSONArray.class) {
-                field.put("field", objects.get(0));
-            } else {
-                field.put("field", array);
-            }
-            Validator validator = new Validator((Map<String, Function>) objects.get(1)).init(field, false).prepare();
+	public static Function<List<Object>, Function> list_of = (List<Object> objects) -> {
+		try {
+			JSONObject field = new JSONObject();
+			JSONArray array = new JSONArray();
 
-            return (Function<FunctionKeeper, Object>) (wrapper) -> {
-                if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
-                if (!(wrapper.getValue() instanceof JSONArray)) return "FORMAT_ERROR";
+			List<Object> list = new ArrayList<>();
+			list.add(objects.get(0));
+			array.addAll(list);
 
-                try {
-                    boolean hasErrors = false;
-                    JSONArray results = new JSONArray();
-                    JSONArray errors = new JSONArray();
-                    Object[] arr = ((JSONArray) wrapper.getValue()).toArray();
-                    for (Object value : arr) {
-                        JSONObject fieldv = new JSONObject();
-                        fieldv.put("field", value);
-                        JSONObject result = validator.validate(fieldv);
-                        if (result != null) {
-                            results.add(result.get("field"));
-                            errors.add(null);
-                        } else {
-                            hasErrors = true;
-                            errors.add(validator.getErrors().get("field"));
-                            results.add(null);
-                        }
+			if (objects.get(0).getClass() == JSONArray.class) {
+				field.put("field", objects.get(0));
+			} else {
+				field.put("field", array);
+			}
+			Validator validator = new Validator((Map<String, Function>) objects.get(1)).init(field, false).prepare();
 
-                    }
-                    if (hasErrors) {
-                        return errors;
-                    } else {
-                        wrapper.getFieldResultArr().add(results);
-                        return "";
-                    }
+			return (Function<FunctionKeeper, Object>) (wrapper) -> {
+				if (LIVRUtils.isNoValue(wrapper.getValue()))
+					return "";
+				if (!(wrapper.getValue() instanceof JSONArray))
+					return "FORMAT_ERROR";
 
-                } catch (IOException | ParseException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            };
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    };
+				try {
+					boolean hasErrors = false;
+					JSONArray results = new JSONArray();
+					JSONArray errors = new JSONArray();
+					Object[] arr = ((JSONArray) wrapper.getValue()).toArray();
+					for (Object value : arr) {
+						JSONObject fieldv = new JSONObject();
+						fieldv.put("field", value);
+						JSONObject result = validator.validate(fieldv);
+						if (result != null) {
+							results.add(result.get("field"));
+							errors.add(null);
+						} else {
+							hasErrors = true;
+							errors.add(validator.getErrors().get("field"));
+							results.add(null);
+						}
 
-    public static Function<List<Object>, Function> list_of_objects = (List<Object> objects) -> {
-        try {
-            Validator validator = new Validator((Map<String, Function>) objects.get(1)).init((JSONObject) objects.get(0), false).prepare();
+					}
+					if (hasErrors) {
+						return errors;
+					} else {
+						wrapper.getFieldResultArr().add(results);
+						return "";
+					}
 
-            return (Function<FunctionKeeper, Object>) (wrapper) -> {
-                if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
-                if (!(wrapper.getValue() instanceof JSONArray)) return "FORMAT_ERROR";
+				} catch (IOException | ParseException e) {
+					e.printStackTrace();
+				}
+				return null;
+			};
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	};
 
-                try {
-                    boolean hasErrors = false;
-                    JSONArray results = new JSONArray();
-                    JSONArray errors = new JSONArray();
-                    for (Object value : ((JSONArray) wrapper.getValue()).toArray()) {
+	public static Function<List<Object>, Function> list_of_objects = (List<Object> objects) -> {
+		try {
+			Validator validator = new Validator((Map<String, Function>) objects.get(1))
+					.init((JSONObject) objects.get(0), false).prepare();
 
-                        if (!LIVRUtils.isObject(value)) {
-                            errors.add("FORMAT_ERROR");
-                            hasErrors = true;
-                            continue;
-                        }
-                        JSONObject result = validator.validate(value);
+			return (Function<FunctionKeeper, Object>) (wrapper) -> {
+				if (LIVRUtils.isNoValue(wrapper.getValue()))
+					return "";
+				if (!(wrapper.getValue() instanceof JSONArray))
+					return "FORMAT_ERROR";
 
-                        if (result != null) {
-                            results.add(result);
-                            errors.add(null);
-                        } else {
-                            hasErrors = true;
-                            errors.add(validator.getErrors());
-                            results.add(null);
-                        }
-                    }
-                    if (hasErrors) {
-                        return errors;
-                    } else {
-                        wrapper.getFieldResultArr().add(results);
-                        return "";
-                    }
+				try {
+					boolean hasErrors = false;
+					JSONArray results = new JSONArray();
+					JSONArray errors = new JSONArray();
+					for (Object value : ((JSONArray) wrapper.getValue()).toArray()) {
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            };
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    };
+						if (!LIVRUtils.isObject(value)) {
+							errors.add("FORMAT_ERROR");
+							hasErrors = true;
+							continue;
+						}
+						JSONObject result = validator.validate(value);
 
-    public static Function<List<Object>, Function> list_of_different_objects = (List<Object> objects) -> {
-        try {
-            Map<Object, Validator> validators = new HashMap<>();
-            Iterator it = ((JSONArray) objects.get(0)).iterator();
-            Object selectorField = it.next();
-            JSONObject values = (JSONObject) it.next();
-            for (Object key : values.keySet()) {
-                JSONObject selectorValue = (JSONObject) values.get(key);
+						if (result != null) {
+							results.add(result);
+							errors.add(null);
+						} else {
+							hasErrors = true;
+							errors.add(validator.getErrors());
+							results.add(null);
+						}
+					}
+					if (hasErrors) {
+						return errors;
+					} else {
+						wrapper.getFieldResultArr().add(results);
+						return "";
+					}
 
-                Validator validator = new Validator((Map<String, Function>) objects.get(1)).init(selectorValue, false)
-                        .registerRules((Map<String, Function>) objects.get(1))
-                        .prepare();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return null;
+			};
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	};
 
-                validators.put(key, validator);
-            }
+	public static Function<List<Object>, Function> list_of_different_objects = (List<Object> objects) -> {
+		try {
+			Map<Object, Validator> validators = new HashMap<>();
+			Iterator it = ((JSONArray) objects.get(0)).iterator();
+			Object selectorField = it.next();
+			JSONObject values = (JSONObject) it.next();
+			for (Object key : values.keySet()) {
+				JSONObject selectorValue = (JSONObject) values.get(key);
 
-            return (Function<FunctionKeeper, Object>) (wrapper) -> {
-                if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
-                if (!(wrapper.getValue() instanceof JSONArray)) return "FORMAT_ERROR";
+				Validator validator = new Validator((Map<String, Function>) objects.get(1)).init(selectorValue, false)
+						.registerRules((Map<String, Function>) objects.get(1)).prepare();
 
-                try {
-                    boolean hasErrors = false;
-                    JSONArray results = new JSONArray();
-                    JSONArray errors = new JSONArray();
+				validators.put(key, validator);
+			}
 
-                    for (Object value : ((JSONArray) wrapper.getValue()).toArray()) {
+			return (Function<FunctionKeeper, Object>) (wrapper) -> {
+				if (LIVRUtils.isNoValue(wrapper.getValue()))
+					return "";
+				if (!(wrapper.getValue() instanceof JSONArray))
+					return "FORMAT_ERROR";
 
+				try {
+					boolean hasErrors = false;
+					JSONArray results = new JSONArray();
+					JSONArray errors = new JSONArray();
 
-                        if (!LIVRUtils.isObject(value) || ((JSONObject) value).get(selectorField) == null || validators.get(((JSONObject) value).get(selectorField)) == null) {
-                            errors.add("FORMAT_ERROR");
-                            continue;
-                        }
+					for (Object value : ((JSONArray) wrapper.getValue()).toArray()) {
 
-                        Validator validator = validators.get(((JSONObject) value).get(selectorField));
+						if (!LIVRUtils.isObject(value) || ((JSONObject) value).get(selectorField) == null
+								|| validators.get(((JSONObject) value).get(selectorField)) == null) {
+							errors.add("FORMAT_ERROR");
+							continue;
+						}
 
-                        JSONObject result = validator.validate((JSONObject) value);
-                        if (result != null) {
-                            results.add(result);
-                            errors.add(null);
-                        } else {
-                            hasErrors = true;
-                            errors.add(validator.getErrors());
-                            results.add(null);
-                        }
-                    }
-                    if (hasErrors) {
-                        return errors;
-                    } else {
-                        wrapper.getFieldResultArr().add(results);
-                        return "";
-                    }
+						Validator validator = validators.get(((JSONObject) value).get(selectorField));
 
-                } catch (IOException | ParseException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            };
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    };
+						JSONObject result = validator.validate((JSONObject) value);
+						if (result != null) {
+							results.add(result);
+							errors.add(null);
+						} else {
+							hasErrors = true;
+							errors.add(validator.getErrors());
+							results.add(null);
+						}
+					}
+					if (hasErrors) {
+						return errors;
+					} else {
+						wrapper.getFieldResultArr().add(results);
+						return "";
+					}
 
+				} catch (IOException | ParseException e) {
+					e.printStackTrace();
+				}
+				return null;
+			};
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	};
 
-    public static Function<List<Object>, Function> variable_object = (List<Object> objects) -> {
-        try {
-            Map<Object, Validator> validators = new HashMap<>();
-            Iterator it = ((JSONArray) objects.get(0)).iterator();
-            Object selectorField = it.next();
-            JSONObject values = (JSONObject) it.next();
-            for (Object key : values.keySet()) {
-                JSONObject selectorValue = (JSONObject) values.get(key);
+	public static Function<List<Object>, Function> variable_object = (List<Object> objects) -> {
+		try {
+			Map<Object, Validator> validators = new HashMap<>();
+			Iterator it = ((JSONArray) objects.get(0)).iterator();
+			Object selectorField = it.next();
+			JSONObject values = (JSONObject) it.next();
+			for (Object key : values.keySet()) {
+				JSONObject selectorValue = (JSONObject) values.get(key);
 
-                Validator validator = new Validator((Map<String, Function>) objects.get(1)).init(selectorValue, false)
-                        .registerRules((Map<String, Function>) objects.get(1))
-                        .prepare();
+				Validator validator = new Validator((Map<String, Function>) objects.get(1)).init(selectorValue, false)
+						.registerRules((Map<String, Function>) objects.get(1)).prepare();
 
-                validators.put(key, validator);
-            }
+				validators.put(key, validator);
+			}
 
-            return (Function<FunctionKeeper, Object>) (wrapper) -> {
-                if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
+			return (Function<FunctionKeeper, Object>) (wrapper) -> {
+				if (LIVRUtils.isNoValue(wrapper.getValue()))
+					return "";
 
-                try {
-                    Object value = wrapper.getValue();
-                    if (!LIVRUtils.isObject(value) || ((JSONObject) value).get(selectorField) == null || validators.get(((JSONObject) value).get(selectorField)) == null) {
-                        return "FORMAT_ERROR";
-                    }
+				try {
+					Object value = wrapper.getValue();
+					if (!LIVRUtils.isObject(value) || ((JSONObject) value).get(selectorField) == null
+							|| validators.get(((JSONObject) value).get(selectorField)) == null) {
+						return "FORMAT_ERROR";
+					}
 
-                    Validator validator = validators.get(((JSONObject) value).get(selectorField));
+					Validator validator = validators.get(((JSONObject) value).get(selectorField));
 
-                    JSONObject result = validator.validate(value);
-                    if (result != null) {
-                        wrapper.getFieldResultArr().add(result);
-                        return "";
-                    } else {
-                        return validator.getErrors();
-                    }
+					JSONObject result = validator.validate(value);
+					if (result != null) {
+						wrapper.getFieldResultArr().add(result);
+						return "";
+					} else {
+						return validator.getErrors();
+					}
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            };
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    };
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return null;
+			};
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	};
 
+	public static Function<List<Object>, Function> or = (List<Object> objects) -> {
+		try {
+			List<Validator> validators = new ArrayList<>();
+			for (Object entry : ((JSONArray) objects.get(0)).toArray()) {
+				JSONObject field = new JSONObject();
+				field.put("field", entry);
+				Validator validator = new Validator((Map<String, Function>) objects.get(1)).init(field, false)
+						.prepare();
+				validators.add(validator);
+			}
 
-    public static Function<List<Object>, Function> or = (List<Object> objects) -> {
-        try {
-            List<Validator> validators = new ArrayList<>();
-            for (Object entry : ((JSONArray) objects.get(0)).toArray()) {
-                JSONObject field = new JSONObject();
-                field.put("field", entry);
-                Validator validator = new Validator((Map<String, Function>) objects.get(1)).init(field, false).prepare();
-                validators.add(validator);
-            }
-
-            return (Function<FunctionKeeper, Object>) (wrapper) -> {
-                if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
-                try {
-                    Object value = wrapper.getValue();
-                    Object lastError = null;
-                    for (Validator validator : validators) {
-                        JSONObject valValue = new JSONObject();
-                        valValue.put("field", value);
-                        JSONObject result = validator.validate(valValue);
-                        if (result != null) {
-                            wrapper.getFieldResultArr().add(result.get("field"));
-                            return "";
-                        } else {
-                            lastError = validator.getErrors().get("field");
-                        }
-                    }
-                    if (lastError != null) {
-                        return lastError;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
-            };
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    };
+			return (Function<FunctionKeeper, Object>) (wrapper) -> {
+				if (LIVRUtils.isNoValue(wrapper.getValue()))
+					return "";
+				try {
+					Object value = wrapper.getValue();
+					Object lastError = null;
+					for (Validator validator : validators) {
+						JSONObject valValue = new JSONObject();
+						valValue.put("field", value);
+						JSONObject result = validator.validate(valValue);
+						if (result != null) {
+							wrapper.getFieldResultArr().add(result.get("field"));
+							return "";
+						} else {
+							lastError = validator.getErrors().get("field");
+						}
+					}
+					if (lastError != null) {
+						return lastError;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return null;
+			};
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	};
 }
