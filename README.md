@@ -1,9 +1,9 @@
 # livr-validator
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gaborkolarovics_livr-validator&metric=alert_status)](https://sonarcloud.io/dashboard?id=gaborkolarovics_livr-validator)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gaborkolarovics_livr-validator&metric=alert_status)](https://sonarcloud.io/dashboard?id=gaborkolarovics_livr-validator) [![Maven Central](https://img.shields.io/maven-central/v/com.github.gaborkolarovics/livr-validator.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.gaborkolarovics%22%20AND%20a:%22livr-validator%22)
 
 # NAME
-LIVR.validator - Lightweight validator supporting Language Independent Validation Rules Specification (LIVR)
+Lightweight validator supporting Language Independent Validation Rules Specification (LIVR)
 
 # SYNOPSIS
 Common usage:
@@ -46,5 +46,5 @@ Features:
 
 # AUTHOR
 
-Java (LIVR 2.0), maintainer vlbaluk (Vladislav Baluk)
-Spring framework annotation, maintainer kolo (Gábor Kolárovics)
+* Java (LIVR 2.0), maintainer vlbaluk (Vladislav Baluk)
+* javax annotation, maintainer Gábor Kolárovics
