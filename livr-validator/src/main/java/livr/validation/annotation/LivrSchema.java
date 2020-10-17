@@ -16,6 +16,13 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * LIVR Schema
  * <p>
+ * Attributes:
+ * <ul>
+ * <li>schema - LIVR validation schema</li>
+ * <li>autotrim - trim values</li>
+ * </ul>
+ * <p>
+ * <br>
  * Usage:<br>
  * <code>
  * &#64;LivrSchema(schema = "{\"name\": \"required\", \"email\": \"required\"}")<br>
@@ -23,9 +30,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  *     private String name;<br>
  *     private String email;<br>
  *     // Getter.. Setter..<br>
- * }<br>
+ * }
  * </code>
- *
+ * <p>
+ * <br>
  * @author Gábor KOLÁROVICS
  * @since 2020/10/09
  */
@@ -41,6 +49,8 @@ public @interface LivrSchema {
 	Class<? extends Payload>[] payload() default {};
 
 	String schema();
+
+	boolean autotrim() default false;
 
 	@Target({ ElementType.TYPE })
 	@Retention(RetentionPolicy.RUNTIME)

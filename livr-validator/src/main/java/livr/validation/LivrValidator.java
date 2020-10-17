@@ -7,6 +7,8 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -20,41 +22,39 @@ import livr.validation.annotation.LivrSchema;
  * @author Gábor KOLÁROVICS
  * @since 2020/10/09
  */
-
 public class LivrValidator implements ConstraintValidator<LivrSchema, Object> {
 
-	private String schema;
+	private Logger log = LoggerFactory.getLogger(LivrValidator.class);
 
+	private Validator validator;
+
+	private ObjectMapper objectMapper = new ObjectMapper();
+
+	@Override
 	public void initialize(LivrSchema constraintAnnotation) {
-		this.schema = constraintAnnotation.schema();
+		try {
+			String schema = SchemaLoader.load(constraintAnnotation.schema());
+			validator = LIVR.validator().init(schema, constraintAnnotation.autotrim());
+		} catch (ParseException e) {
+			log.error(e.getMessage(), e.getCause());
+		}
 	}
 
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
-
-		ObjectMapper objectMapper = new ObjectMapper();
-
 		try {
-			Validator validator = LIVR.validator().init(schema, false);
-
 			JSONObject validData = validator.validate(objectMapper.writer().writeValueAsString(value));
 
 			if (validData != null) {
 				return true;
 			} else {
 				context.disableDefaultConstraintViolation();
-
-				validator.getErrors().forEach((k, v) -> {
-					context.buildConstraintViolationWithTemplate((String) v).addPropertyNode((String) k)
-							.addConstraintViolation();
-				});
-
+				validator.getErrors().forEach((k, v) -> context.buildConstraintViolationWithTemplate((String) v)
+						.addPropertyNode((String) k).addConstraintViolation());
 			}
-		} catch (ParseException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IOException e) {
+			log.error(e.getMessage(), e.getCause());
 		}
-
 		return false;
 	}
 

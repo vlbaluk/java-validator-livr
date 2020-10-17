@@ -5,7 +5,7 @@
 
 	<groupId>com.github.gaborkolarovics</groupId>
 	<artifactId>livr-validator-parent</artifactId>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>1.2.0</version>
 	<packaging>pom</packaging>
 	<name>LIVR javax validator parent</name>
 	<url>https://github.com/gaborkolarovics/livr-validator</url>
@@ -83,6 +83,11 @@
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
 				<version>2.11.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.30</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>

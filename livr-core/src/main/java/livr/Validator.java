@@ -14,6 +14,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author vladislavbaluk (creator)
@@ -22,6 +24,9 @@ import org.json.simple.parser.ParseException;
  * @since 2017/09/29
  */
 public class Validator {
+
+	private Logger log = LoggerFactory.getLogger(Validator.class);
+
 	Map<String, Function> DEFAULT_RULES = new HashMap<>();
 	JSONObject livrRules = new JSONObject();
 	Map<String, List<FunctionKeeper>> validators;
@@ -109,15 +114,13 @@ public class Validator {
 						} else {
 							return alias.get("error") == null ? validator.getErrors().get("value") : alias.get("error");
 						}
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (ParseException e) {
-						e.printStackTrace();
+					} catch (IOException | ParseException e) {
+						log.error(e.getMessage(), e.getCause());
 					}
 					return null;
 				};
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error(e.getMessage(), e.getCause());
 			}
 			return null;
 		};

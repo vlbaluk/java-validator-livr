@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.github.gaborkolarovics</groupId>
 		<artifactId>livr-validator-parent</artifactId>
-		<version>1.1.1-SNAPSHOT</version>
+		<version>1.2.0</version>
 	</parent>
 
 	<artifactId>livr-core</artifactId>
@@ -48,6 +48,10 @@ Language Independent Validation Rules (v2.0)
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

@@ -11,6 +11,8 @@ import java.util.function.Function;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import livr.FunctionKeeper;
 import livr.LIVRUtils;
@@ -20,6 +22,9 @@ import livr.Validator;
  * Created by vladislavbaluk on 9/28/2017.
  */
 public class MetaRules {
+
+	private static Logger log = LoggerFactory.getLogger(MetaRules.class);
+
 	public static Function<List<Object>, Function> nested_object = (List<Object> objects) -> {
 		try {
 			Validator validator = new Validator((Map<String, Function>) objects.get(1))
@@ -41,12 +46,12 @@ public class MetaRules {
 						return validator.getErrors();
 					}
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error(e.getMessage(), e.getCause());
 				}
 				return null;
 			};
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e.getCause());
 		}
 		return null;
 	};
@@ -100,12 +105,12 @@ public class MetaRules {
 					}
 
 				} catch (IOException | ParseException e) {
-					e.printStackTrace();
+					log.error(e.getMessage(), e.getCause());
 				}
 				return null;
 			};
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e.getCause());
 		}
 		return null;
 	};
@@ -151,12 +156,12 @@ public class MetaRules {
 					}
 
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error(e.getMessage(), e.getCause());
 				}
 				return null;
 			};
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e.getCause());
 		}
 		return null;
 	};
@@ -215,12 +220,12 @@ public class MetaRules {
 					}
 
 				} catch (IOException | ParseException e) {
-					e.printStackTrace();
+					log.error(e.getMessage(), e.getCause());
 				}
 				return null;
 			};
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e.getCause());
 		}
 		return null;
 	};
@@ -262,12 +267,12 @@ public class MetaRules {
 					}
 
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error(e.getMessage(), e.getCause());
 				}
 				return null;
 			};
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e.getCause());
 		}
 		return null;
 	};
@@ -304,12 +309,12 @@ public class MetaRules {
 						return lastError;
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error(e.getMessage(), e.getCause());
 				}
 				return null;
 			};
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e.getCause());
 		}
 		return null;
 	};

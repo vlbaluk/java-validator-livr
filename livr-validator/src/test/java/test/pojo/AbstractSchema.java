@@ -1,15 +1,12 @@
 package test.pojo;
 
-import livr.validation.annotation.LivrSchema;
-
 /**
- * Contact POJO for testing
+ * Base test schema
  *
- * @author gkolarovics
- * @since 2020/10/15
+ * @author Gábor KOLÁROVICS
+ * @since 2020/10/17
  */
-@LivrSchema(schema = "{\"name\": \"required\", \"email\": \"required\"}")
-public class SimpleSchema {
+public abstract class AbstractSchema {
 
 	private String name;
 

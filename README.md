@@ -5,10 +5,31 @@
 Lightweight validator supporting Language Independent Validation Rules Specification (LIVR)
 
 ## Usage
-Common usage:
+Common usage
 
+* Simple string schema
 ```java
 @LivrSchema(schema = "{\"name\": \"required\", \"email\": \"required\"}")
+public class SamplePOJO{
+    private String name;
+    private String email;
+    // Getter.. Setter..
+}
+```
+
+* Classpath resource
+```java
+@LivrSchema(schema = "classpath:schemas/samplePOJO.json")
+public class SamplePOJO{
+    private String name;
+    private String email;
+    // Getter.. Setter..
+}
+```
+
+* File resource
+```java
+@LivrSchema(schema = "file:/path/of/schemas/samplePOJO.json")
 public class SamplePOJO{
     private String name;
     private String email;
@@ -39,13 +60,13 @@ Features:
 <dependency>
   <groupId>com.github.gaborkolarovics</groupId>
   <artifactId>livr-validator</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
 ### gradle
 ```js
-implementation 'com.github.gaborkolarovics:livr-validator:1.1.0'
+implementation 'com.github.gaborkolarovics:livr-validator:1.2.0'
 ```
 
 ## License
