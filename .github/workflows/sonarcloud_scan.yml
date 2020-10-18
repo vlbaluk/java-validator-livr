@@ -1,10 +1,13 @@
 name: SonarCloud scan
+
 on:
   push:
     branches:
-      - master
+    - '!master'
+    - '**'
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   build:
     name: Build and analyze
