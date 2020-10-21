@@ -1,16 +1,13 @@
-name: SonarCloud scan
+name: build
 
 on:
   push:
     branches:
-    - '**'
-    - '!master'
-  pull_request:
-    types: [opened, synchronize, reopened]
+      - master
 
 jobs:
   build:
-    name: Build and analyze
+    name: Build and deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -37,8 +34,12 @@ jobs:
           mkdir -p ~/.gnupg/
           printf "${{ secrets.GPG_SIGNING_KEY }}" | base64 --decode > ~/.gnupg/private.key
           gpg --import ~/.gnupg/private.key
-      - name: Build and analyze
+      - name: maven-settings-xml-action
+        uses: whelk-io/maven-settings-xml-action@v12
+        with:
+          servers: '[{ "id": "ossrh", "username": "${{ secrets.OSSRH_USER }}", "password": "${{ secrets.OSSRH_PASS }}" }]'
+      - name: Build and deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: mvn -B clean deploy
