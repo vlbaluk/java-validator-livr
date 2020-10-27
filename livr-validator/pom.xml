@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.github.gaborkolarovics</groupId>
 		<artifactId>livr-validator-parent</artifactId>
-		<version>1.2.1</version>
+		<version>1.2.2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>livr-validator</artifactId>
