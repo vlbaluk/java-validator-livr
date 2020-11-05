@@ -1,14 +1,26 @@
 {
-    "products": [
-        {
-            "product_id": "NOT_POSITIVE_INTEGER",
-            "quantity": "REQUIRED"
-        },
-        null,
-        {
-            "product_id": "NOT_POSITIVE_INTEGER"
-        },
-       "FORMAT_ERROR"
-    ],
-    "users": "FORMAT_ERROR"
+  "users": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": "not an array"
+  },
+  "products": [
+    {
+      "quantity": {
+        "code": "REQUIRED",
+        "fieldValue": ""
+      },
+      "product_id": {
+        "code": "NOT_POSITIVE_INTEGER",
+        "fieldValue": 0
+      }
+    },
+    null,
+    {
+      "product_id": {
+        "code": "NOT_POSITIVE_INTEGER",
+        "fieldValue": -10
+      }
+    },
+    "FORMAT_ERROR"
+  ]
 }

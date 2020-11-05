@@ -1,9 +1,24 @@
 {
-    "address": {
-        "country": "NOT_ALLOWED_VALUE",
-        "zip": "NOT_POSITIVE_INTEGER",
-        "street": "REQUIRED",
-        "building": "NOT_POSITIVE_INTEGER"
+  "address": {
+    "zip": {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": "AAA"
     },
-    "address2": "FORMAT_ERROR"
+    "country": {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "Russia"
+    },
+    "street": {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    },
+    "building": {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": "-10"
+    }
+  },
+  "address2": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": "Should be hash"
+  }
 }

@@ -1,10 +1,31 @@
 {
-    "iso_date1": "WRONG_DATE",
-    "iso_date2": "WRONG_DATE",
-    "iso_date3": "WRONG_DATE",
-
-    "value_is_hash":        "FORMAT_ERROR",
-    "value_is_empty_hash":  "FORMAT_ERROR",
-    "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "iso_date3": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2014-10-10T22:22"
+  },
+  "iso_date1": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2014-13-10"
+  }
 }

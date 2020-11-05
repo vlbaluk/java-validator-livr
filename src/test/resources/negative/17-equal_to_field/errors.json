@@ -1,10 +1,35 @@
 {
-    "field1": "FIELDS_NOT_EQUAL",
-    "field2": "FIELDS_NOT_EQUAL",
-    "field3": "FIELDS_NOT_EQUAL",
-
-    "value_is_hash":        "FORMAT_ERROR",
-    "value_is_empty_hash":  "FORMAT_ERROR",
-    "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+  "field1": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": "some value1"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "field3": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": "some value"
+  },
+  "field2": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": "some value"
+  }
 }
