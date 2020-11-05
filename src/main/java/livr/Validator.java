@@ -1,14 +1,18 @@
 package livr;
 
 import com.google.common.collect.Lists;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
-import java.util.*;
-import java.util.function.Function;
 
 /**
  * Created by vladislavbaluk on 9/29/2017.
@@ -182,8 +186,14 @@ public class Validator {
                 v.setArgs(toMap(finalData));
                 Object errCode = v.getFunction().apply(v);
                 if (errCode != null && !errCode.toString().isEmpty()) {
-                    errors.put(k, errCode);
-                    break;
+                    if (errCode instanceof String) {
+                        final JSONObject error = new JSONObject();
+                        error.put("code", errCode);
+                        error.put("fieldValue", value);
+                        errors.put(k, error);
+                    } else {
+                        errors.put(k, errCode);
+                    }
                 } else if (!v.getFieldResultArr().isEmpty()) {
                     result.put(k, v.getFieldResultArr().get(0));
                 } else if (finalData.get(k) != null && !result.containsKey(k)) {

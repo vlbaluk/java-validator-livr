@@ -1,5 +1,14 @@
 {
-    "first_name": "REQUIRED",
-    "last_name": "REQUIRED",
-    "middle_name": "REQUIRED"
+    "first_name": {
+        "code" : "REQUIRED",
+        "fieldValue" : ""
+    },
+    "last_name": {
+        "code" : "REQUIRED",
+        "fieldValue" : null
+    },
+    "middle_name": {
+        "code" : "REQUIRED",
+        "fieldValue" : null
+    }
 }
