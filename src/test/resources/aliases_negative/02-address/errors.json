@@ -1,8 +1,24 @@
 {
-    "address": {
-        "street": "REQUIRED",
-        "zip": "NOT_POSITIVE_INTEGER",
-        "city": "NOT_ALLOWED_VALUE"
+  "address": {
+    "zip": {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": -1232131
     },
-    "address_custom_error": "WRONG_ADDRESS"
+    "city": {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "Moscow"
+    },
+    "street": {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    }
+  },
+  "address_custom_error": {
+    "code": "WRONG_ADDRESS",
+    "fieldValue": {
+      "zip": "12312",
+      "city": "Moscow",
+      "street": "My street"
+    }
+  }
 }

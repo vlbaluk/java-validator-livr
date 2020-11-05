@@ -1,6 +1,18 @@
 {
-    "age3": "TOO_LOW",
-    "age4": "NOT_POSITIVE_INTEGER",
-    "age3_custom_error": "WRONG_AGE",
-    "age4_custom_error": "WRONG_AGE"
+  "age3_custom_error": {
+    "code": "WRONG_AGE",
+    "fieldValue": 16
+  },
+  "age4": {
+    "code": "NOT_POSITIVE_INTEGER",
+    "fieldValue": -20
+  },
+  "age3": {
+    "code": "TOO_LOW",
+    "fieldValue": 15
+  },
+  "age4_custom_error": {
+    "code": "WRONG_AGE",
+    "fieldValue": -10
+  }
 }

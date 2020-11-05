@@ -1,10 +1,35 @@
 {
-    "first_name": "TOO_SHORT",
-    "last_name": "TOO_SHORT",
-    "middle_name": "TOO_SHORT",
-
-    "value_is_hash":        "FORMAT_ERROR",
-    "value_is_empty_hash":  "FORMAT_ERROR",
-    "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "last_name": {
+    "code": "TOO_SHORT",
+    "fieldValue": "Pupkin"
+  },
+  "middle_name": {
+    "code": "TOO_SHORT",
+    "fieldValue": "Some name"
+  },
+  "first_name": {
+    "code": "TOO_SHORT",
+    "fieldValue": "Vasya"
+  }
 }

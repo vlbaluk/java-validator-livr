@@ -1,15 +1,39 @@
 {
-    "order_id": "NOT_POSITIVE_INTEGER",
-    "product1": {
-        "material_id": "NOT_POSITIVE_INTEGER",
-        "quantity": "REQUIRED"
-    },
     "product2": {
-        "warehouse_id": "NOT_POSITIVE_INTEGER"
+        "warehouse_id": {
+            "code": "NOT_POSITIVE_INTEGER",
+            "fieldValue": -100
+        }
+    },
+    "product1": {
+        "quantity": {
+            "code": "REQUIRED",
+            "fieldValue": ""
+        },
+        "material_id": {
+            "code": "NOT_POSITIVE_INTEGER",
+            "fieldValue": 0
+        }
+    },
+    "order_id": {
+        "code": "NOT_POSITIVE_INTEGER",
+        "fieldValue": "-10"
+    },
+    "product5": {
+        "code": "FORMAT_ERROR",
+        "fieldValue": "Some Wrong Data"
+    },
+    "product4": {
+        "code": "FORMAT_ERROR",
+        "fieldValue": {
+            "product_type": "wrongtype",
+            "name": "Wrongtype"
+        }
     },
     "product3": {
-        "name": "TOO_LONG"
-    },
-    "product4": "FORMAT_ERROR",
-    "product5": "FORMAT_ERROR"
+        "name": {
+            "code": "TOO_LONG",
+            "fieldValue": "Very Long Name"
+        }
+    }
 }

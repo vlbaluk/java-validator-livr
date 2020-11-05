@@ -1,7 +1,22 @@
 {
-    "list1": "CANNOT_BE_EMPTY",
-    "list2": "CANNOT_BE_EMPTY",
-    "not_list": "FORMAT_ERROR",
-    "empty_field": "CANNOT_BE_EMPTY",
-    "missed_field":  "CANNOT_BE_EMPTY"
+  "list1": {
+    "code": "CANNOT_BE_EMPTY",
+    "fieldValue": []
+  },
+  "list2": {
+    "code": "CANNOT_BE_EMPTY",
+    "fieldValue": []
+  },
+  "missed_field": {
+    "code": "CANNOT_BE_EMPTY",
+    "fieldValue": null
+  },
+  "empty_field": {
+    "code": "CANNOT_BE_EMPTY",
+    "fieldValue": ""
+  },
+  "not_list": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  }
 }

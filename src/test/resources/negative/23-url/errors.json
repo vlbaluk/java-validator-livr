@@ -1,10 +1,27 @@
 {
-    "url1": "WRONG_URL",
-    "url2": "WRONG_URL",
-    "url3": "WRONG_URL",
-
-    "value_is_hash":        "FORMAT_ERROR",
-    "value_is_empty_hash":  "FORMAT_ERROR",
-    "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "url1": {
+    "code": "WRONG_URL",
+    "fieldValue": "www.google.com"
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  }
 }

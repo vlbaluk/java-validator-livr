@@ -1,11 +1,39 @@
 {
-    "first_name": "WRONG_FORMAT",
-    "last_name": "WRONG_FORMAT",
-    "middle_name": "WRONG_FORMAT",
-    "age": "WRONG_FORMAT",
-
-    "value_is_hash":        "FORMAT_ERROR",
-    "value_is_empty_hash":  "FORMAT_ERROR",
-    "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+    "value_is_hash": {
+        "code": "FORMAT_ERROR",
+        "fieldValue": {
+            "test": 1
+        }
+    },
+    "value_is_empty_hash": {
+        "code": "FORMAT_ERROR",
+        "fieldValue": {}
+    },
+    "value_is_empty_array": {
+        "code": "FORMAT_ERROR",
+        "fieldValue": []
+    },
+    "value_is_array": {
+        "code": "FORMAT_ERROR",
+        "fieldValue": [
+            "test",
+            1
+        ]
+    },
+    "last_name": {
+        "code": "WRONG_FORMAT",
+        "fieldValue": "Pupkin"
+    },
+    "middle_name": {
+        "code": "WRONG_FORMAT",
+        "fieldValue": "Ivanovich"
+    },
+    "first_name": {
+        "code": "WRONG_FORMAT",
+        "fieldValue": "Vasya"
+    },
+    "age": {
+        "code": "WRONG_FORMAT",
+        "fieldValue": "35"
+    }
 }
