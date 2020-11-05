@@ -194,6 +194,7 @@ public class Validator {
                     } else {
                         errors.put(k, errCode);
                     }
+                    break;
                 } else if (!v.getFieldResultArr().isEmpty()) {
                     result.put(k, v.getFieldResultArr().get(0));
                 } else if (finalData.get(k) != null && !result.containsKey(k)) {

@@ -4,7 +4,7 @@
     "fieldValue": 16
   },
   "age4": {
-    "code": "TOO_LOW",
+    "code": "NOT_POSITIVE_INTEGER",
     "fieldValue": -20
   },
   "age3": {
