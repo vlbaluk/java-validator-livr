@@ -18,7 +18,7 @@ import livr.LIVRUtils;
  * @since 2017/09/28
  */
 public class NumericRules {
-	public static Function<List<Object>, Function> integer = objects -> (Function<FunctionKeeper, Object>) (
+	public static final Function<List<Object>, Function> integer = objects -> (Function<FunctionKeeper, Object>) (
 			wrapper) -> {
 		if (LIVRUtils.isNoValue(wrapper.getValue()))
 			return "";
@@ -33,7 +33,7 @@ public class NumericRules {
 		return "";
 	};
 
-	public static Function<List<Object>, Function> positive_integer = objects -> (Function<FunctionKeeper, Object>) (
+	public static final Function<List<Object>, Function> positive_integer = objects -> (Function<FunctionKeeper, Object>) (
 			wrapper) -> {
 		if (LIVRUtils.isNoValue(wrapper.getValue()))
 			return "";
@@ -48,7 +48,7 @@ public class NumericRules {
 		return "";
 	};
 
-	public static Function<List<Object>, Function> decimal = objects -> (Function<FunctionKeeper, Object>) (
+	public static final Function<List<Object>, Function> decimal = objects -> (Function<FunctionKeeper, Object>) (
 			wrapper) -> {
 		if (LIVRUtils.isNoValue(wrapper.getValue()))
 			return "";
@@ -63,7 +63,7 @@ public class NumericRules {
 		return "";
 	};
 
-	public static Function<List<Object>, Function> positive_decimal = objects -> (Function<FunctionKeeper, Object>) (
+	public static final Function<List<Object>, Function> positive_decimal = objects -> (Function<FunctionKeeper, Object>) (
 			wrapper) -> {
 		if (LIVRUtils.isNoValue(wrapper.getValue()))
 			return "";
@@ -78,7 +78,7 @@ public class NumericRules {
 		return "";
 	};
 
-	public static Function<List<Object>, Function> max_number = objects -> {
+	public static final Function<List<Object>, Function> max_number = objects -> {
 		final Long maxNumber = Long.valueOf(objects.get(0) + "");
 		return (Function<FunctionKeeper, Object>) (wrapper) -> {
 			if (LIVRUtils.isNoValue(wrapper.getValue()))
@@ -98,7 +98,7 @@ public class NumericRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> min_number = objects -> {
+	public static final Function<List<Object>, Function> min_number = objects -> {
 		final Long min_number = Long.valueOf(objects.get(0) + "");
 		return (Function<FunctionKeeper, Object>) (wrapper) -> {
 			if (LIVRUtils.isNoValue(wrapper.getValue()))
@@ -117,7 +117,7 @@ public class NumericRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> number_between = objects -> {
+	public static final Function<List<Object>, Function> number_between = objects -> {
 		Iterator it = ((JSONArray) objects.get(0)).iterator();
 		final Long minNumber = Long.valueOf(it.next() + "");
 		final Long maxNumber = Long.valueOf(it.next() + "");

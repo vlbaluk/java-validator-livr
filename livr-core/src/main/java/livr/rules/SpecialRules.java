@@ -22,7 +22,7 @@ public class SpecialRules {
 	static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
 			Pattern.CASE_INSENSITIVE);
 
-	public static Function<List<Object>, Function> email = objects -> {
+	public static final Function<List<Object>, Function> email = objects -> {
 
 		return (Function<FunctionKeeper, Object>) (wrapper) -> {
 			if (LIVRUtils.isNoValue(wrapper.getValue()))
@@ -40,7 +40,7 @@ public class SpecialRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> equal_to_field = objects -> {
+	public static final Function<List<Object>, Function> equal_to_field = objects -> {
 		final String field = objects.get(0) + "";
 		return (Function<FunctionKeeper, Object>) (wrapper) -> {
 			if (LIVRUtils.isNoValue(wrapper.getValue()))
@@ -55,7 +55,7 @@ public class SpecialRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> url = objects -> {
+	public static final Function<List<Object>, Function> url = objects -> {
 
 		return (Function<FunctionKeeper, Object>) (wrapper) -> {
 			if (LIVRUtils.isNoValue(wrapper.getValue()))
@@ -70,7 +70,7 @@ public class SpecialRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> iso_date = objects -> (Function<FunctionKeeper, Object>) (
+	public static final Function<List<Object>, Function> iso_date = objects -> (Function<FunctionKeeper, Object>) (
 			wrapper) -> {
 		if (LIVRUtils.isNoValue(wrapper.getValue()))
 			return "";

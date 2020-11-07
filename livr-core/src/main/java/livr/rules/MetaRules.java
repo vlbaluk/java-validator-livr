@@ -25,7 +25,7 @@ public class MetaRules {
 
 	private static Logger log = LoggerFactory.getLogger(MetaRules.class);
 
-	public static Function<List<Object>, Function> nested_object = (List<Object> objects) -> {
+	public static final Function<List<Object>, Function> nested_object = (List<Object> objects) -> {
 		try {
 			Validator validator = new Validator((Map<String, Function>) objects.get(1))
 					.init((JSONObject) objects.get(0), false).prepare();
@@ -56,7 +56,7 @@ public class MetaRules {
 		return null;
 	};
 
-	public static Function<List<Object>, Function> list_of = (List<Object> objects) -> {
+	public static final Function<List<Object>, Function> list_of = (List<Object> objects) -> {
 		try {
 			JSONObject field = new JSONObject();
 			JSONArray array = new JSONArray();
@@ -115,7 +115,7 @@ public class MetaRules {
 		return null;
 	};
 
-	public static Function<List<Object>, Function> list_of_objects = (List<Object> objects) -> {
+	public static final Function<List<Object>, Function> list_of_objects = (List<Object> objects) -> {
 		try {
 			Validator validator = new Validator((Map<String, Function>) objects.get(1))
 					.init((JSONObject) objects.get(0), false).prepare();
@@ -166,7 +166,7 @@ public class MetaRules {
 		return null;
 	};
 
-	public static Function<List<Object>, Function> list_of_different_objects = (List<Object> objects) -> {
+	public static final Function<List<Object>, Function> list_of_different_objects = (List<Object> objects) -> {
 		try {
 			Map<Object, Validator> validators = new HashMap<>();
 			Iterator it = ((JSONArray) objects.get(0)).iterator();
@@ -230,7 +230,7 @@ public class MetaRules {
 		return null;
 	};
 
-	public static Function<List<Object>, Function> variable_object = (List<Object> objects) -> {
+	public static final Function<List<Object>, Function> variable_object = (List<Object> objects) -> {
 		try {
 			Map<Object, Validator> validators = new HashMap<>();
 			Iterator it = ((JSONArray) objects.get(0)).iterator();
@@ -277,7 +277,7 @@ public class MetaRules {
 		return null;
 	};
 
-	public static Function<List<Object>, Function> or = (List<Object> objects) -> {
+	public static final Function<List<Object>, Function> or = (List<Object> objects) -> {
 		try {
 			List<Validator> validators = new ArrayList<>();
 			for (Object entry : ((JSONArray) objects.get(0)).toArray()) {

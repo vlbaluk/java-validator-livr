@@ -17,7 +17,8 @@ import livr.LIVRUtils;
  */
 public class StringRules {
 
-	public static Function<List<Object>, Function> string = objects -> (Function<FunctionKeeper, Object>) (wrapper) -> {
+	public static final Function<List<Object>, Function> string = objects -> (Function<FunctionKeeper, Object>) (
+			wrapper) -> {
 		if (wrapper.getValue() == null || (wrapper.getValue() + "").equals(""))
 			return "";
 		if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
@@ -28,7 +29,7 @@ public class StringRules {
 		return "";
 	};
 
-	public static Function<List<Object>, Function> eq = objects -> {
+	public static final Function<List<Object>, Function> eq = objects -> {
 		Object allowedValue = objects.get(0);
 
 		return (Function<FunctionKeeper, Object>) (wrapper) -> {
@@ -47,8 +48,7 @@ public class StringRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> one_of = objects -> {
-		// final List<Object> allowedValues = Lists.newArrayList(((JSONArray) objects.get(0)).toArray());
+	public static final Function<List<Object>, Function> one_of = objects -> {
 		Object[] objects1 = ((JSONArray) objects.get(0)).toArray();
 		final List<Object> allowedValues = new ArrayList();
 		Collections.addAll(allowedValues, objects1);
@@ -71,7 +71,7 @@ public class StringRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> max_length = objects -> {
+	public static final Function<List<Object>, Function> max_length = objects -> {
 		final Long maxLength = Long.valueOf(objects.get(0) + "");
 
 		return (Function<FunctionKeeper, Object>) (FunctionKeeper wrapper) -> {
@@ -88,7 +88,7 @@ public class StringRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> min_length = objects -> {
+	public static final Function<List<Object>, Function> min_length = objects -> {
 		final Long minLength = Long.valueOf(objects.get(0) + "");
 
 		return (Function<FunctionKeeper, Object>) (FunctionKeeper wrapper) -> {
@@ -105,7 +105,7 @@ public class StringRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> length_equal = objects -> {
+	public static final Function<List<Object>, Function> length_equal = objects -> {
 		final Long length = Long.valueOf(objects.get(0) + "");
 
 		return (Function<FunctionKeeper, Object>) (FunctionKeeper wrapper) -> {
@@ -126,7 +126,7 @@ public class StringRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> length_between = objects -> {
+	public static final Function<List<Object>, Function> length_between = objects -> {
 		Iterator it = ((JSONArray) objects.get(0)).iterator();
 		final Long minLength = Long.valueOf(it.next() + "");
 		final Long maxLength = Long.valueOf(it.next() + "");
@@ -148,7 +148,7 @@ public class StringRules {
 		};
 	};
 
-	public static Function<List<Object>, Function> like = objects -> {
+	public static final Function<List<Object>, Function> like = objects -> {
 		String pattern;
 		boolean isIgnoreCase;
 		if (objects.get(0).getClass() == JSONArray.class) {
