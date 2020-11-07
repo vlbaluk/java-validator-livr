@@ -20,6 +20,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * <ul>
  * <li>schema - LIVR validation schema</li>
  * <li>autotrim - trim values</li>
+ * <li>rules - custom {@link LivrRule} array</li>
  * </ul>
  * <p>
  * <br>
@@ -51,6 +52,8 @@ public @interface LivrSchema {
 	String schema();
 
 	boolean autotrim() default false;
+
+	LivrRule[] rules() default {};
 
 	@Target({ ElementType.TYPE })
 	@Retention(RetentionPolicy.RUNTIME)
