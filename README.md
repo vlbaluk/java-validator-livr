@@ -226,8 +226,14 @@ Returns errors object.
 
 ```javascript
 {
-    "field1": "ERROR_CODE",
-    "field2": "ERROR_CODE",
+    "field1": {
+        "code": "ERROR_CODE",
+        "value": "INVALID_VALUE"
+    },
+    "field2": {
+        "code": "ERROR_CODE",
+        "value": "INVALID_VALUE"
+    },
     ...
 }
 ```
@@ -236,10 +242,22 @@ For example:
 
 ```javascript
 {
-    "country":  "NOT_ALLOWED_VALUE",
-    "zip":      "NOT_POSITIVE_INTEGER",
-    "street":   "REQUIRED",
-    "building": "NOT_POSITIVE_INTEGER"
+    "country": {
+        "code": "NOT_ALLOWED_VALUE",
+        "value": "12345"
+    },
+    "zip": {
+        "code": "NOT_POSITIVE_INTEGER",
+        "value": "-45"
+    },
+    "street":   {
+        "code": "REQUIRED",
+        "value": ""
+    },
+    "building": {
+        "code": "NOT_POSITIVE_INTEGER",
+        "value": "-123"
+    }
 }
 ```
 
