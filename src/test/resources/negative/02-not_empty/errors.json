@@ -1,3 +1,6 @@
 {
-    "first_name": "CANNOT_BE_EMPTY"
+  "first_name": {
+    "code": "CANNOT_BE_EMPTY",
+    "fieldValue": ""
+  }
 }

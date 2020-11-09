@@ -1,11 +1,39 @@
 {
-    "number1": "NOT_DECIMAL",
-    "number2": "NOT_DECIMAL",
-    "number3": "NOT_DECIMAL",
-
-    "value_is_string":      "NOT_DECIMAL",
-    "value_is_hash":        "FORMAT_ERROR",
-    "value_is_empty_hash":  "FORMAT_ERROR",
-    "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "value_is_string": {
+    "code": "NOT_DECIMAL",
+    "fieldValue": "some_string"
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "number3": {
+    "code": "NOT_DECIMAL",
+    "fieldValue": "1,12"
+  },
+  "number1": {
+    "code": "NOT_DECIMAL",
+    "fieldValue": "A"
+  },
+  "number2": {
+    "code": "NOT_DECIMAL",
+    "fieldValue": "12.12.12"
+  }
 }

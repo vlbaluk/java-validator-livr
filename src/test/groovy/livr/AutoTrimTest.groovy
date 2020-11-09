@@ -28,13 +28,21 @@ class AutoTrimTest extends Specification {
 
         assert output == null;
         JSONAssert.assertEquals(validator.getErrors().toJSONString(), "{" +
-                "                \"code\": \"REQUIRED\"," +
-                "                \"password\": \"TOO_SHORT\"," +
-                "                \"address\":" +
-                "                {" +
-                "                \"street\": \"TOO_SHORT\"" +
-                "                }" +
-                "                }", false);
+                "  \"password\": {" +
+                "    \"code\": \"TOO_SHORT\"," +
+                "    \"fieldValue\": \"12\"" +
+                "  }," +
+                "  \"code\": {" +
+                "    \"code\": \"REQUIRED\"," +
+                "    \"fieldValue\": \"\"" +
+                "  }," +
+                "  \"address\": {" +
+                "    \"street\": {" +
+                "      \"code\": \"TOO_SHORT\"," +
+                "      \"fieldValue\": \"hell\"" +
+                "    }" +
+                "  }" +
+                "}", false);
 
     }
 

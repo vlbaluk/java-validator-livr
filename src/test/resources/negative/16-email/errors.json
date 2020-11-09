@@ -1,12 +1,43 @@
 {
-    "email1": "WRONG_EMAIL",
-    "email2": "WRONG_EMAIL",
-    "email3": "WRONG_EMAIL",
-    "email4": "WRONG_EMAIL",
-    "email5": "WRONG_EMAIL",
-
-    "value_is_hash":        "FORMAT_ERROR",
-    "value_is_empty_hash":  "FORMAT_ERROR",
-    "value_is_array":       "FORMAT_ERROR",
-    "value_is_empty_array": "FORMAT_ERROR"
+  "email3": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "test+test.t_e_s_t@ma_il.in.ua"
+  },
+  "email2": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "test@test@mail.com.ua"
+  },
+  "email1": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "testmail.com"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "email5": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "username@mail.c om"
+  },
+  "email4": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "user name@gmail.com"
+  }
 }
