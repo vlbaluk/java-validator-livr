@@ -17,6 +17,8 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static livr.api.Constant.FORMAT_ERROR;
+
 /**
  * @author vladislavbaluk (creator)
  * @author Gábor KOLÁROVICS
@@ -171,7 +173,7 @@ public class Validator {
 			return validate((JSONObject) parser.parse(str + ""));
 		} catch (ParseException e) {
 			this.errors = new JSONObject();
-			this.errors.put("base", "FORMAT_ERROR");
+			this.errors.put("base", FORMAT_ERROR);
 			return null;
 		}
 	}
@@ -179,7 +181,7 @@ public class Validator {
 	public JSONObject validate(JSONObject data) throws IOException, ParseException {
 		if (data == null) {
 			this.errors = new JSONObject();
-			this.errors.put("base", "FORMAT_ERROR");
+			this.errors.put("base", FORMAT_ERROR);
 			return null;
 		}
 

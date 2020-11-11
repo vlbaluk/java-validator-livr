@@ -29,16 +29,18 @@ Features:
 <dependency>
   <groupId>com.github.gaborkolarovics</groupId>
   <artifactId>livr-validator</artifactId>
-  <version>1.2.0</version>
+  <version>1.3.0</version>
 </dependency>
 ```
 
 #### Gradle
 ```js
-implementation 'com.github.gaborkolarovics:livr-validator:1.2.0'
+implementation 'com.github.gaborkolarovics:livr-validator:1.3.0'
 ```
 
 ### Code
+
+#### Schema source
 
 * Simple string schema
 ```java
@@ -67,6 +69,43 @@ public class SamplePOJO{
     private String name;
     private String email;
     // Getter.. Setter..
+}
+```
+
+#### Custom rule
+
+* Pojo
+```java
+@LivrSchema(schema = "{\"name\": {\"my_length\": 50 }}"
+	rules = { @LivrRule(name = "my_length", func = MyLength.class) })
+public class SamplePOJO{
+    private String name;
+    private String email;
+    // Getter.. Setter..
+}
+```
+
+* CustomRule
+```java
+public class MyLength implements Function<List<Object>, Function> {
+
+	@Override
+	public Function apply(List<Object> objects) {
+		final Long maxLength = Long.valueOf(objects.get(0) + "");
+
+		return (Function<FunctionKeeper, Object>) (FunctionKeeper wrapper) -> {
+			if (wrapper.getValue() == null || (wrapper.getValue() + "").equals(""))
+				return "";
+
+			String value = wrapper.getValue() + "";
+			if (value.length() > maxLength)
+				return "MY_TOO_LONG";
+			wrapper.getFieldResultArr().add(value);
+			return "";
+		};
+
+	}
+
 }
 ```
 

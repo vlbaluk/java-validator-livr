@@ -16,7 +16,9 @@ import javax.validation.ValidatorFactory;
 
 import org.junit.Test;
 
+import livr.validation.annotation.LivrRule;
 import livr.validation.annotation.LivrSchema;
+import test.MyLength;
 import test.pojo.AbstractSchema;
 
 import static org.junit.Assert.assertEquals;
@@ -45,6 +47,12 @@ public class LivrValidatorTest {
 
 	@LivrSchema(schema = "This is invalid schema")
 	public class InvalidSchema extends AbstractSchema {
+	}
+
+	@LivrSchema(
+			schema = "{\"name\": \"required\", \"email\": {\"my_length\": 1 } }",
+			rules = { @LivrRule(name = "my_length", func = MyLength.class) })
+	public class CustomValidatorSchema extends AbstractSchema {
 	}
 
 	@Test
@@ -111,6 +119,20 @@ public class LivrValidatorTest {
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<InvalidSchema>> violations = validator.validate(pojo);
 		assertTrue(violations.isEmpty());
+	}
+
+	@Test
+	public void testFail_CustomRule() {
+		CustomValidatorSchema pojo = new CustomValidatorSchema();
+		pojo.setEmail("test@yahoo.com");
+		pojo.setName("Test");
+
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		Set<ConstraintViolation<CustomValidatorSchema>> violations = validator.validate(pojo);
+		assertFalse(violations.isEmpty());
+		assertEquals(1, violations.size());
+		assertEquals("MY_TOO_LONG", violations.iterator().next().getMessage());
 	}
 
 	/**

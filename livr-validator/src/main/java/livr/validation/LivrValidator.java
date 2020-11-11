@@ -1,6 +1,10 @@
 package livr.validation;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -14,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import livr.LIVR;
 import livr.Validator;
+import livr.validation.annotation.LivrRule;
 import livr.validation.annotation.LivrSchema;
 
 /**
@@ -30,16 +35,25 @@ public class LivrValidator implements ConstraintValidator<LivrSchema, Object> {
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void initialize(LivrSchema constraintAnnotation) {
 		try {
 			String schema = SchemaLoader.load(constraintAnnotation.schema());
-			validator = LIVR.validator().init(schema, constraintAnnotation.autotrim());
-		} catch (ParseException e) {
+			LivrRule[] rules = constraintAnnotation.rules();
+
+			Map<String, Function> r = new HashMap<>();
+			for (LivrRule livrRule : rules) {
+				r.put(livrRule.name(), (Function<List<Object>, Function>) livrRule.func().newInstance());
+			}
+
+			validator = LIVR.validator().registerDefaultRules(r).init(schema, constraintAnnotation.autotrim());
+		} catch (ParseException | InstantiationException | IllegalAccessException e) {
 			log.error(e.getMessage(), e.getCause());
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
 		try {
