@@ -8,48 +8,56 @@ import org.json.simple.JSONArray;
 import livr.FunctionKeeper;
 import livr.LIVRUtils;
 
+import static livr.api.Constant.CANNOT_BE_EMPTY;
+import static livr.api.Constant.EMPTY;
+import static livr.api.Constant.FORMAT_ERROR;
+import static livr.api.Constant.REQUIRED;
+
 /**
- * Created by vladislavbaluk on 9/28/2017.
+ * @author vladislavbaluk (creator)
+ * @author Gábor KOLÁROVICS
+ * 
+ * @since 2017/09/28
  */
-public class CommonRules {
+public final class CommonRules {
 
-	public static final Function<List<Object>, Function> required = objects -> (Function<FunctionKeeper, Object>) (
-			wrapper) -> {
+	private CommonRules() {
+		throw new IllegalStateException("Utility class");
+	}
+
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> required = objects -> wrapper -> {
 		if (LIVRUtils.isNoValue(wrapper.getValue())) {
-			return "REQUIRED";
+			return REQUIRED;
 		}
-		return "";
+		return EMPTY;
 	};
 
-	public static final Function<List<Object>, Function> not_empty = objects -> (Function<FunctionKeeper, Object>) (
-			wrapper) -> {
-		if (wrapper.getValue() != null && wrapper.getValue().equals("")) {
-			return "CANNOT_BE_EMPTY";
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> not_empty = objects -> wrapper -> {
+		if (wrapper.getValue() != null && wrapper.getValue().equals(EMPTY)) {
+			return CANNOT_BE_EMPTY;
 		}
-		return "";
+		return EMPTY;
 	};
 
-	public static final Function<List<Object>, Function> not_empty_list = objects -> (Function<FunctionKeeper, Object>) (
-			wrapper) -> {
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> not_empty_list = objects -> wrapper -> {
 		if (LIVRUtils.isNoValue(wrapper.getValue()))
-			return "CANNOT_BE_EMPTY";
+			return CANNOT_BE_EMPTY;
 		if (!(wrapper.getValue() instanceof JSONArray))
-			return "FORMAT_ERROR";
-		if (((JSONArray) wrapper.getValue()).size() == 0)
-			return "CANNOT_BE_EMPTY";
+			return FORMAT_ERROR;
+		if (((JSONArray) wrapper.getValue()).isEmpty())
+			return CANNOT_BE_EMPTY;
 
-		return "";
+		return EMPTY;
 	};
 
-	public static final Function<List<Object>, Function> any_object = objects -> (Function<FunctionKeeper, Object>) (
-			wrapper) -> {
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> any_object = objects -> wrapper -> {
 		if (LIVRUtils.isNoValue((wrapper.getValue())))
-			return "";
+			return EMPTY;
 
 		if (!LIVRUtils.isObject(wrapper.getValue())) {
-			return "FORMAT_ERROR";
+			return FORMAT_ERROR;
 		}
-		return "";
+		return EMPTY;
 	};
 
 }
