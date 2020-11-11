@@ -76,7 +76,7 @@ public class SamplePOJO{
 
 * Pojo
 ```java
-@LivrSchema(schema = "classpath:schemas/samplePOJO.json",
+@LivrSchema(schema = "{\"name\": {\"my_length\": 50 }}"
 	rules = { @LivrRule(name = "my_length", func = MyLength.class) })
 public class SamplePOJO{
     private String name;
