@@ -63,8 +63,15 @@ public class LivrValidator implements ConstraintValidator<LivrSchema, Object> {
 				return true;
 			} else {
 				context.disableDefaultConstraintViolation();
-				validator.getErrors().forEach((k, v) -> context.buildConstraintViolationWithTemplate((String) v)
-						.addPropertyNode((String) k).addConstraintViolation());
+				validator.getErrors().forEach((k, v) -> {
+					if (v instanceof String) {
+						context.buildConstraintViolationWithTemplate((String) v)
+								.addPropertyNode((String) k).addConstraintViolation();
+					} else {
+						context.buildConstraintViolationWithTemplate(((JSONObject) v).toJSONString())
+								.addPropertyNode((String) k).addConstraintViolation();
+					}
+				});
 			}
 		} catch (IOException e) {
 			log.error(e.getMessage(), e.getCause());
