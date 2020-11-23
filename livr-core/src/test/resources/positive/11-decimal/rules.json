@@ -1,6 +1,12 @@
 {
-    "number1": "decimal",
-    "number2": ["decimal"],
-    "number3": [ { "decimal": [] } ],
-    "empty_field": "decimal"
+	"number1": "decimal",
+	"number2": [
+		"decimal"
+	],
+	"number3": [
+		{
+			"decimal": []
+		}
+	],
+	"empty_field": "decimal"
 }

@@ -29,13 +29,13 @@ Features:
 <dependency>
   <groupId>com.github.gaborkolarovics</groupId>
   <artifactId>livr-validator</artifactId>
-  <version>1.3.1</version>
+  <version>1.4.0</version>
 </dependency>
 ```
 
 #### Gradle
 ```js
-implementation 'com.github.gaborkolarovics:livr-validator:1.3.1'
+implementation 'com.github.gaborkolarovics:livr-validator:1.4.0'
 ```
 
 ### Code
@@ -77,7 +77,7 @@ public class SamplePOJO{
 * Pojo
 ```java
 @LivrSchema(schema = "{\"name\": {\"my_length\": 50 }}"
-	rules = { @LivrRule(name = "my_length", func = MyLength.class) })
+	rules = { MyLength.class })
 public class SamplePOJO{
     private String name;
     private String email;
@@ -87,24 +87,33 @@ public class SamplePOJO{
 
 * CustomRule
 ```java
-public class MyLength implements Function<List<Object>, Function> {
+public class MyLength implements Rule {
 
-	@Override
-	public Function apply(List<Object> objects) {
-		final Long maxLength = Long.valueOf(objects.get(0) + "");
+    @Override
+    public Function<List<Object>, Function<FunctionKeeper, Object>> func() {
 
-		return (Function<FunctionKeeper, Object>) (FunctionKeeper wrapper) -> {
-			if (wrapper.getValue() == null || (wrapper.getValue() + "").equals(""))
+		return ruleDefinition -> {
+	    	final Long maxLength = Long.valueOf(ruleDefinition.get(0) + "");
+
+	    	return wrapper -> {
+				if ((wrapper.getValue() == null) || (wrapper.getValue() + "").equals("")) {
+		    		return "";
+				}
+
+				final String value = wrapper.getValue() + "";
+				if (value.length() > maxLength) {
+		    		return "MY_TOO_LONG";
+				}
+				wrapper.getFieldResultArr().add(value);
 				return "";
-
-			String value = wrapper.getValue() + "";
-			if (value.length() > maxLength)
-				return "MY_TOO_LONG";
-			wrapper.getFieldResultArr().add(value);
-			return "";
+	    	};
 		};
+    }
 
-	}
+    @Override
+    public String rule() {
+		return "my_length";
+    }
 
 }
 ```

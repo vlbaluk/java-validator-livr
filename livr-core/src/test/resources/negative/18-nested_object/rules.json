@@ -1,9 +1,31 @@
 {
-    "address": [ "required", { "nested_object": {
-        "country": ["required", { "one_of": [["Ukraine", "USA"]] } ],
-        "zip": "positive_integer",
-        "street": "required",
-        "building": ["required",  "positive_integer" ]
-    } } ],
-    "address2": { "nested_object": { "country": "required" } }
+	"address": [
+		"required",
+		{
+			"nested_object": {
+				"country": [
+					"required",
+					{
+						"one_of": [
+							[
+								"Ukraine",
+								"USA"
+							]
+						]
+					}
+				],
+				"zip": "positive_integer",
+				"street": "required",
+				"building": [
+					"required",
+					"positive_integer"
+				]
+			}
+		}
+	],
+	"address2": {
+		"nested_object": {
+			"country": "required"
+		}
+	}
 }

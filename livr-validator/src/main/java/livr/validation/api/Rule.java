@@ -14,34 +14,34 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package test.pojo;
+package livr.validation.api;
+
+import java.util.List;
+import java.util.function.Function;
+
+import livr.FunctionKeeper;
 
 /**
- * Base test schema
+ * LIVR rule interface. Implement this interface to define own rules to package
+ * scan
  *
- * @author Gábor KOLÁROVICS
- * @since 2020/10/17
+ * @author Gábor KOÁROVICSs
+ * @since 2020/11/14
  */
-public abstract class AbstractSchema {
+public interface Rule {
 
-    private String name;
+    /**
+     * Rule implementation
+     *
+     * @return Rule {@link Function}
+     */
+    Function<List<Object>, Function<FunctionKeeper, Object>> func();
 
-    private String email;
-
-    public String getEmail() {
-	return email;
-    }
-
-    public String getName() {
-	return name;
-    }
-
-    public void setEmail(String email) {
-	this.email = email;
-    }
-
-    public void setName(String name) {
-	this.name = name;
-    }
+    /**
+     * Rule name
+     *
+     * @return
+     */
+    String rule();
 
 }

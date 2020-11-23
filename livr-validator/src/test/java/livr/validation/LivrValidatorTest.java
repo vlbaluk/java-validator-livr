@@ -1,4 +1,24 @@
+/*
+ * Copyright (C) 2020 Gábor KOLÁROVICS
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package livr.validation;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,14 +36,9 @@ import javax.validation.ValidatorFactory;
 
 import org.junit.Test;
 
-import livr.validation.annotation.LivrRule;
 import livr.validation.annotation.LivrSchema;
-import test.MyLength;
 import test.pojo.AbstractSchema;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import test.rule.MyLength;
 
 /**
  * LivrValidator test cases
@@ -33,137 +48,136 @@ import static org.junit.Assert.assertTrue;
  */
 public class LivrValidatorTest {
 
-	@LivrSchema(schema = "{\"name\": \"required\", \"email\": \"required\"}")
-	public class StringSchema extends AbstractSchema {
+    @LivrSchema(schema = "classpath:schema.json")
+    public class ClasspathSchema extends AbstractSchema {
+    }
+
+    @LivrSchema(schema = "{\"name\": \"required\", \"email\": {\"my_length\": 1 } }", rules = { MyLength.class })
+    public class CustomValidatorSchema extends AbstractSchema {
+    }
+
+    @LivrSchema(schema = "file:/this-is-invalid-schema.json")
+    public class FileSchema extends AbstractSchema {
+    }
+
+    @LivrSchema(schema = "This is invalid schema")
+    public class InvalidSchema extends AbstractSchema {
+    }
+
+    @LivrSchema(schema = "{\"name\": \"required\", \"email\": \"required\"}", scanRulePackages = {
+	    "test.rule" }, scanRulePackageClasses = { MyLength.class })
+    public class StringSchema extends AbstractSchema {
+    }
+
+    /**
+     * Change annotation value
+     *
+     * @see https://stackoverflow.com/questions/14268981/modify-a-class-definitions-annotation-string-parameter-at-runtime
+     * @author Balder
+     * @since 2015/01/23
+     */
+    @SuppressWarnings("unchecked")
+    public static Object changeAnnotationValue(final Annotation annotation, final String key, final Object newValue) {
+	final Object handler = Proxy.getInvocationHandler(annotation);
+	Field f;
+	try {
+	    f = handler.getClass().getDeclaredField("memberValues");
+	} catch (NoSuchFieldException | SecurityException e) {
+	    throw new IllegalStateException(e);
 	}
-
-	@LivrSchema(schema = "classpath:schema.json")
-	public class ClasspathSchema extends AbstractSchema {
+	f.setAccessible(true);
+	Map<String, Object> memberValues;
+	try {
+	    memberValues = (Map<String, Object>) f.get(handler);
+	} catch (IllegalArgumentException | IllegalAccessException e) {
+	    throw new IllegalStateException(e);
 	}
-
-	@LivrSchema(schema = "file:/this-is-invalid-schema.json")
-	public class FileSchema extends AbstractSchema {
+	final Object oldValue = memberValues.get(key);
+	if ((oldValue == null) || (oldValue.getClass() != newValue.getClass())) {
+	    throw new IllegalArgumentException();
 	}
+	memberValues.put(key, newValue);
+	return oldValue;
+    }
 
-	@LivrSchema(schema = "This is invalid schema")
-	public class InvalidSchema extends AbstractSchema {
-	}
+    @Test
+    public void testClasspathSchemaFail() {
+	final ClasspathSchema pojo = new ClasspathSchema();
 
-	@LivrSchema(
-			schema = "{\"name\": \"required\", \"email\": {\"my_length\": 1 } }",
-			rules = { @LivrRule(name = "my_length", func = MyLength.class) })
-	public class CustomValidatorSchema extends AbstractSchema {
-	}
+	final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	final Validator validator = factory.getValidator();
+	final Set<ConstraintViolation<ClasspathSchema>> violations = validator.validate(pojo);
+	assertFalse(violations.isEmpty());
+	assertEquals(2, violations.size());
+	assertEquals("REQUIRED", violations.iterator().next().getMessage());
+    }
 
-	@Test
-	public void testSuccess() {
-		StringSchema pojo = new StringSchema();
-		pojo.setEmail("test@yahoo.com");
-		pojo.setName("Test");
+    @Test
+    public void testFail_CustomRule() {
+	final CustomValidatorSchema pojo = new CustomValidatorSchema();
+	pojo.setEmail("test@yahoo.com");
+	pojo.setName("Test");
 
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<StringSchema>> violations = validator.validate(pojo);
-		assertTrue(violations.isEmpty());
-	}
+	final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	final Validator validator = factory.getValidator();
+	final Set<ConstraintViolation<CustomValidatorSchema>> violations = validator.validate(pojo);
+	assertFalse(violations.isEmpty());
+	assertEquals(1, violations.size());
+	assertEquals("MY_TOO_LONG", violations.iterator().next().getMessage());
+    }
 
-	@Test
-	public void testFailRequired() {
-		StringSchema pojo = new StringSchema();
+    @Test
+    public void testFailRequired() {
+	final StringSchema pojo = new StringSchema();
 
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<StringSchema>> violations = validator.validate(pojo);
-		assertFalse(violations.isEmpty());
-		assertEquals(2, violations.size());
-		assertEquals("REQUIRED", violations.iterator().next().getMessage());
-	}
+	final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	final Validator validator = factory.getValidator();
+	final Set<ConstraintViolation<StringSchema>> violations = validator.validate(pojo);
+	assertFalse(violations.isEmpty());
+	assertEquals(2, violations.size());
+	assertEquals("REQUIRED", violations.iterator().next().getMessage());
+    }
 
-	@Test
-	public void testClasspathSchemaFail() {
-		ClasspathSchema pojo = new ClasspathSchema();
+    @Test
+    public void testFileSchemaFail() throws IOException {
+	final String toWrite = "{\"name\": \"required\", \"email\": \"required\"}";
+	final File tmpFile = File.createTempFile("test", ".tmp");
+	final FileWriter writer = new FileWriter(tmpFile);
+	writer.write(toWrite);
+	writer.close();
 
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<ClasspathSchema>> violations = validator.validate(pojo);
-		assertFalse(violations.isEmpty());
-		assertEquals(2, violations.size());
-		assertEquals("REQUIRED", violations.iterator().next().getMessage());
-	}
+	final FileSchema pojo = new FileSchema();
+	final LivrSchema classAnnotation = pojo.getClass().getAnnotation(LivrSchema.class);
+	changeAnnotationValue(classAnnotation, "schema", "file:" + tmpFile.getAbsolutePath());
 
-	@Test
-	public void testFileSchemaFail() throws IOException {
-		String toWrite = "{\"name\": \"required\", \"email\": \"required\"}";
-		File tmpFile = File.createTempFile("test", ".tmp");
-		FileWriter writer = new FileWriter(tmpFile);
-		writer.write(toWrite);
-		writer.close();
+	final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	final Validator validator = factory.getValidator();
+	final Set<ConstraintViolation<FileSchema>> violations = validator.validate(pojo);
+	assertFalse(violations.isEmpty());
+	assertEquals(2, violations.size());
+	assertEquals("REQUIRED", violations.iterator().next().getMessage());
+    }
 
-		FileSchema pojo = new FileSchema();
-		LivrSchema classAnnotation = pojo.getClass().getAnnotation(LivrSchema.class);
-		changeAnnotationValue(classAnnotation, "schema", "file:" + tmpFile.getAbsolutePath());
+    @Test
+    public void testInvalidSchemaIsSuccess() {
+	final InvalidSchema pojo = new InvalidSchema();
 
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<FileSchema>> violations = validator.validate(pojo);
-		assertFalse(violations.isEmpty());
-		assertEquals(2, violations.size());
-		assertEquals("REQUIRED", violations.iterator().next().getMessage());
-	}
+	final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	final Validator validator = factory.getValidator();
+	final Set<ConstraintViolation<InvalidSchema>> violations = validator.validate(pojo);
+	assertTrue(violations.isEmpty());
+    }
 
-	@Test
-	public void testInvalidSchemaIsSuccess() {
-		InvalidSchema pojo = new InvalidSchema();
+    @Test
+    public void testSuccess() {
+	final StringSchema pojo = new StringSchema();
+	pojo.setEmail("test@yahoo.com");
+	pojo.setName("Test");
 
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<InvalidSchema>> violations = validator.validate(pojo);
-		assertTrue(violations.isEmpty());
-	}
-
-	@Test
-	public void testFail_CustomRule() {
-		CustomValidatorSchema pojo = new CustomValidatorSchema();
-		pojo.setEmail("test@yahoo.com");
-		pojo.setName("Test");
-
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<CustomValidatorSchema>> violations = validator.validate(pojo);
-		assertFalse(violations.isEmpty());
-		assertEquals(1, violations.size());
-		assertEquals("MY_TOO_LONG", violations.iterator().next().getMessage());
-	}
-
-	/**
-	 * Change annotation value
-	 * 
-	 * @see https://stackoverflow.com/questions/14268981/modify-a-class-definitions-annotation-string-parameter-at-runtime
-	 * @author Balder
-	 * @since 2015/01/23
-	 */
-	@SuppressWarnings("unchecked")
-	public static Object changeAnnotationValue(Annotation annotation, String key, Object newValue) {
-		Object handler = Proxy.getInvocationHandler(annotation);
-		Field f;
-		try {
-			f = handler.getClass().getDeclaredField("memberValues");
-		} catch (NoSuchFieldException | SecurityException e) {
-			throw new IllegalStateException(e);
-		}
-		f.setAccessible(true);
-		Map<String, Object> memberValues;
-		try {
-			memberValues = (Map<String, Object>) f.get(handler);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			throw new IllegalStateException(e);
-		}
-		Object oldValue = memberValues.get(key);
-		if (oldValue == null || oldValue.getClass() != newValue.getClass()) {
-			throw new IllegalArgumentException();
-		}
-		memberValues.put(key, newValue);
-		return oldValue;
-	}
+	final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	final Validator validator = factory.getValidator();
+	final Set<ConstraintViolation<StringSchema>> violations = validator.validate(pojo);
+	assertTrue(violations.isEmpty());
+    }
 
 }
