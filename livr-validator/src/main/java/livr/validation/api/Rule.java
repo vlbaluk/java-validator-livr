@@ -31,16 +31,16 @@ import livr.FunctionKeeper;
 public interface Rule {
 
     /**
-     * Rule implementation
+     * Implementation of custom rule
      *
      * @return Rule {@link Function}
      */
     Function<List<Object>, Function<FunctionKeeper, Object>> func();
 
     /**
-     * Rule name
+     * Name of custom rule function
      *
-     * @return
+     * @return name
      */
     String rule();
 

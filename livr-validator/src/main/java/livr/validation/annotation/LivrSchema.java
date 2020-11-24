@@ -37,7 +37,9 @@ import livr.validation.api.Rule;
  * <ul>
  * <li>schema - LIVR validation schema</li>
  * <li>autotrim - trim values</li>
- * <li>rules - custom {@link LivrRule} array</li>
+ * <li>rules - custom implementation of {@link Rule}</li>
+ * <li>scanRulePackage - package scan by path</li>
+ * <li>scanRulePackageClasses - package scan by class</li>
  * </ul>
  * <p>
  * <br>
@@ -76,8 +78,9 @@ public @interface LivrSchema {
     Class<? extends Payload>[] payload() default {};
 
     /**
-     * Custom rules definitions
+     * Custom implementation of {@link Rule} 
      *
+     * @return {@link Rule} array
      * @since 1.4.0
      */
     Class<? extends Rule>[] rules() default {};
@@ -105,6 +108,11 @@ public @interface LivrSchema {
      */
     String[] scanRulePackages() default {};
 
+    /**
+     * LIVR schema definition
+     *
+     * @return schema json string
+     */
     String schema();
 
 }
