@@ -69,6 +69,13 @@ public @interface LivrSchema {
 	LivrSchema[] value();
     }
 
+    /**
+     * Aliases definitions
+     *
+     * @return alias array
+     */
+    String[] aliases() default {};
+    
     boolean autotrim() default false;
 
     Class<?>[] groups() default {};

@@ -76,11 +76,18 @@ public class LivrValidator implements ConstraintValidator<LivrSchema, Object> {
 	    // Annotation rules
 	    populateRuleset(r, Arrays.stream(constraintAnnotation.rules()).iterator());
 
+	    // Schema
 	    final String schema = SchemaLoader.load(constraintAnnotation.schema());
 
+	    // Initialization
 	    validator = LIVR.validator().registerDefaultRules(r).init(schema, constraintAnnotation.autotrim());
-	} catch (ParseException | InstantiationException | IllegalAccessException | IllegalArgumentException
-		| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+
+	    // Aliases
+	    for (String alias : constraintAnnotation.aliases()) {
+		validator.registerAliasedRule(SchemaLoader.load(alias));
+	    }
+	} catch (ParseException | InstantiationException | IllegalAccessException | InvocationTargetException
+		| NoSuchMethodException | IOException e) {
 	    log.error(e.getMessage(), e.getCause());
 	}
     }

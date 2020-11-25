@@ -29,13 +29,13 @@ Features:
 <dependency>
   <groupId>com.github.gaborkolarovics</groupId>
   <artifactId>livr-validator</artifactId>
-  <version>1.4.0</version>
+  <version>1.4.1</version>
 </dependency>
 ```
 
 #### Gradle
 ```js
-implementation 'com.github.gaborkolarovics:livr-validator:1.4.0'
+implementation 'com.github.gaborkolarovics:livr-validator:1.4.1'
 ```
 
 ### Code
@@ -71,6 +71,20 @@ public class SamplePOJO{
     // Getter.. Setter..
 }
 ```
+
+#### Aliases
+
+```java
+@LivrSchema(schema = "{\"password\": \"strong_password\"}"
+    aliases = { "{\"name\": \"strong_password\", \"rules\": {\"min_length\": 6}, \"error\": \"WEAK_PASSWORD\"}" }
+    )
+public class SamplePOJO{
+    private String password;
+    // Getter.. Setter..
+}
+```
+
+Alias loader support `file:` and `classpath:` resource loading like schema.
 
 #### Custom rule
 

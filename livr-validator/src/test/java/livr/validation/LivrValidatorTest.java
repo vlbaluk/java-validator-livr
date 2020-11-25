@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -64,8 +65,10 @@ public class LivrValidatorTest {
     public class InvalidSchema extends AbstractSchema {
     }
 
-    @LivrSchema(schema = "{\"name\": \"required\", \"email\": \"required\"}", scanRulePackages = {
-	    "test.rule" }, scanRulePackageClasses = { MyLength.class })
+    @LivrSchema(schema = "{\"name\": \"required\", \"email\": \"required\", \"password\": [\"required\", \"strong_password\"] }", scanRulePackages = {
+	    "test.rule" }, scanRulePackageClasses = { MyLength.class }, aliases = {
+		    "{\"name\": \"strong_password\", \"rules\": {\"min_length\": 6}, \"error\": \"WEAK_PASSWORD\"}" }
+    )
     public class StringSchema extends AbstractSchema {
     }
 
@@ -129,13 +132,23 @@ public class LivrValidatorTest {
     @Test
     public void testFailRequired() {
 	final StringSchema pojo = new StringSchema();
+	pojo.setPassword("1");
 
 	final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	final Validator validator = factory.getValidator();
 	final Set<ConstraintViolation<StringSchema>> violations = validator.validate(pojo);
 	assertFalse(violations.isEmpty());
-	assertEquals(2, violations.size());
-	assertEquals("REQUIRED", violations.iterator().next().getMessage());
+	assertEquals(3, violations.size());
+	Iterator<ConstraintViolation<StringSchema>> errors = violations.iterator();
+	while (errors.hasNext()) {
+	     ConstraintViolation<StringSchema> e = errors.next();
+	     if ("password".equals(e.getPropertyPath().toString())) {
+		 assertEquals("WEAK_PASSWORD", e.getMessage());
+	     } else 
+	     {		 
+		 assertEquals("REQUIRED", e.getMessage());
+	     }
+	}
     }
 
     @Test
@@ -173,6 +186,7 @@ public class LivrValidatorTest {
 	final StringSchema pojo = new StringSchema();
 	pojo.setEmail("test@yahoo.com");
 	pojo.setName("Test");
+	pojo.setPassword("password");
 
 	final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	final Validator validator = factory.getValidator();
