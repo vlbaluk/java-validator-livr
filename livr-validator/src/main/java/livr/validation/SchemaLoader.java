@@ -50,10 +50,9 @@ public final class SchemaLoader {
 	if (schema.startsWith(JSON_PREFIX)) {
 	    return schema;
 	} else if (schema.startsWith(CLASSPATH_URL_PREFIX)) {
-
-	    InputStream stream = ClassLoader
-		    .getSystemResourceAsStream(schema.substring(CLASSPATH_URL_PREFIX.length(), schema.length()));
-	    final InputStreamReader in = new InputStreamReader(stream, StandardCharsets.UTF_8);
+		InputStream stream = SchemaLoader.class.getClassLoader()
+				.getResourceAsStream(schema.substring(CLASSPATH_URL_PREFIX.length(), schema.length()));
+		final InputStreamReader in = new InputStreamReader(stream, StandardCharsets.UTF_8);
 	    return new BufferedReader(in).lines().collect(Collectors.joining("\n"));
 	} else if (schema.startsWith(FILE_URL_PREFIX)) {
 	    try {
