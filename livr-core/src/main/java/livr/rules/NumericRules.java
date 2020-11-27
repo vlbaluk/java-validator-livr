@@ -45,125 +45,125 @@ import livr.LIVRUtils;
  */
 public class NumericRules {
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> integer = objects -> wrapper -> {
-	if (LIVRUtils.isNoValue(wrapper.getValue()))
-	    return EMPTY;
-	if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-	    return FORMAT_ERROR;
-	if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
-	    return NOT_INTEGER;
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> integer = objects -> wrapper -> {
+		if (LIVRUtils.isNoValue(wrapper.getValue()))
+			return EMPTY;
+		if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+			return FORMAT_ERROR;
+		if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
+			return NOT_INTEGER;
 
-	if (!LIVRUtils.isInteger(wrapper.getValue()))
-	    return NOT_INTEGER;
-	wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
-	return EMPTY;
-    };
-
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> positive_integer = objects -> wrapper -> {
-	if (LIVRUtils.isNoValue(wrapper.getValue()))
-	    return EMPTY;
-	if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-	    return FORMAT_ERROR;
-	if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
-	    return NOT_POSITIVE_INTEGER;
-
-	if (!LIVRUtils.isInteger(wrapper.getValue()) || Long.valueOf(wrapper.getValue() + EMPTY) < 1)
-	    return NOT_POSITIVE_INTEGER;
-	wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
-	return EMPTY;
-    };
-
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> decimal = objects -> wrapper -> {
-	if (LIVRUtils.isNoValue(wrapper.getValue()))
-	    return EMPTY;
-	if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-	    return FORMAT_ERROR;
-	if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
-	    return NOT_DECIMAL;
-
-	if (!LIVRUtils.isDecimal(wrapper.getValue()))
-	    return NOT_DECIMAL;
-	wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
-	return EMPTY;
-    };
-
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> positive_decimal = objects -> wrapper -> {
-	if (LIVRUtils.isNoValue(wrapper.getValue()))
-	    return EMPTY;
-	if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-	    return FORMAT_ERROR;
-	if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
-	    return NOT_POSITIVE_DECIMAL;
-
-	if (!LIVRUtils.isDecimal(wrapper.getValue()) || Double.valueOf(wrapper.getValue() + EMPTY) <= 0)
-	    return NOT_POSITIVE_DECIMAL;
-	wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
-	return EMPTY;
-    };
-
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> max_number = objects -> {
-	final Long maxNumber = Long.valueOf(objects.get(0) + EMPTY);
-	return wrapper -> {
-	    if (LIVRUtils.isNoValue(wrapper.getValue()))
+		if (!LIVRUtils.isInteger(wrapper.getValue()))
+			return NOT_INTEGER;
+		wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
 		return EMPTY;
-	    if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-		return FORMAT_ERROR;
-	    if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
-		return NOT_NUMBER;
-
-	    Double value = Double.valueOf(wrapper.getValue() + EMPTY);
-
-	    if (value > maxNumber)
-		return TOO_HIGH;
-
-	    wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
-	    return EMPTY;
 	};
-    };
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> min_number = objects -> {
-	final Long minNumber = Long.valueOf(objects.get(0) + EMPTY);
-	return wrapper -> {
-	    if (LIVRUtils.isNoValue(wrapper.getValue()))
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> positive_integer = objects -> wrapper -> {
+		if (LIVRUtils.isNoValue(wrapper.getValue()))
+			return EMPTY;
+		if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+			return FORMAT_ERROR;
+		if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
+			return NOT_POSITIVE_INTEGER;
+
+		if (!LIVRUtils.isInteger(wrapper.getValue()) || Long.valueOf(wrapper.getValue() + EMPTY) < 1)
+			return NOT_POSITIVE_INTEGER;
+		wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
 		return EMPTY;
-	    if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-		return FORMAT_ERROR;
-	    if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
-		return NOT_NUMBER;
-	    Double value = Double.valueOf(wrapper.getValue() + EMPTY);
-
-	    if (value < minNumber)
-		return TOO_LOW;
-
-	    wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
-	    return EMPTY;
 	};
-    };
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> number_between = objects -> {
-	Iterator it = ((JSONArray) objects.get(0)).iterator();
-	final Long minNumber = Long.valueOf(it.next() + EMPTY);
-	final Long maxNumber = Long.valueOf(it.next() + EMPTY);
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> decimal = objects -> wrapper -> {
+		if (LIVRUtils.isNoValue(wrapper.getValue()))
+			return EMPTY;
+		if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+			return FORMAT_ERROR;
+		if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
+			return NOT_DECIMAL;
 
-	return wrapper -> {
-	    if (LIVRUtils.isNoValue(wrapper.getValue()))
+		if (!LIVRUtils.isDecimal(wrapper.getValue()))
+			return NOT_DECIMAL;
+		wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
 		return EMPTY;
-	    if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-		return FORMAT_ERROR;
-	    if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
-		return NOT_NUMBER;
-	    BigDecimal value = NumberUtils.createBigDecimal(wrapper.getValue() + EMPTY);
-	    if (value.compareTo(BigDecimal.valueOf(minNumber)) < 0)
-		return TOO_LOW;
-	    if (value.compareTo(BigDecimal.valueOf(maxNumber)) > 0)
-		return TOO_HIGH;
-
-	    wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
-	    return EMPTY;
 	};
-    };
 
-    private NumericRules() {
-	throw new IllegalStateException("Utility class");
-    }
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> positive_decimal = objects -> wrapper -> {
+		if (LIVRUtils.isNoValue(wrapper.getValue()))
+			return EMPTY;
+		if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+			return FORMAT_ERROR;
+		if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
+			return NOT_POSITIVE_DECIMAL;
+
+		if (!LIVRUtils.isDecimal(wrapper.getValue()) || Double.valueOf(wrapper.getValue() + EMPTY) <= 0)
+			return NOT_POSITIVE_DECIMAL;
+		wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
+		return EMPTY;
+	};
+
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> max_number = objects -> {
+		final Long maxNumber = Long.valueOf(objects.get(0) + EMPTY);
+		return wrapper -> {
+			if (LIVRUtils.isNoValue(wrapper.getValue()))
+				return EMPTY;
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+				return FORMAT_ERROR;
+			if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
+				return NOT_NUMBER;
+
+			Double value = Double.valueOf(wrapper.getValue() + EMPTY);
+
+			if (value > maxNumber)
+				return TOO_HIGH;
+
+			wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
+			return EMPTY;
+		};
+	};
+
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> min_number = objects -> {
+		final Long minNumber = Long.valueOf(objects.get(0) + EMPTY);
+		return wrapper -> {
+			if (LIVRUtils.isNoValue(wrapper.getValue()))
+				return EMPTY;
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+				return FORMAT_ERROR;
+			if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
+				return NOT_NUMBER;
+			Double value = Double.valueOf(wrapper.getValue() + EMPTY);
+
+			if (value < minNumber)
+				return TOO_LOW;
+
+			wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
+			return EMPTY;
+		};
+	};
+
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> number_between = objects -> {
+		Iterator it = ((JSONArray) objects.get(0)).iterator();
+		final Long minNumber = Long.valueOf(it.next() + EMPTY);
+		final Long maxNumber = Long.valueOf(it.next() + EMPTY);
+
+		return wrapper -> {
+			if (LIVRUtils.isNoValue(wrapper.getValue()))
+				return EMPTY;
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+				return FORMAT_ERROR;
+			if (!LIVRUtils.looksLikeNumber(wrapper.getValue()))
+				return NOT_NUMBER;
+			BigDecimal value = NumberUtils.createBigDecimal(wrapper.getValue() + EMPTY);
+			if (value.compareTo(BigDecimal.valueOf(minNumber)) < 0)
+				return TOO_LOW;
+			if (value.compareTo(BigDecimal.valueOf(maxNumber)) > 0)
+				return TOO_HIGH;
+
+			wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + EMPTY));
+			return EMPTY;
+		};
+	};
+
+	private NumericRules() {
+		throw new IllegalStateException("Utility class");
+	}
 }

@@ -28,16 +28,16 @@ import org.junit.Test;
  */
 public class AutoTrimTest {
 
-    @Test
-    public void testAutoTrim() throws Exception {
+	@Test
+	public void testAutoTrim() throws Exception {
 
-	Validator validator = LIVR.validator()
-		.init("{ \"code\": \"required\", \"password\": [\"required\", { \"min_length\": 3 }], "
-			+ "\"address\":  { \"nested_object\": {\"street\": { \"min_length\": 5 }}}}", true);
-	validator.validate("{\"code\": \"  \", \"password\": \" 12  \", \"address\": {\"street\": \"  hell \"}}");
+		Validator validator = LIVR.validator()
+				.init("{ \"code\": \"required\", \"password\": [\"required\", { \"min_length\": 3 }], "
+						+ "\"address\":  { \"nested_object\": {\"street\": { \"min_length\": 5 }}}}", true);
+		validator.validate("{\"code\": \"  \", \"password\": \" 12  \", \"address\": {\"street\": \"  hell \"}}");
 
-	assertEquals("{\"password\":\"TOO_SHORT\",\"code\":\"REQUIRED\",\"address\":{\"street\":\"TOO_SHORT\"}}",
-		validator.getErrors().toJSONString());
-    }
+		assertEquals("{\"password\":\"TOO_SHORT\",\"code\":\"REQUIRED\",\"address\":{\"street\":\"TOO_SHORT\"}}",
+				validator.getErrors().toJSONString());
+	}
 
 }

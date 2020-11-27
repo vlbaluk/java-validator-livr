@@ -30,55 +30,55 @@ import org.json.simple.parser.JSONParser;
  */
 public class LIVRUtils {
 
-    public static boolean isDecimal(Object value) {
-	if (value instanceof Double) {
-	    return true;
+	public static boolean isDecimal(Object value) {
+		if (value instanceof Double) {
+			return true;
+		}
+
+		try {
+			Double.valueOf(value + "");
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+		return true;
 	}
 
-	try {
-	    Double.valueOf(value + "");
-	} catch (NumberFormatException nfe) {
-	    return false;
-	}
-	return true;
-    }
-
-    public static boolean isEmptyObject(Map<String, String> map) {
-	return map.isEmpty();
-    }
-
-    public static boolean isInteger(Object value) {
-	if (value instanceof Long) {
-	    return true;
+	public static boolean isEmptyObject(Map<String, String> map) {
+		return map.isEmpty();
 	}
 
-	return NumberUtils.isDigits(value + "");
-    }
+	public static boolean isInteger(Object value) {
+		if (value instanceof Long) {
+			return true;
+		}
 
-    public static boolean isNoValue(Object value) {
-	return value == null || (value + "").equals("");
-    }
+		return NumberUtils.isDigits(value + "");
+	}
 
-    public static boolean isObject(Object value) {
-	return value.getClass() == JSONObject.class;
-    }
+	public static boolean isNoValue(Object value) {
+		return value == null || (value + "").equals("");
+	}
 
-    public static boolean isPrimitiveValue(Object value) {
-	if (value.getClass() == String.class || value.getClass() == Boolean.class)
-	    return true;
-	if (value instanceof Number)
-	    return true;
-	if (value.equals("true") || value.equals("false"))
-	    return true;
-	return false;
-    }
+	public static boolean isObject(Object value) {
+		return value.getClass() == JSONObject.class;
+	}
 
-    public static boolean looksLikeNumber(Object value) {
+	public static boolean isPrimitiveValue(Object value) {
+		if (value.getClass() == String.class || value.getClass() == Boolean.class)
+			return true;
+		if (value instanceof Number)
+			return true;
+		if (value.equals("true") || value.equals("false"))
+			return true;
+		return false;
+	}
 
-	return value instanceof Number || NumberUtils.isCreatable(value + "");
-    }
+	public static boolean looksLikeNumber(Object value) {
 
-    public static JSONParser newParser() {
-	return new JSONParser();
-    }
+		return value instanceof Number || NumberUtils.isCreatable(value + "");
+	}
+
+	public static JSONParser newParser() {
+		return new JSONParser();
+	}
 }

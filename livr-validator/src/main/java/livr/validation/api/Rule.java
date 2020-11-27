@@ -30,18 +30,18 @@ import livr.FunctionKeeper;
  */
 public interface Rule {
 
-    /**
-     * Implementation of custom rule
-     *
-     * @return Rule {@link Function}
-     */
-    Function<List<Object>, Function<FunctionKeeper, Object>> func();
+	/**
+	 * Implementation of custom rule
+	 *
+	 * @return Rule {@link Function}
+	 */
+	Function<List<Object>, Function<FunctionKeeper, Object>> func();
 
-    /**
-     * Name of custom rule function
-     *
-     * @return name
-     */
-    String rule();
+	/**
+	 * Name of custom rule function
+	 *
+	 * @return name
+	 */
+	String rule();
 
 }

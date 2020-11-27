@@ -27,45 +27,46 @@ import java.util.function.Function;
  * @since 2017/10/03
  */
 public class FunctionKeeper {
-    private Object value;
+	private Object value;
 
-    private Map args;
-    private Function<FunctionKeeper, Object> function;
-    private List<Object> fieldResultArr = new ArrayList<>();
-    public FunctionKeeper(Map args, Function<FunctionKeeper, Object> function) {
-	this.args = args;
-	this.function = function;
-    }
+	private Map args;
+	private Function<FunctionKeeper, Object> function;
+	private List<Object> fieldResultArr = new ArrayList<>();
 
-    public Map getArgs() {
-	return args;
-    }
+	public FunctionKeeper(Map args, Function<FunctionKeeper, Object> function) {
+		this.args = args;
+		this.function = function;
+	}
 
-    public List<Object> getFieldResultArr() {
-	return fieldResultArr;
-    }
+	public Map getArgs() {
+		return args;
+	}
 
-    public Function<FunctionKeeper, Object> getFunction() {
-	return function;
-    }
+	public List<Object> getFieldResultArr() {
+		return fieldResultArr;
+	}
 
-    public Object getValue() {
-	return value;
-    }
+	public Function<FunctionKeeper, Object> getFunction() {
+		return function;
+	}
 
-    public void setArgs(Map args) {
-	this.args = args;
-    }
+	public Object getValue() {
+		return value;
+	}
 
-    public void setFieldResultArr(List<Object> fieldResultArr) {
-	this.fieldResultArr = fieldResultArr;
-    }
+	public void setArgs(Map args) {
+		this.args = args;
+	}
 
-    public void setFunction(Function<FunctionKeeper, Object> function) {
-	this.function = function;
-    }
+	public void setFieldResultArr(List<Object> fieldResultArr) {
+		this.fieldResultArr = fieldResultArr;
+	}
 
-    public void setValue(Object value) {
-	this.value = value;
-    }
+	public void setFunction(Function<FunctionKeeper, Object> function) {
+		this.function = function;
+	}
+
+	public void setValue(Object value) {
+		this.value = value;
+	}
 }

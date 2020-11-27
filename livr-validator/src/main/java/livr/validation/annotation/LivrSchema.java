@@ -63,63 +63,63 @@ import livr.validation.api.Rule;
 @Retention(RUNTIME)
 public @interface LivrSchema {
 
-    @Target({ ElementType.TYPE })
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface List {
-	LivrSchema[] value();
-    }
+	@Target({ ElementType.TYPE })
+	@Retention(RetentionPolicy.RUNTIME)
+	@interface List {
+		LivrSchema[] value();
+	}
 
-    /**
-     * Aliases definitions
-     *
-     * @return alias array
-     */
-    String[] aliases() default {};
-    
-    boolean autotrim() default false;
+	/**
+	 * Aliases definitions
+	 *
+	 * @return alias array
+	 */
+	String[] aliases() default {};
 
-    Class<?>[] groups() default {};
+	boolean autotrim() default false;
 
-    String message() default "Validation failed!";
+	Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+	String message() default "Validation failed!";
 
-    /**
-     * Custom implementation of {@link Rule} 
-     *
-     * @return {@link Rule} array
-     * @since 1.4.0
-     */
-    Class<? extends Rule>[] rules() default {};
+	Class<? extends Payload>[] payload() default {};
 
-    /**
-     * Type-safe alternative to {@link #scanRulePackages} for specifying the
-     * packages to scan for annotated rules. The package of each class specified
-     * will be scanned.
-     * <p>
-     * Consider creating a special no-op marker class or interface in each package
-     * that serves no purpose other than being referenced by this attribute.
-     *
-     * @return rule packages to scan
-     * @since 1.4.0
-     */
-    Class<?>[] scanRulePackageClasses() default {};
+	/**
+	 * Custom implementation of {@link Rule}
+	 *
+	 * @return {@link Rule} array
+	 * @since 1.4.0
+	 */
+	Class<? extends Rule>[] rules() default {};
 
-    /**
-     * Base packages to scan for annotated rules. Use
-     * {@link #scanRulePackageClasses} for a type-safe alternative to String-based
-     * package names.
-     *
-     * @return rule packages to scan
-     * @since 1.4.0
-     */
-    String[] scanRulePackages() default {};
+	/**
+	 * Type-safe alternative to {@link #scanRulePackages} for specifying the
+	 * packages to scan for annotated rules. The package of each class specified
+	 * will be scanned.
+	 * <p>
+	 * Consider creating a special no-op marker class or interface in each package
+	 * that serves no purpose other than being referenced by this attribute.
+	 *
+	 * @return rule packages to scan
+	 * @since 1.4.0
+	 */
+	Class<?>[] scanRulePackageClasses() default {};
 
-    /**
-     * LIVR schema definition
-     *
-     * @return schema json string
-     */
-    String schema();
+	/**
+	 * Base packages to scan for annotated rules. Use
+	 * {@link #scanRulePackageClasses} for a type-safe alternative to String-based
+	 * package names.
+	 *
+	 * @return rule packages to scan
+	 * @since 1.4.0
+	 */
+	String[] scanRulePackages() default {};
+
+	/**
+	 * LIVR schema definition
+	 *
+	 * @return schema json string
+	 */
+	String schema();
 
 }

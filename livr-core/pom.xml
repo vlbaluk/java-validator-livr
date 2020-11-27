@@ -6,16 +6,14 @@
 	<parent>
 		<groupId>com.github.gaborkolarovics</groupId>
 		<artifactId>livr-validator-parent</artifactId>
-		<version>1.4.3-SNAPSHOT</version>
+		<version>1.5.0</version>
 	</parent>
 
 	<artifactId>livr-core</artifactId>
 	<packaging>jar</packaging>
 	<name>Java LIVR validator</name>
 	<url>https://github.com/gaborkolarovics/livr-validator</url>
-	<description>
-Language Independent Validation Rules (v2.0)
-	</description>
+	<description>Language Independent Validation Rules (v2.0) - java implementation</description>
 
 	<licenses>
 		<license>

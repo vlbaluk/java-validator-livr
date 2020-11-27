@@ -1,0 +1,11 @@
+{
+	"ipv4_1": "NOT_IP",
+	"ipv4_2": "NOT_IP",
+	"ipv4_3": "NOT_IP",
+	"ipv4_4": "NOT_IP",
+	"ipv4_5": "NOT_IP",
+	"value_is_hash": "FORMAT_ERROR",
+	"value_is_empty_hash": "FORMAT_ERROR",
+	"value_is_array": "FORMAT_ERROR",
+	"value_is_empty_array": "FORMAT_ERROR"
+}

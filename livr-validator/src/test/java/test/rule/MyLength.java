@@ -32,30 +32,30 @@ import livr.validation.api.Rule;
  */
 public class MyLength implements Rule {
 
-    @Override
-    public Function<List<Object>, Function<FunctionKeeper, Object>> func() {
+	@Override
+	public Function<List<Object>, Function<FunctionKeeper, Object>> func() {
 
-	return ruleDefinition -> {
-	    final Long maxLength = Long.valueOf(ruleDefinition.get(0) + "");
+		return ruleDefinition -> {
+			final Long maxLength = Long.valueOf(ruleDefinition.get(0) + "");
 
-	    return wrapper -> {
-		if ((wrapper.getValue() == null) || (wrapper.getValue() + "").equals("")) {
-		    return "";
-		}
+			return wrapper -> {
+				if ((wrapper.getValue() == null) || (wrapper.getValue() + "").equals("")) {
+					return "";
+				}
 
-		final String value = wrapper.getValue() + "";
-		if (value.length() > maxLength) {
-		    return "MY_TOO_LONG";
-		}
-		wrapper.getFieldResultArr().add(value);
-		return "";
-	    };
-	};
-    }
+				final String value = wrapper.getValue() + "";
+				if (value.length() > maxLength) {
+					return "MY_TOO_LONG";
+				}
+				wrapper.getFieldResultArr().add(value);
+				return "";
+			};
+		};
+	}
 
-    @Override
-    public String rule() {
-	return "my_length";
-    }
+	@Override
+	public String rule() {
+		return "my_length";
+	}
 
 }

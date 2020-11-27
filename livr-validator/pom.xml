@@ -6,18 +6,14 @@
 	<parent>
 		<groupId>com.github.gaborkolarovics</groupId>
 		<artifactId>livr-validator-parent</artifactId>
-		<version>1.4.3-SNAPSHOT</version>
+		<version>1.5.0</version>
 	</parent>
 
 	<artifactId>livr-validator</artifactId>
 	<packaging>jar</packaging>
 	<name>LIVR javax validator</name>
 	<url>https://github.com/gaborkolarovics/livr-validator</url>
-	<description>
-Language Independent Validation Rules (v2.0)
-
-javax annotation validator support
-	</description>
+	<description>Language Independent Validation Rules (v2.0) - javax annotation validator</description>
 
 	<licenses>
 		<license>
@@ -43,6 +39,11 @@ javax annotation validator support
 		<dependency>
 			<groupId>com.github.gaborkolarovics</groupId>
 			<artifactId>livr-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.gaborkolarovics</groupId>
+			<artifactId>livr-extra-rules</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

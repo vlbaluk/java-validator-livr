@@ -29,13 +29,13 @@ Features:
 <dependency>
   <groupId>com.github.gaborkolarovics</groupId>
   <artifactId>livr-validator</artifactId>
-  <version>1.4.1</version>
+  <version>1.5.0</version>
 </dependency>
 ```
 
 #### Gradle
 ```js
-implementation 'com.github.gaborkolarovics:livr-validator:1.4.1'
+implementation 'com.github.gaborkolarovics:livr-validator:1.5.0'
 ```
 
 ### Code
@@ -130,6 +130,15 @@ public class MyLength implements Rule {
     }
 
 }
+```
+
+### Extra rules
+
+This package contains `livr-extra-rules` module. See [README.md](livr-extra-rules/README.md).
+
+```java
+@LivrSchema(schema = "{\"id\": \"uuid\" }}"
+	scanRulePackages = { "livr.validation.rules" })
 ```
 
 ## License

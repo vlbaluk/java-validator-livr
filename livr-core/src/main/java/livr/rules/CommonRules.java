@@ -37,43 +37,43 @@ import livr.LIVRUtils;
  */
 public final class CommonRules {
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> required = objects -> wrapper -> {
-	if (LIVRUtils.isNoValue(wrapper.getValue())) {
-	    return REQUIRED;
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> required = objects -> wrapper -> {
+		if (LIVRUtils.isNoValue(wrapper.getValue())) {
+			return REQUIRED;
+		}
+		return EMPTY;
+	};
+
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> not_empty = objects -> wrapper -> {
+		if (wrapper.getValue() != null && wrapper.getValue().equals(EMPTY)) {
+			return CANNOT_BE_EMPTY;
+		}
+		return EMPTY;
+	};
+
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> not_empty_list = objects -> wrapper -> {
+		if (LIVRUtils.isNoValue(wrapper.getValue()))
+			return CANNOT_BE_EMPTY;
+		if (!(wrapper.getValue() instanceof JSONArray))
+			return FORMAT_ERROR;
+		if (((JSONArray) wrapper.getValue()).isEmpty())
+			return CANNOT_BE_EMPTY;
+
+		return EMPTY;
+	};
+
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> any_object = objects -> wrapper -> {
+		if (LIVRUtils.isNoValue((wrapper.getValue())))
+			return EMPTY;
+
+		if (!LIVRUtils.isObject(wrapper.getValue())) {
+			return FORMAT_ERROR;
+		}
+		return EMPTY;
+	};
+
+	private CommonRules() {
+		throw new IllegalStateException("Utility class");
 	}
-	return EMPTY;
-    };
-
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> not_empty = objects -> wrapper -> {
-	if (wrapper.getValue() != null && wrapper.getValue().equals(EMPTY)) {
-	    return CANNOT_BE_EMPTY;
-	}
-	return EMPTY;
-    };
-
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> not_empty_list = objects -> wrapper -> {
-	if (LIVRUtils.isNoValue(wrapper.getValue()))
-	    return CANNOT_BE_EMPTY;
-	if (!(wrapper.getValue() instanceof JSONArray))
-	    return FORMAT_ERROR;
-	if (((JSONArray) wrapper.getValue()).isEmpty())
-	    return CANNOT_BE_EMPTY;
-
-	return EMPTY;
-    };
-
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> any_object = objects -> wrapper -> {
-	if (LIVRUtils.isNoValue((wrapper.getValue())))
-	    return EMPTY;
-
-	if (!LIVRUtils.isObject(wrapper.getValue())) {
-	    return FORMAT_ERROR;
-	}
-	return EMPTY;
-    };
-
-    private CommonRules() {
-	throw new IllegalStateException("Utility class");
-    }
 
 }

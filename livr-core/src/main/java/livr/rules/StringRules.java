@@ -43,165 +43,165 @@ import livr.LIVRUtils;
  */
 public class StringRules {
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> string = objects -> wrapper -> {
-	if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
-	    return EMPTY;
-	if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-	    return FORMAT_ERROR;
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> string = objects -> wrapper -> {
+		if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
+			return EMPTY;
+		if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+			return FORMAT_ERROR;
 
-	String value = wrapper.getValue() + EMPTY;
-	wrapper.getFieldResultArr().add(value);
-	return EMPTY;
-    };
-
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> eq = objects -> {
-	Object allowedValue = objects.get(0);
-
-	return wrapper -> {
-	    if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
+		String value = wrapper.getValue() + EMPTY;
+		wrapper.getFieldResultArr().add(value);
 		return EMPTY;
-	    if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-		return FORMAT_ERROR;
-
-	    String value = wrapper.getValue() + EMPTY;
-	    if (value.equals(allowedValue + EMPTY)) {
-		wrapper.getFieldResultArr().add(allowedValue);
-		return EMPTY;
-	    }
-
-	    return NOT_ALLOWED_VALUE;
 	};
-    };
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> one_of = objects -> {
-	Object[] objects1 = ((JSONArray) objects.get(0)).toArray();
-	final List<Object> allowedValues = new ArrayList();
-	Collections.addAll(allowedValues, objects1);
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> eq = objects -> {
+		Object allowedValue = objects.get(0);
 
-	return wrapper -> {
-	    List<String> allowedStrValues = allowedValues.stream().map(obj -> String.valueOf(obj))
-		    .collect(Collectors.toList());
-	    if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
-		return EMPTY;
-	    if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-		return FORMAT_ERROR;
+		return wrapper -> {
+			if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
+				return EMPTY;
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+				return FORMAT_ERROR;
 
-	    String value = wrapper.getValue() + EMPTY;
-	    if (allowedStrValues.contains(value)) {
-		wrapper.getFieldResultArr().add(allowedValues.get(allowedStrValues.indexOf(value)));
-		return EMPTY;
-	    }
+			String value = wrapper.getValue() + EMPTY;
+			if (value.equals(allowedValue + EMPTY)) {
+				wrapper.getFieldResultArr().add(allowedValue);
+				return EMPTY;
+			}
 
-	    return NOT_ALLOWED_VALUE;
+			return NOT_ALLOWED_VALUE;
+		};
 	};
-    };
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> max_length = objects -> {
-	final Long maxLength = Long.valueOf(objects.get(0) + EMPTY);
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> one_of = objects -> {
+		Object[] objects1 = ((JSONArray) objects.get(0)).toArray();
+		final List<Object> allowedValues = new ArrayList();
+		Collections.addAll(allowedValues, objects1);
 
-	return wrapper -> {
-	    if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
-		return EMPTY;
-	    if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-		return FORMAT_ERROR;
+		return wrapper -> {
+			List<String> allowedStrValues = allowedValues.stream().map(obj -> String.valueOf(obj))
+					.collect(Collectors.toList());
+			if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
+				return EMPTY;
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+				return FORMAT_ERROR;
 
-	    String value = wrapper.getValue() + EMPTY;
-	    if (value.length() > maxLength)
-		return TOO_LONG;
-	    wrapper.getFieldResultArr().add(value);
-	    return EMPTY;
+			String value = wrapper.getValue() + EMPTY;
+			if (allowedStrValues.contains(value)) {
+				wrapper.getFieldResultArr().add(allowedValues.get(allowedStrValues.indexOf(value)));
+				return EMPTY;
+			}
+
+			return NOT_ALLOWED_VALUE;
+		};
 	};
-    };
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> min_length = objects -> {
-	final Long minLength = Long.valueOf(objects.get(0) + EMPTY);
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> max_length = objects -> {
+		final Long maxLength = Long.valueOf(objects.get(0) + EMPTY);
 
-	return wrapper -> {
-	    if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
-		return EMPTY;
-	    if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-		return FORMAT_ERROR;
+		return wrapper -> {
+			if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
+				return EMPTY;
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+				return FORMAT_ERROR;
 
-	    String value = wrapper.getValue() + EMPTY;
-	    if (value.length() < minLength)
-		return TOO_SHORT;
-	    wrapper.getFieldResultArr().add(value);
-	    return EMPTY;
+			String value = wrapper.getValue() + EMPTY;
+			if (value.length() > maxLength)
+				return TOO_LONG;
+			wrapper.getFieldResultArr().add(value);
+			return EMPTY;
+		};
 	};
-    };
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> length_equal = objects -> {
-	final Long length = Long.valueOf(objects.get(0) + EMPTY);
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> min_length = objects -> {
+		final Long minLength = Long.valueOf(objects.get(0) + EMPTY);
 
-	return wrapper -> {
-	    if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
-		return EMPTY;
-	    if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-		return FORMAT_ERROR;
+		return wrapper -> {
+			if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
+				return EMPTY;
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+				return FORMAT_ERROR;
 
-	    String value = wrapper.getValue() + EMPTY;
-
-	    if (value.length() < length)
-		return TOO_SHORT;
-	    if (value.length() > length)
-		return TOO_LONG;
-
-	    wrapper.getFieldResultArr().add(value);
-	    return EMPTY;
+			String value = wrapper.getValue() + EMPTY;
+			if (value.length() < minLength)
+				return TOO_SHORT;
+			wrapper.getFieldResultArr().add(value);
+			return EMPTY;
+		};
 	};
-    };
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> length_between = objects -> {
-	Iterator it = ((JSONArray) objects.get(0)).iterator();
-	final Long minLength = Long.valueOf(it.next() + EMPTY);
-	final Long maxLength = Long.valueOf(it.next() + EMPTY);
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> length_equal = objects -> {
+		final Long length = Long.valueOf(objects.get(0) + EMPTY);
 
-	return wrapper -> {
-	    if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
-		return EMPTY;
-	    if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-		return FORMAT_ERROR;
+		return wrapper -> {
+			if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
+				return EMPTY;
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+				return FORMAT_ERROR;
 
-	    String value = wrapper.getValue() + EMPTY;
-	    if (value.length() < minLength)
-		return TOO_SHORT;
-	    if (value.length() > maxLength)
-		return TOO_LONG;
+			String value = wrapper.getValue() + EMPTY;
 
-	    wrapper.getFieldResultArr().add(value);
-	    return EMPTY;
+			if (value.length() < length)
+				return TOO_SHORT;
+			if (value.length() > length)
+				return TOO_LONG;
+
+			wrapper.getFieldResultArr().add(value);
+			return EMPTY;
+		};
 	};
-    };
 
-    public static final Function<List<Object>, Function<FunctionKeeper, Object>> like = objects -> {
-	String pattern;
-	boolean isIgnoreCase;
-	if (objects.get(0).getClass() == JSONArray.class) {
-	    Iterator it = ((JSONArray) objects.get(0)).iterator();
-	    pattern = (String) it.next();
-	    isIgnoreCase = it.next().equals("i");
-	} else {
-	    pattern = (String) objects.get(0);
-	    isIgnoreCase = false;
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> length_between = objects -> {
+		Iterator it = ((JSONArray) objects.get(0)).iterator();
+		final Long minLength = Long.valueOf(it.next() + EMPTY);
+		final Long maxLength = Long.valueOf(it.next() + EMPTY);
+
+		return wrapper -> {
+			if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
+				return EMPTY;
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+				return FORMAT_ERROR;
+
+			String value = wrapper.getValue() + EMPTY;
+			if (value.length() < minLength)
+				return TOO_SHORT;
+			if (value.length() > maxLength)
+				return TOO_LONG;
+
+			wrapper.getFieldResultArr().add(value);
+			return EMPTY;
+		};
+	};
+
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> like = objects -> {
+		String pattern;
+		boolean isIgnoreCase;
+		if (objects.get(0).getClass() == JSONArray.class) {
+			Iterator it = ((JSONArray) objects.get(0)).iterator();
+			pattern = (String) it.next();
+			isIgnoreCase = it.next().equals("i");
+		} else {
+			pattern = (String) objects.get(0);
+			isIgnoreCase = false;
+		}
+
+		return wrapper -> {
+			if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
+				return EMPTY;
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
+				return FORMAT_ERROR;
+
+			String value = wrapper.getValue() + EMPTY;
+			String caseInValue = isIgnoreCase ? value.toLowerCase() : value;
+			if (!caseInValue.matches(pattern))
+				return WRONG_FORMAT;
+			wrapper.getFieldResultArr().add(value);
+			return EMPTY;
+		};
+	};
+
+	private StringRules() {
+		throw new IllegalStateException("Utility class");
 	}
-
-	return wrapper -> {
-	    if (wrapper.getValue() == null || (wrapper.getValue() + EMPTY).equals(EMPTY))
-		return EMPTY;
-	    if (!LIVRUtils.isPrimitiveValue(wrapper.getValue()))
-		return FORMAT_ERROR;
-
-	    String value = wrapper.getValue() + EMPTY;
-	    String caseInValue = isIgnoreCase ? value.toLowerCase() : value;
-	    if (!caseInValue.matches(pattern))
-		return WRONG_FORMAT;
-	    wrapper.getFieldResultArr().add(value);
-	    return EMPTY;
-	};
-    };
-
-    private StringRules() {
-	throw new IllegalStateException("Utility class");
-    }
 
 }
