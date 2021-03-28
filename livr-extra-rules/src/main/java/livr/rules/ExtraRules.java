@@ -16,10 +16,25 @@
  */
 package livr.rules;
 
+import static java.time.temporal.ChronoField.DAY_OF_MONTH;
+import static java.time.temporal.ChronoField.HOUR_OF_DAY;
+import static java.time.temporal.ChronoField.MINUTE_OF_HOUR;
+import static java.time.temporal.ChronoField.MONTH_OF_YEAR;
+import static java.time.temporal.ChronoField.SECOND_OF_MINUTE;
+import static java.time.temporal.ChronoField.YEAR;
 import static livr.api.Constant.EMPTY;
 import static livr.api.Constant.FORMAT_ERROR;
 import static livr.api.Constant.REQUIRED;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.format.SignStyle;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -75,6 +90,11 @@ public class ExtraRules {
 	static final Pattern MD5_PATTERN = Pattern.compile("^[a-f0-9]{32}$", Pattern.CASE_INSENSITIVE);
 
 	static final Pattern MONGOID_PATTERN = Pattern.compile("^[0-9a-fA-F]{24}$");
+
+	static final Pattern ISO_DATE = Pattern.compile(
+			"^(([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9]))(T(2[0-3]|[01][0-9]):([0-5][0-9])(:([0-5][0-9])(\\.[0-9]+)?)?(Z|[\\+\\-](2[0-3]|[01][0-9]):([0-5][0-9])))?$");
+
+	static final Pattern DATE = Pattern.compile("^(\\d{4})-([0-1][0-9])-([0-3][0-9])$");
 
 	public static final Function<List<Object>, Function<FunctionKeeper, Object>> ipv4 = objects -> wrapper -> {
 		if (LIVRUtils.isNoValue(wrapper.getValue()))
@@ -175,11 +195,9 @@ public class ExtraRules {
 			return FORMAT_ERROR;
 		String value = wrapper.getValue() + EMPTY;
 
-		if (value.length() > 16 || value.length() < 14)
+		if ((value.length() > 16 || value.length() < 14) && !NUMBER_PATTERN.matcher(value).matches())
 			return "WRONG_CREDIT_CARD_NUMBER";
-		if (!NUMBER_PATTERN.matcher(value).matches()) {
-			return "WRONG_CREDIT_CARD_NUMBER";
-		}
+
 		int n = value.length();
 		int sum = 0;
 
@@ -224,7 +242,7 @@ public class ExtraRules {
 		Long minVal = 0L;
 		Long maxVal = 0L;
 		if (objects.get(0) instanceof JSONArray) {
-			Iterator it = ((JSONArray) objects.get(0)).iterator();
+			Iterator<?> it = ((JSONArray) objects.get(0)).iterator();
 			minVal = Long.valueOf(it.next() + EMPTY);
 			maxVal = it.hasNext() ? Long.valueOf(it.next() + EMPTY) : minVal;
 		} else {
@@ -276,6 +294,7 @@ public class ExtraRules {
 		return EMPTY;
 	};
 
+	@SuppressWarnings("unchecked")
 	public static final Function<List<Object>, Function<FunctionKeeper, Object>> required_if = objects -> {
 		String f = EMPTY;
 		Object v = EMPTY;
@@ -326,6 +345,54 @@ public class ExtraRules {
 		};
 	};
 
+	public static final Function<List<Object>, Function<FunctionKeeper, Object>> iso_date = objects -> {
+		final String min = getStringParamValue(objects, "min");
+		final String max = getStringParamValue(objects, "max");
+		final String format = getStringParamValue(objects, "format", "date");
+
+		return wrapper -> {
+			if (LIVRUtils.isNoValue(wrapper.getValue())) {
+				return EMPTY;
+			}
+			if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) {
+				return FORMAT_ERROR;
+			}
+
+			String value = wrapper.getValue() + EMPTY;
+
+			if (!ISO_DATE.matcher(value).matches()) {
+				return "WRONG_DATE";
+			}
+
+			DateTimeFormatterBuilder b = new DateTimeFormatterBuilder().appendValue(YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+					.appendLiteral('-').appendValue(MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(DAY_OF_MONTH, 2);
+			if ("datetime".equals(format)) {
+				b.appendLiteral('T').appendValue(HOUR_OF_DAY, 2).appendLiteral(':').appendValue(MINUTE_OF_HOUR, 2)
+						.optionalStart().appendLiteral(':').appendValue(SECOND_OF_MINUTE, 2).optionalStart()
+						.appendFraction(ChronoField.MILLI_OF_SECOND, 3, 3, true).appendLiteral("Z");
+			}
+
+			DateTimeFormatter df = b.toFormatter();
+
+			try {
+				ZonedDateTime epoch = dynamicZDateParser(value, false);
+				if (min != null && epoch.compareTo(dynamicZDateParser(min, false)) < 0) {
+					return "DATE_TOO_LOW";
+				}
+				if (max != null && epoch.compareTo(dynamicZDateParser(max, true)) > 0) {
+					return "DATE_TOO_HIGH";
+				}
+				wrapper.getFieldResultArr().add(epoch.format(df));
+			} catch (Exception e) {
+				return "WRONG_DATE";
+			}
+
+			return EMPTY;
+		};
+
+	};
+
+	@SuppressWarnings("unchecked")
 	private static Object jsonWalker(final Iterator<String> path, final Object json) {
 		if (path.hasNext()) {
 			String s = path.next();
@@ -339,6 +406,61 @@ public class ExtraRules {
 			}
 		}
 		return json;
+	}
+
+	private static String getStringParamValue(final List<Object> objects, final String key) {
+		return getStringParamValue(objects, key, null);
+	}
+
+	@SuppressWarnings("unchecked")
+	private static String getStringParamValue(final List<Object> objects, final String key, final String defValue) {
+		if (objects.get(0) instanceof JSONObject) {
+			final Map<String, Object> args = (Map<String, Object>) objects.get(0);
+			Object value = args.get(key);
+			if (value instanceof String) {
+				return (String) value;
+			}
+		}
+		return defValue;
+
+	}
+
+	private static ZonedDateTime dynamicZDateParser(final String value, final boolean isMax) {
+		if ("tomorrow".equals(value)) {
+			return ZonedDateTime.now().plusDays(1);
+		} else if ("yesterday".equals(value)) {
+			return ZonedDateTime.now().minusDays(1);
+		} else if ("current".equals(value)) {
+			return ZonedDateTime.now();
+		}
+
+		List<DateTimeFormatter> knownZonedPatterns = new ArrayList<>();
+		knownZonedPatterns.add(DateTimeFormatter.ISO_DATE_TIME);
+		knownZonedPatterns.add(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm'Z'"));
+		knownZonedPatterns.add(DateTimeFormatter.ISO_DATE);
+		for (DateTimeFormatter dateTimeFormatter : knownZonedPatterns) {
+			try {
+				return ZonedDateTime.parse(value, dateTimeFormatter).withZoneSameInstant(ZoneOffset.UTC);
+			} catch (Exception e) {
+				// NOOP
+			}
+		}
+
+		for (DateTimeFormatter dateTimeFormatter : knownZonedPatterns) {
+			try {
+				LocalDate date = LocalDate.parse(value, dateTimeFormatter);
+				ZonedDateTime zonedDate = date.atStartOfDay(ZoneId.systemDefault());
+				if (isMax) {
+					zonedDate = zonedDate.plusDays(1).minusNanos(1);
+				}
+				return zonedDate;
+			} catch (Exception e) {
+				// NOOP
+			}
+		}
+
+		throw new DateTimeParseException("Unable to parse the date:", value, 0);
+
 	}
 
 	private ExtraRules() {
