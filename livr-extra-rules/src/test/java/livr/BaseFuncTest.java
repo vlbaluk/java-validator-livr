@@ -39,7 +39,7 @@ public class BaseFuncTest {
 		extra.put("credit_card", ExtraRules.credit_card);
 		extra.put("ipv4", ExtraRules.ipv4);
 		extra.put("is", ExtraRules.is);
-		// iso_date
+		extra.put("iso_date", ExtraRules.iso_date);
 		extra.put("list_items_unique", ExtraRules.list_items_unique);
 		extra.put("list_length", ExtraRules.list_length);
 		extra.put("md5", ExtraRules.md5);

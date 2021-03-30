@@ -55,14 +55,23 @@ public class LivrValidator implements ConstraintValidator<LivrSchema, Object> {
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
-	private Validator validator;
+	private boolean autoTrim;
 
 	@SuppressWarnings("rawtypes")
+	private Map<String, Function> rules;
+
+	private List<String> aliases;
+
+	private String schema;
+
 	@Override
 	public void initialize(final LivrSchema constraintAnnotation) {
 
+		autoTrim = constraintAnnotation.autotrim();
+		rules = new HashMap<>();
+		aliases = new ArrayList<>();
+
 		try {
-			final Map<String, Function> r = new HashMap<>();
 
 			// scanned packages rules
 			for (final String pck : populatePackageNames(constraintAnnotation)) {
@@ -70,24 +79,22 @@ public class LivrValidator implements ConstraintValidator<LivrSchema, Object> {
 
 				final Set<Class<? extends Rule>> annotated = reflections.getSubTypesOf(Rule.class);
 
-				populateRuleset(r, annotated.iterator());
+				populateRuleset(rules, annotated.iterator());
 			}
 
 			// Annotation rules
-			populateRuleset(r, Arrays.stream(constraintAnnotation.rules()).iterator());
+			populateRuleset(rules, Arrays.stream(constraintAnnotation.rules()).iterator());
 
 			// Schema
-			final String schema = SchemaLoader.load(constraintAnnotation.schema());
-
-			// Initialization
-			validator = LIVR.validator().registerDefaultRules(r).init(schema, constraintAnnotation.autotrim());
+			schema = SchemaLoader.load(constraintAnnotation.schema());
 
 			// Aliases
 			for (String alias : constraintAnnotation.aliases()) {
-				validator.registerAliasedRule(SchemaLoader.load(alias));
+				aliases.add(SchemaLoader.load(alias));
 			}
-		} catch (ParseException | InstantiationException | IllegalAccessException | InvocationTargetException
-				| NoSuchMethodException | IOException e) {
+
+		} catch (InstantiationException | IllegalAccessException | InvocationTargetException
+				| NoSuchMethodException e) {
 			log.error(e.getMessage(), e.getCause());
 		}
 	}
@@ -96,6 +103,13 @@ public class LivrValidator implements ConstraintValidator<LivrSchema, Object> {
 	@Override
 	public boolean isValid(final Object value, final ConstraintValidatorContext context) {
 		try {
+			// Initialization
+			Validator validator = LIVR.validator().registerDefaultRules(rules).init(schema, autoTrim);
+			for (String alias : aliases) {
+				validator.registerAliasedRule(alias);
+			}
+
+			// Validate
 			final JSONObject validData = validator.validate(objectMapper.writer().writeValueAsString(value));
 
 			if (validData != null) {
@@ -112,7 +126,7 @@ public class LivrValidator implements ConstraintValidator<LivrSchema, Object> {
 					}
 				});
 			}
-		} catch (final IOException e) {
+		} catch (final ParseException | IOException e) {
 			log.error(e.getMessage(), e.getCause());
 		}
 		return false;
