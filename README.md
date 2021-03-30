@@ -29,13 +29,13 @@ Features:
 <dependency>
   <groupId>com.github.gaborkolarovics</groupId>
   <artifactId>livr-validator</artifactId>
-  <version>1.5.0</version>
+  <version>1.5.1</version>
 </dependency>
 ```
 
 #### Gradle
 ```js
-implementation 'com.github.gaborkolarovics:livr-validator:1.5.0'
+implementation 'com.github.gaborkolarovics:livr-validator:1.5.1'
 ```
 
 ### Code

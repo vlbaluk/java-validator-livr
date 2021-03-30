@@ -11,13 +11,13 @@ LIVR specification contains the most common rules that every implementation shou
 <dependency>
   <groupId>com.github.gaborkolarovics</groupId>
   <artifactId>livr-extra-rule</artifactId>
-  <version>1.5.0</version>
+  <version>1.5.1</version>
 </dependency>
 ```
 
 #### Gradle
 ```js
-implementation 'com.github.gaborkolarovics:livr-extra-rule:1.5.0'
+implementation 'com.github.gaborkolarovics:livr-extra-rule:1.5.1'
 ```
 
 ### Code
@@ -38,10 +38,10 @@ implementation 'com.github.gaborkolarovics:livr-extra-rule:1.5.0'
 	extra.put("mongo_id", ExtraRules.mongo_id);
 	extra.put("required_if", ExtraRules.required_if);
 	extra.put("uuid", ExtraRules.uuid);
-	
-	Validator validator = LIVR.validator().registerDefaultRules(rules).init(schema, false);
+    extra.put("iso_date", ExtraRules.iso_date);
+
+	Validator validator = LIVR.validator().registerDefaultRules(extra).init(schema, false);
 	validator.validate(input);
-}
 ```
 
 ## Documentation
