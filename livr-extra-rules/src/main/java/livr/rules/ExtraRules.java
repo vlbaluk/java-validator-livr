@@ -91,7 +91,7 @@ public class ExtraRules {
 
 	static final Pattern MONGOID_PATTERN = Pattern.compile("^[0-9a-fA-F]{24}$");
 
-	static final Pattern ISO_DATE = Pattern.compile(
+	static final Pattern ISO_DATE_PATTERN = Pattern.compile(
 			"^(([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9]))(T(2[0-3]|[01][0-9]):([0-5][0-9])(:([0-5][0-9])(\\.[0-9]+)?)?(Z|[\\+\\-](2[0-3]|[01][0-9]):([0-5][0-9])))?$");
 
 	static final Pattern DATE = Pattern.compile("^(\\d{4})-([0-1][0-9])-([0-3][0-9])$");
@@ -360,7 +360,7 @@ public class ExtraRules {
 
 			String value = wrapper.getValue() + EMPTY;
 
-			if (!ISO_DATE.matcher(value).matches()) {
+			if (!ISO_DATE_PATTERN.matcher(value).matches()) {
 				return "WRONG_DATE";
 			}
 
