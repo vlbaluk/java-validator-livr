@@ -3,6 +3,14 @@
 # NAME
 LIVR.validator - Lightweight validator supporting Language Independent Validation Rules Specification (LIVR)
 
+# Maven
+``` gradle 
+<dependency>
+    <groupId>io.github.vlbaluk</groupId>
+    <artifactId>validator-livr</artifactId>
+    <version>2.0.0</version>
+</dependency>
+```
 # SYNOPSIS
 Common usage:
 

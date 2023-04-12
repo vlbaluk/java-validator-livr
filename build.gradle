@@ -1,32 +1,24 @@
-group 'livr'
+plugins {
+    id 'java'
+    id 'idea'
+    id "groovy"
+    id "signing"
+    id "maven-publish"
+}
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: "groovy"
+signing {
+    sign configurations.archives
+    sign publishing.publications
+}
 
-sourceCompatibility = 1.8
-
+group 'io.github.vlbaluk'
+version = '2.0.0'
 
 repositories {
     mavenCentral()
 }
 
-/*
- * Creates a jar that can be used as a library on java projects.
- * This jar already includes all the dependencies.
- */
-task libJar(type: Jar, dependsOn: jar) {
-    classifier = "lib";
-    from {
-        configurations.compile.collect { zipTree(it) }
-    };
-    with jar;
-}
 
-/*
- * Necessary to generate the source and javadoc jars
- */
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = "sources";
     from sourceSets.main.allSource;
@@ -37,23 +29,63 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir;
 }
 
-jar {
-    baseName = 'LIVR'
-    version = '2.0'
-}
-
 artifacts {
-    archives jar;
-    archives sourcesJar;
-    archives javadocJar;
-    archives libJar;
+    archives jar, sourcesJar, javadocJar
 }
 
 dependencies {
-    compile('org.apache.commons:commons-lang3:3.6')
-    compile('com.google.guava:guava:23.0')
-    compile('com.googlecode.json-simple:json-simple:1.1')
-    testCompile('junit:junit:4.12')
-    testCompile('org.spockframework:spock-core:1.1-groovy-2.4-rc-2')
-    testCompile('org.skyscreamer:jsonassert:1.5.0')
+    implementation('org.apache.commons:commons-lang3:3.6')
+    implementation('com.google.guava:guava:23.0')
+    implementation('com.googlecode.json-simple:json-simple:1.1')
+    testImplementation('junit:junit:4.12')
+    testImplementation('org.spockframework:spock-core:1.1-groovy-2.4-rc-2')
+    testImplementation('org.skyscreamer:jsonassert:1.5.0')
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name = 'Java Validator LIVR'
+                description = 'LIVR.validator - Lightweight validator supporting Language Independent Validation Rules Specification (LIVR), https://livr-spec.org/'
+
+                url = 'https://github.com/vlbaluk/java-validator-livr'
+                licenses {
+                    license {
+                        name = 'ARTISTIC LICENSE 2.0'
+                        url = 'https://www.perlfoundation.org/artistic-license-20.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'vlbaluk'
+                        name = 'Vlad Baluk'
+                        email = 'vladbaluk1@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git@github.com:vlbaluk/java-validator-livr.git'
+                    developerConnection = 'scm:git@github.com:vlbaluk/java-validator-livr.git'
+                    url = 'https://github.com/vlbaluk/java-validator-livr'
+                }
+            }
+            artifactId = 'validator-livr'
+            from components.java
+
+            artifact sourcesJar
+            artifact javadocJar
+        }
+
+    }
+
+    repositories {
+        maven {
+            name = "iogithubvlbaluk-1002"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = ossrhUsername
+                password = ossrhPassword
+            }
+        }
+    }
 }
