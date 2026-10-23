@@ -17,6 +17,14 @@
     "code": "WRONG_URL",
     "fieldValue": "www.google.com"
   },
+  "url2": {
+    "code": "WRONG_URL",
+    "fieldValue": "ftp://facebook.com"
+  },
+  "url3": {
+    "code": "WRONG_URL",
+    "fieldValue": "http://g_oogle.com"
+  },
   "value_is_array": {
     "code": "FORMAT_ERROR",
     "fieldValue": [

@@ -31,5 +31,9 @@
   "number1": {
     "code": "NOT_POSITIVE_DECIMAL",
     "fieldValue": "10.10.10"
+  },
+  "number2": {
+    "code": "NOT_POSITIVE_DECIMAL",
+    "fieldValue": "0"
   }
 }

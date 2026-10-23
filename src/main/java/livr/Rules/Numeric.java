@@ -50,7 +50,7 @@ public class Numeric {
         if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
         if (!LIVRUtils.looksLikeNumber(wrapper.getValue())) return "NOT_POSITIVE_DECIMAL";
 
-        if (!LIVRUtils.isDecimal(wrapper.getValue()) || Double.valueOf(wrapper.getValue() + "") < 0)
+        if (!LIVRUtils.isDecimal(wrapper.getValue()) || Double.valueOf(wrapper.getValue() + "") <= 0)
             return "NOT_POSITIVE_DECIMAL";
         wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + ""));
         return "";

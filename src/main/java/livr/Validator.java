@@ -93,11 +93,11 @@ public class Validator {
                 return (Function<FunctionKeeper, Object>) (wrapper) -> {
                     try {
                         JSONObject json = new JSONObject();
-                        json.put("value", wrapper.getValue());
+                        if (wrapper.getValue() != null) json.put("value", wrapper.getValue());
                         JSONObject result = validator.validate(json);
 
                         if (result != null) {
-                            wrapper.getFieldResultArr().add(result.get("value"));
+                            if (result.containsKey("value")) wrapper.getFieldResultArr().add(result.get("value"));
                             return "";
                         } else {
                             return alias.get("error") == null ? validator.getErrors().get("value") : alias.get("error");
@@ -182,7 +182,7 @@ public class Validator {
             List<FunctionKeeper> valids = validators.get(k);
             for (FunctionKeeper v : valids) {
                 v.setFieldResultArr(new ArrayList<>());
-                v.setValue(result.get(k) != null ? result.get(k) : value);
+                v.setValue(result.containsKey(k) ? result.get(k) : value);
                 v.setArgs(toMap(finalData));
                 Object errCode = v.getFunction().apply(v);
                 if (errCode != null && !errCode.toString().isEmpty()) {
@@ -197,7 +197,7 @@ public class Validator {
                     break;
                 } else if (!v.getFieldResultArr().isEmpty()) {
                     result.put(k, v.getFieldResultArr().get(0));
-                } else if (finalData.get(k) != null && !result.containsKey(k)) {
+                } else if (finalData.containsKey(k) && !result.containsKey(k)) {
                     result.put(k, value);
                 }
             }

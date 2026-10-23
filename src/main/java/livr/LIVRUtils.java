@@ -1,10 +1,8 @@
 package livr;
 
 import org.apache.commons.lang3.math.NumberUtils;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.util.Map;
 
@@ -30,15 +28,7 @@ public class LIVRUtils {
     }
 
     public static boolean isObject(Object value) {
-        if (value.getClass() == JSONObject.class || value.getClass() == JSONArray.class) {
-            return true;
-        }
-
-        try {
-            return newParser().parse(String.valueOf(value)) != null;
-        } catch (ParseException e) {
-            return false;
-        }
+        return value instanceof JSONObject;
     }
 
     public static boolean isEmptyObject(Map<String, String> map) {

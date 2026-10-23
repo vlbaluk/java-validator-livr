@@ -27,5 +27,9 @@
   "iso_date1": {
     "code": "WRONG_DATE",
     "fieldValue": "2014-13-10"
+  },
+  "iso_date2": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2011-02-29"
   }
 }
