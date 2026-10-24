@@ -12,7 +12,7 @@ signing {
 }
 
 group 'io.github.vlbaluk'
-version = '2.0.0'
+version = '2.0.1'
 
 repositories {
     mavenCentral()
@@ -81,7 +81,7 @@ publishing {
     repositories {
         maven {
             name = "iogithubvlbaluk-1002"
-            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            url = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
             credentials {
                 username = ossrhUsername
                 password = ossrhPassword
