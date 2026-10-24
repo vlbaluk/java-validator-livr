@@ -175,6 +175,7 @@ public class Meta {
 
                         if (!LIVRUtils.isObject(value) || ((JSONObject) value).get(selectorField) == null || validators.get(((JSONObject) value).get(selectorField)) == null) {
                             errors.add("FORMAT_ERROR");
+                            hasErrors = true;
                             continue;
                         }
 
@@ -267,16 +268,15 @@ public class Meta {
             }
 
             return (Function<FunctionKeeper, Object>) (wrapper) -> {
-                if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
                 try {
                     Object value = wrapper.getValue();
                     Object lastError = null;
                     for (Validator validator : validators) {
                         JSONObject valValue = new JSONObject();
-                        valValue.put("field", value);
+                        if (value != null) valValue.put("field", value);
                         JSONObject result = validator.validate(valValue);
                         if (result != null) {
-                            wrapper.getFieldResultArr().add(result.get("field"));
+                            if (result.containsKey("field")) wrapper.getFieldResultArr().add(result.get("field"));
                             return "";
                         } else {
                             lastError = validator.getErrors().get("field");

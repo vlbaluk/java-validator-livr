@@ -2,5 +2,17 @@
   "value_is_string": {
     "code": "FORMAT_ERROR",
     "fieldValue": "test"
+  },
+  "value_is_number": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": 0
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": ["test", 1]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
   }
 }

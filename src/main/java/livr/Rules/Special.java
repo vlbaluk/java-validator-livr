@@ -3,6 +3,8 @@ package livr.Rules;
 import livr.FunctionKeeper;
 import livr.LIVRUtils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -14,7 +16,7 @@ public class Special {
 
     public static Function<List<Object>, Function> email = objects -> {
         final Pattern VALID_EMAIL_ADDRESS_REGEX =
-                Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+                Pattern.compile("^(?:[^<>()\\[\\]\\\\.,;:\\p{IsWhite_Space}@\"]++(?:\\.[^<>()\\[\\]\\\\.,;:\\p{IsWhite_Space}@\"]++)*+|\"[^@\\n\\r\\u2028\\u2029]+\")@(?:\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\]|(?:[a-zA-Z\\-0-9]++\\.)++[a-zA-Z]{2,})$");
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
             if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
             if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
@@ -34,14 +36,15 @@ public class Special {
             if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
             if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
             String value = wrapper.getValue() + "";
+            Object other = wrapper.getArgs().get(field);
 
-            if (!value.equals(wrapper.getArgs().get(field))) return "FIELDS_NOT_EQUAL";
+            if (other == null || !value.equals(other + "")) return "FIELDS_NOT_EQUAL";
             return "";
         };
     };
 
     public static Function<List<Object>, Function> url = objects -> {
-        Pattern pattern = Pattern.compile("(?i)^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!(?:10)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))\\.?)(?::\\d{2,5})?(?:[/?#]\\S*)?$", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("^(?:https?://)(?:\\P{IsWhite_Space}+(?::\\P{IsWhite_Space}*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[0-1]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:[a-z\\u00a1-\\uffff0-9]++(?:-++[a-z\\u00a1-\\uffff0-9]++)*+)(?:\\.[a-z\\u00a1-\\uffff0-9]++(?:-++[a-z\\u00a1-\\uffff0-9]++)*+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))\\.?|localhost)(?::\\d{2,5})?(?:[/?#]\\P{IsWhite_Space}*)?$", Pattern.CASE_INSENSITIVE);
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
             if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
@@ -58,10 +61,13 @@ public class Special {
         if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
         String value = wrapper.getValue() + "";
 
-        if (value.matches("^([0-9]{4})(-?)(1[0-2]|0[1-9])\\2(3[01]|0[1-9]|[12][0-9])$")) {
-            return "";
+        if (!value.matches("\\d{4}-\\d{2}-\\d{2}")) return "WRONG_DATE";
+        try {
+            LocalDate.parse(value);
+        } catch (DateTimeParseException e) {
+            return "WRONG_DATE";
         }
-        return "WRONG_DATE";
+        return "";
 
     };
 }

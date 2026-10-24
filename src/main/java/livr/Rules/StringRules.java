@@ -43,7 +43,7 @@ public class StringRules {
 
 
     public static Function<List<Object>, Function> one_of = objects -> {
-        final List<Object> allowedValues = Lists.newArrayList(((JSONArray) objects.get(0)).toArray());
+        final List<Object> allowedValues = objects.get(0) instanceof JSONArray ? (JSONArray) objects.get(0) : Lists.newArrayList(objects.get(0));
 
         return (Function<FunctionKeeper, Object>) (FunctionKeeper wrapper) -> {
             List<String> allowedStrValues = allowedValues.stream().map(obj -> String.valueOf(obj)).collect(Collectors.toList());
