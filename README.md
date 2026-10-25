@@ -3,35 +3,48 @@
 # NAME
 LIVR.validator - Lightweight validator supporting Language Independent Validation Rules Specification (LIVR)
 
-# Maven
-``` gradle 
-<dependency>
-    <groupId>io.github.vlbaluk</groupId>
-    <artifactId>validator-livr</artifactId>
-    <version>2.0.0</version>
-</dependency>
+# INSTALL
+Published on Maven Central (Java 8+):
+
 ```
+io.github.vlbaluk:validator-livr
+```
+
+Latest version: [central.sonatype.com/artifact/io.github.vlbaluk/validator-livr](https://central.sonatype.com/artifact/io.github.vlbaluk/validator-livr)
+
+To build from source, run `gradle build` (Gradle 7.x). The jars end up in `build/libs`.
+
 # SYNOPSIS
 Common usage:
 
 ```java
-public class Common{
-    public static void main(String[] args){
-        Validator validator = LIVR.validator().init("{" +
-                                              "name:      'required'," +
-                                              "email:     [ 'required', 'email' ]," +
-                                              "gender:    { one_of : ['male', 'female'] }," +
-                                              "phone:     { max_length : 10 }," +
-                                              "password:  [ 'required', {min_length : 10} ]," +
-                                              "password2: { equal_to_field : 'password' }" +
-                                              "}",false);
-        
-        JSONObject validData = validator.validate(userData);
-        
-        if (validData!=null) {
-            saveUser(validData);
+import livr.LIVR;
+import livr.Validator;
+import org.json.simple.JSONObject;
+
+public class Common {
+    public static void main(String[] args) throws Exception {
+        Validator validator = LIVR.validator().init("{"
+                + "\"name\": \"required\","
+                + "\"email\": [\"required\", \"email\"],"
+                + "\"gender\": {\"one_of\": [\"male\", \"female\"]},"
+                + "\"phone\": {\"max_length\": 10},"
+                + "\"password\": [\"required\", {\"min_length\": 10}],"
+                + "\"password2\": {\"equal_to_field\": \"password\"}"
+                + "}", false);
+
+        JSONObject validData = validator.validate("{"
+                + "\"name\": \"John\","
+                + "\"email\": \"john@example.com\","
+                + "\"gender\": \"male\","
+                + "\"password\": \"0123456789\","
+                + "\"password2\": \"0123456789\""
+                + "}");
+
+        if (validData != null) {
+            System.out.println(validData);
         } else {
-            Logger.error('errors :' + validator.getErrors());
+            System.out.println(validator.getErrors());
         }
     }
 }
@@ -41,13 +54,8 @@ public class Common{
 You can use modifiers separately or can combine them with validation:
 
 ```java
-class Alias{
-    public static void main(String[] args){
-        Validator validator = LIVR.validator().init("{" +
-        "email: [ 'required', 'trim', 'email', 'to_lc' ]" +
-        "}",false);
-    }
-}
+Validator validator = LIVR.validator().init(
+        "{\"email\": [\"required\", \"trim\", \"email\", \"to_lc\"]}", false);
 ```
 
 
@@ -56,40 +64,43 @@ Feel free to register your own rules:
 You can use aliases(prefferable, syntax covered by the specification) for a lot of cases:
 
 ```java
-class Alias{
-    public static void main(String[] args){
-    Validator validator = LIVR.validator().init("{"+
-                                                "password: ['required', 'strong_password']"+
-                                                "}",true);
-    
-    validator.registerAliasedRule("{" +
-                                  "name: 'strong_password'," +
-                                  "rules: {min_length: 6}," +
-                                  "error: 'WEAK_PASSWORD'" +
-                                  "}");
-    }
-}
+Validator validator = LIVR.validator().init(
+        "{\"password\": [\"required\", \"strong_password\"]}", false);
+
+validator.registerAliasedRule(
+        "{\"name\": \"strong_password\", \"rules\": {\"min_length\": 6}, \"error\": \"WEAK_PASSWORD\"}");
 ```
 
-Or you can write more sophisticated rules directly:
+Or you can write more sophisticated rules directly. A rule builder gets the rule arguments and returns a function. That function returns `""` when the value is valid or an error code when it is not, and it can put a replacement value into `getFieldResultArr()`:
 
 ```java
-public class CustomFunc {
-    public static void main(String[] args) {
-        Validator validator = LIVR.validator().init("{" +
-                "password: ['required', 'strong_password']" +
-                "}", true);
-        Map rules = new HashMap<>();
-        rules.put("my_trim", my_trim);
-        validator.registerRules(rules);
-    }
-    
-    public static Function<List<Object>, Function> my_trim = objects -> (Function<FunctionKeeper, Object>) (wrapper) -> {
-        if (LIVRUtils.isNoValue(wrapper.getValue()) || wrapper.getValue().getClass() == JSONObject.class) return "";
-        wrapper.getFieldResultArr().add((wrapper.getValue() + "").trim());
+import livr.FunctionKeeper;
+import livr.LIVR;
+import livr.LIVRUtils;
+import livr.Validator;
+import org.json.simple.JSONObject;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+
+public class CustomFunc {
+    public static Function<List<Object>, Function> my_trim = objects -> (Function<FunctionKeeper, Object>) wrapper -> {
+        if (LIVRUtils.isNoValue(wrapper.getValue()) || wrapper.getValue() instanceof JSONObject) return "";
+        wrapper.getFieldResultArr().add((wrapper.getValue() + "").trim());
         return "";
     };
+
+    public static void main(String[] args) throws Exception {
+        Validator validator = LIVR.validator().init("{\"name\": [\"required\", \"my_trim\"]}", false);
+
+        Map<String, Function> rules = new HashMap<>();
+        rules.put("my_trim", my_trim);
+        validator.registerRules(rules);
+
+        System.out.println(validator.validate("{\"name\": \"  John  \"}")); // {"name":"John"}
+    }
 }
 ```
 
@@ -109,59 +120,44 @@ Features:
  * Rules are be able to change results output ("trim", "nested\_object", for example)
  * Multipurpose (user input validation, configs validation, contracts programming etc)
 
-# INSTALL
-
-#### gradle
-```bash 
-git clone https://github.com/vlbaluk/java-validator-livr.git
-cd root_dir
-gradle -Dfile.encoding=UTF-8 build
-see root/build/lib
-```
-####
-add LIVR-lib.jar to classpath of your application
-
 # CLASS METHODS
 
 ## LIVR.validator().init(livr, isAutoTrim);
 Contructor creates validator objects.
-livr - validations rules. Rules description is available here - https://github.com/koorchik/LIVR
+livr - validation rules, as a JSON string or a `JSONObject`. Rules description is available here - https://github.com/koorchik/LIVR
 
 
 ## LIVR.validator().registerAliasedDefaultRule(alias)
-alias - is a plain javascript object that contains: name, rules, error (optional).
+alias - is a `JSONObject` that contains: name, rules, error (optional).
 
 ```java
-public class CustomFunc {
-    public static void main(String[] args) {
-        LIVR.Validator.registerAliasedDefaultRule("{" +
-                                                  "    name: 'valid_address'," +
-                                                  "    rules: { nested_object: {" +
-                                                  "        country: 'required'," +
-                                                  "        city: 'required'," +
-                                                  "        zip: 'positive_integer'" +
-                                                  "    }}" +
-                                                  "}"
-                                                  );
-    }
-}
+Validator validator = LIVR.validator();
+validator.registerAliasedDefaultRule((JSONObject) new JSONParser().parse("{"
+        + "\"name\": \"valid_address\","
+        + "\"rules\": {\"nested_object\": {"
+        + "\"country\": \"required\","
+        + "\"city\": \"required\","
+        + "\"zip\": \"positive_integer\""
+        + "}}"
+        + "}"));
+validator.init("{\"address\": \"valid_address\"}", false);
 ```
 
 Then you can use "valid\_address" for validation:
 
-```javascript
+```json
 {
-    address: 'valid_address'
+    "address": "valid_address"
 }
 ```
 
 You can register aliases with own errors:
 
-```javascript
+```json
 {
-    name: 'adult_age'
-    rules: [ 'positive_integer', { min_number: 18 } ]
-    error: 'WRONG_AGE'
+    "name": "adult_age",
+    "rules": ["positive_integer", {"min_number": 18}],
+    "error": "WRONG_AGE"
 }
 ```
 
@@ -171,61 +167,47 @@ All rules/aliases for the validator are equal. The validator does not distinguis
 ruleBuilder - is a function reference which will be called for building single rule validator.
 
 ```java
-class Main {
-    public static void main(String[] args) {
-        Validator validator = new Validator();
-        validator.registerAliasedDefaultRule("{" +
-                "    name: 'valid_address'," +
-                "    rules: { nested_object: {" +
-                "        country: 'required'," +
-                "        city: 'required'," +
-                "        zip: 'positive_integer'" +
-                "    }}" +
-                "}"
-        );
-        validator.init();
-    }
-}
+Validator validator = LIVR.validator();
+Map<String, Function> rules = new HashMap<>();
+rules.put("my_rule", CustomFunc.my_trim);
+validator.registerDefaultRules(rules);
+validator.init("{\"name\": \"my_rule\"}", false);
 ```
 
 Then you can use "my\_rule" for validation:
 
 ```javascript
 {
-    name1: 'my_rule' // Call without parameters
-    name2: { 'my_rule': arg1 } // Call with one parameter.
-    name3: { 'my_rule': [arg1] } // Call with one parameter.
-    name4: { 'my_rule': [ arg1, arg2, arg3 ] } // Call with many parameters.
+    "name1": "my_rule",                                 // Call without parameters
+    "name2": { "my_rule": "arg1" },                     // Call with one parameter
+    "name3": { "my_rule": ["arg1"] },                   // Call with one parameter
+    "name4": { "my_rule": ["arg1", "arg2", "arg3"] }    // Call with many parameters
 }
 ```
 
-
+The rule builder gets the argument as `objects.get(0)` (a `JSONArray` when there are several), and the map of registered rules as the last element.
 
 All rules for the validator are equal. The validator does not distinguish "required", "list\_of\_different\_objects" and "trim" rules. So, you can extend validator with any rules you like.
 
 ## LIVR.validator().getDefaultRules();
 returns object containing all default ruleBuilders for the validator. You can register new rule or update existing one with "registerRules" method.
 
-## LIVR.util
+## LIVRUtils
 
 List of usefull utils for writing your rules (see source code)
 
 # OBJECT METHODS
 
 ## validator.validate(input)
-Validates user input. On success returns validData (contains only data that has described validation rules). On error return false.
+Validates user input, given as a JSON string or a `JSONObject`. On success returns validData (contains only data that has described validation rules). On error returns null.
 
 ```java
-class Main {
-    public static void main(String[] args) {
-        JSONObject validaData = validator.validate(input)
-        
-        if (validData!=null) {
-            // use validData
-        } else {
-            JSONArray errors = validator.getErrors();
-        }
-    }
+JSONObject validData = validator.validate(input);
+
+if (validData != null) {
+    // use validData
+} else {
+    JSONObject errors = validator.getErrors();
 }
 ```
 
@@ -236,11 +218,11 @@ Returns errors object.
 {
     "field1": {
         "code": "ERROR_CODE",
-        "value": "INVALID_VALUE"
+        "fieldValue": "INVALID_VALUE"
     },
     "field2": {
         "code": "ERROR_CODE",
-        "value": "INVALID_VALUE"
+        "fieldValue": "INVALID_VALUE"
     },
     ...
 }
@@ -248,28 +230,28 @@ Returns errors object.
 
 For example:
 
-```javascript
+```json
 {
     "country": {
         "code": "NOT_ALLOWED_VALUE",
-        "value": "12345"
+        "fieldValue": "12345"
     },
     "zip": {
         "code": "NOT_POSITIVE_INTEGER",
-        "value": "-45"
+        "fieldValue": "-45"
     },
     "street":   {
         "code": "REQUIRED",
-        "value": ""
+        "fieldValue": ""
     },
     "building": {
         "code": "NOT_POSITIVE_INTEGER",
-        "value": "-123"
+        "fieldValue": "-123"
     }
 }
 ```
 
-## validator.validator().registerRules({"rule_name": ruleBuilder})
+## validator.registerRules({"rule_name": ruleBuilder})
 
 ruleBuilder - is a function reference which will be called for building single rule validator.
 
