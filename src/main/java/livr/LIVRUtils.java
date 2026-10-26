@@ -44,7 +44,7 @@ public class LIVRUtils {
             return true;
         }
 
-        return NumberUtils.isDigits(value + "");
+        return (value + "").matches("-?\\d+");
     }
 
     public static boolean isDecimal(Object value) {
