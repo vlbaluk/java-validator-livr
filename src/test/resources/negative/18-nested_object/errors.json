@@ -1,12 +1,12 @@
 {
   "address": {
+    "country": {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "Poland"
+    },
     "zip": {
       "code": "NOT_POSITIVE_INTEGER",
       "fieldValue": "AAA"
-    },
-    "country": {
-      "code": "NOT_ALLOWED_VALUE",
-      "fieldValue": "Russia"
     },
     "street": {
       "code": "REQUIRED",

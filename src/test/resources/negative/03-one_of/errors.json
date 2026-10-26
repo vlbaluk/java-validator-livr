@@ -1,39 +1,47 @@
 {
-    "city1": {
-        "code": "NOT_ALLOWED_VALUE",
-        "fieldValue": "New York"
-    },
-    "value_is_hash": {
-        "code": "FORMAT_ERROR",
-        "fieldValue": {
-            "test": 1
-        }
-    },
-    "value_is_empty_hash": {
-        "code": "FORMAT_ERROR",
-        "fieldValue": {}
-    },
-    "value_is_empty_array": {
-        "code": "FORMAT_ERROR",
-        "fieldValue": []
-    },
-    "city2": {
-        "code": "NOT_ALLOWED_VALUE",
-        "fieldValue": "New York"
-    },
-    "value_is_array": {
-        "code": "FORMAT_ERROR",
-        "fieldValue": [
-            "test",
-            1
-        ]
-    },
-    "number1": {
-        "code": "NOT_ALLOWED_VALUE",
-        "fieldValue": "1.0"
-    },
-    "city3": {
-        "code": "NOT_ALLOWED_VALUE",
-        "fieldValue": "New York"
+  "city1": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "New York"
+  },
+  "city2": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "New York"
+  },
+  "city3": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "New York"
+  },
+  "city4": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "New York"
+  },
+  "number1": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "1.0"
+  },
+  "number2": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 40
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
     }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
 }
