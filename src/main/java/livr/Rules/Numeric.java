@@ -29,7 +29,7 @@ public class Numeric {
         if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
         if (!LIVRUtils.looksLikeNumber(wrapper.getValue())) return "NOT_POSITIVE_INTEGER";
 
-        if (!LIVRUtils.isInteger(wrapper.getValue()) || Long.valueOf(wrapper.getValue() + "") < 1)
+        if (!LIVRUtils.isInteger(wrapper.getValue()) || new BigDecimal(wrapper.getValue() + "").signum() < 1)
             return "NOT_POSITIVE_INTEGER";
         wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + ""));
         return "";
@@ -57,7 +57,7 @@ public class Numeric {
     };
 
     public static Function<List<Object>, Function> max_number = objects -> {
-        final Long maxNumber = Long.valueOf(objects.get(0) + "");
+        final Double maxNumber = Double.valueOf(objects.get(0) + "");
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
             if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
             if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
@@ -73,7 +73,7 @@ public class Numeric {
     };
 
     public static Function<List<Object>, Function> min_number = objects -> {
-        final Long min_number = Long.valueOf(objects.get(0) + "");
+        final Double min_number = Double.valueOf(objects.get(0) + "");
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
             if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
             if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
@@ -89,16 +89,16 @@ public class Numeric {
 
     public static Function<List<Object>, Function> number_between = objects -> {
         Iterator it = ((JSONArray) objects.get(0)).iterator();
-        final Long minNumber = Long.valueOf(it.next() + "");
-        final Long maxNumber = Long.valueOf(it.next() + "");
+        final BigDecimal minNumber = new BigDecimal(it.next() + "");
+        final BigDecimal maxNumber = new BigDecimal(it.next() + "");
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
             if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
             if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
             if (!LIVRUtils.looksLikeNumber(wrapper.getValue())) return "NOT_NUMBER";
             BigDecimal value = NumberUtils.createBigDecimal(wrapper.getValue() + "");
-            if (value.compareTo(BigDecimal.valueOf(minNumber)) < 0) return "TOO_LOW";
-            if (value.compareTo(BigDecimal.valueOf(maxNumber)) > 0) return "TOO_HIGH";
+            if (value.compareTo(minNumber) < 0) return "TOO_LOW";
+            if (value.compareTo(maxNumber) > 0) return "TOO_HIGH";
 
             wrapper.getFieldResultArr().add(NumberUtils.createNumber(wrapper.getValue() + ""));
             return "";

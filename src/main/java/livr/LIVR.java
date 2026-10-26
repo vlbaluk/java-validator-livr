@@ -56,7 +56,7 @@ public class LIVR {
     }
 
     public static void registerDefaultRules(Map<String, Function> rules) {
-        rules.putAll(rules);
+        LIVR.rules.putAll(rules);
     }
 
     public static Validator validator() {

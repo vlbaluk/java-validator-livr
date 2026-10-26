@@ -1,4 +1,44 @@
 {
+  "iso_date1": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2014-13-10"
+  },
+  "iso_date2": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2011-02-29"
+  },
+  "iso_date3": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2014-10-10T22:22"
+  },
+  "iso_date4": {
+    "code": "WRONG_DATE",
+    "fieldValue": "1900-02-29"
+  },
+  "iso_date5": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2024-00-10"
+  },
+  "iso_date6": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2024-01-00"
+  },
+  "iso_date7": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2024-04-31"
+  },
+  "iso_date8": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2024-1-01"
+  },
+  "iso_date9": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2024-01-01\n"
+  },
+  "like_iso_date": {
+    "code": "WRONG_DATE",
+    "fieldValue": "aaaa-bb-cc"
+  },
   "value_is_hash": {
     "code": "FORMAT_ERROR",
     "fieldValue": {
@@ -9,10 +49,6 @@
     "code": "FORMAT_ERROR",
     "fieldValue": {}
   },
-  "value_is_empty_array": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": []
-  },
   "value_is_array": {
     "code": "FORMAT_ERROR",
     "fieldValue": [
@@ -20,16 +56,8 @@
       1
     ]
   },
-  "iso_date3": {
-    "code": "WRONG_DATE",
-    "fieldValue": "2014-10-10T22:22"
-  },
-  "iso_date1": {
-    "code": "WRONG_DATE",
-    "fieldValue": "2014-13-10"
-  },
-  "iso_date2": {
-    "code": "WRONG_DATE",
-    "fieldValue": "2011-02-29"
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
   }
 }

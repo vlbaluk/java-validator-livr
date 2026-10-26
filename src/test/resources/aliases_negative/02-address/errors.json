@@ -1,23 +1,23 @@
 {
   "address": {
+    "street": {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    },
     "zip": {
       "code": "NOT_POSITIVE_INTEGER",
       "fieldValue": -1232131
     },
     "city": {
       "code": "NOT_ALLOWED_VALUE",
-      "fieldValue": "Moscow"
-    },
-    "street": {
-      "code": "REQUIRED",
-      "fieldValue": ""
+      "fieldValue": "Lviv"
     }
   },
   "address_custom_error": {
     "code": "WRONG_ADDRESS",
     "fieldValue": {
       "zip": "12312",
-      "city": "Moscow",
+      "city": "Lviv",
       "street": "My street"
     }
   }

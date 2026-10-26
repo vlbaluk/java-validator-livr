@@ -1,39 +1,96 @@
 {
-    "product2": {
-        "warehouse_id": {
-            "code": "NOT_POSITIVE_INTEGER",
-            "fieldValue": -100
-        }
+  "order_id": {
+    "code": "NOT_POSITIVE_INTEGER",
+    "fieldValue": "-10"
+  },
+  "product1": {
+    "material_id": {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": 0
     },
-    "product1": {
-        "quantity": {
-            "code": "REQUIRED",
-            "fieldValue": ""
-        },
-        "material_id": {
-            "code": "NOT_POSITIVE_INTEGER",
-            "fieldValue": 0
-        }
-    },
-    "order_id": {
-        "code": "NOT_POSITIVE_INTEGER",
-        "fieldValue": "-10"
-    },
-    "product5": {
-        "code": "FORMAT_ERROR",
-        "fieldValue": "Some Wrong Data"
-    },
-    "product4": {
-        "code": "FORMAT_ERROR",
-        "fieldValue": {
-            "product_type": "wrongtype",
-            "name": "Wrongtype"
-        }
-    },
-    "product3": {
-        "name": {
-            "code": "TOO_LONG",
-            "fieldValue": "Very Long Name"
-        }
+    "quantity": {
+      "code": "REQUIRED",
+      "fieldValue": ""
     }
+  },
+  "product2": {
+    "warehouse_id": {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": -100
+    }
+  },
+  "product3": {
+    "name": {
+      "code": "TOO_LONG",
+      "fieldValue": "Very Long Name"
+    }
+  },
+  "product4": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "product_type": "wrongtype",
+      "name": "Wrongtype"
+    }
+  },
+  "product5": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": "Some Wrong Data"
+  },
+  "product_without_selector": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "name": "No product type"
+    }
+  },
+  "product_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      {
+        "product_type": "service",
+        "name": "Service"
+      }
+    ]
+  },
+  "selector_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "product_type": [
+        "material"
+      ],
+      "material_id": 1
+    }
+  },
+  "selector_is_object": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "product_type": {
+        "material": 1
+      },
+      "material_id": 1
+    }
+  },
+  "selector_is_constructor": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "product_type": "constructor"
+    }
+  },
+  "selector_is_to_string": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "product_type": "toString"
+    }
+  },
+  "selector_is_has_own_property": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "product_type": "hasOwnProperty"
+    }
+  },
+  "selector_is_proto": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "product_type": "__proto__"
+    }
+  }
 }

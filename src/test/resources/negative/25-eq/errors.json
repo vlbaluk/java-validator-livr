@@ -3,6 +3,30 @@
     "code": "NOT_ALLOWED_VALUE",
     "fieldValue": "New York"
   },
+  "city2": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "New York"
+  },
+  "city3": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "New York"
+  },
+  "number1": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "1.0"
+  },
+  "number2": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "asdasd"
+  },
+  "number3": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "      _"
+  },
+  "empty_string": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "      "
+  },
   "value_is_hash": {
     "code": "FORMAT_ERROR",
     "fieldValue": {
@@ -13,14 +37,6 @@
     "code": "FORMAT_ERROR",
     "fieldValue": {}
   },
-  "value_is_empty_array": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": []
-  },
-  "city2": {
-    "code": "NOT_ALLOWED_VALUE",
-    "fieldValue": "New York"
-  },
   "value_is_array": {
     "code": "FORMAT_ERROR",
     "fieldValue": [
@@ -28,12 +44,8 @@
       1
     ]
   },
-  "number1": {
-    "code": "NOT_ALLOWED_VALUE",
-    "fieldValue": "1.0"
-  },
-  "city3": {
-    "code": "NOT_ALLOWED_VALUE",
-    "fieldValue": "New York"
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
   }
 }

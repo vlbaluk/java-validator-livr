@@ -282,14 +282,14 @@ public class Validator {
     }
 
     public static Object _autoTrim(Object data) {
+        if (data == null) {
+            return data;
+        }
+
         Class dataType = data.getClass();
 
-        if (dataType != JSONObject.class) {
-            if (data != null) {
-                return (data + "").trim();
-            } else {
-                return data;
-            }
+        if (dataType == String.class) {
+            return ((String) data).trim();
         } else if (dataType == JSONArray.class) {
             JSONArray trimmedData = new JSONArray();
 

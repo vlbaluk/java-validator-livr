@@ -1,5 +1,7 @@
 # java-validator-livr
 
+[![tests](https://github.com/vlbaluk/java-validator-livr/actions/workflows/tests.yml/badge.svg)](https://github.com/vlbaluk/java-validator-livr/actions/workflows/tests.yml)
+
 # NAME
 LIVR.validator - Lightweight validator supporting Language Independent Validation Rules Specification (LIVR)
 

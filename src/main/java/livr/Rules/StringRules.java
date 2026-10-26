@@ -8,6 +8,7 @@ import org.json.simple.JSONArray;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -136,13 +137,16 @@ public class StringRules {
             isIgnoreCase = false;
         }
 
+        final Pattern regex = isIgnoreCase
+                ? Pattern.compile(pattern, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)
+                : Pattern.compile(pattern);
+
         return (Function<FunctionKeeper, Object>) (FunctionKeeper wrapper) -> {
             if (wrapper.getValue() == null || (wrapper.getValue() + "").equals("")) return "";
             if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
 
             String value = wrapper.getValue() + "";
-            String caseInValue = isIgnoreCase ? value.toLowerCase() : value;
-            if (!caseInValue.matches(pattern)) return "WRONG_FORMAT";
+            if (!regex.matcher(value).matches()) return "WRONG_FORMAT";
             wrapper.getFieldResultArr().add(value);
             return "";
         };

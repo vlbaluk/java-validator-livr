@@ -3,6 +3,30 @@
     "code": "FIELDS_NOT_EQUAL",
     "fieldValue": "some value1"
   },
+  "field2": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": "some value"
+  },
+  "field3": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": "some value"
+  },
+  "same_number_exponent": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": "1e1"
+  },
+  "same_number_leading_zero": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": "010"
+  },
+  "same_number_space": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": " 10"
+  },
+  "missing_other_field": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": "some value"
+  },
   "value_is_hash": {
     "code": "FORMAT_ERROR",
     "fieldValue": {
@@ -13,10 +37,6 @@
     "code": "FORMAT_ERROR",
     "fieldValue": {}
   },
-  "value_is_empty_array": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": []
-  },
   "value_is_array": {
     "code": "FORMAT_ERROR",
     "fieldValue": [
@@ -24,12 +44,8 @@
       1
     ]
   },
-  "field3": {
-    "code": "FIELDS_NOT_EQUAL",
-    "fieldValue": "some value"
-  },
-  "field2": {
-    "code": "FIELDS_NOT_EQUAL",
-    "fieldValue": "some value"
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
   }
 }
