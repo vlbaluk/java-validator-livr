@@ -122,6 +122,42 @@ Features:
  * Rules are be able to change results output ("trim", "nested\_object", for example)
  * Multipurpose (user input validation, configs validation, contracts programming etc)
 
+## LIVR 2.5
+
+The rules added in LIVR 2.5 ([specification](https://github.com/koorchik/LIVR/blob/master/drafts/v2.5.md), [changes](https://livr-spec.org/changes.html#v2-5), [rules](https://livr-spec.org/validation-rules.html)) are registered by default. LIVR 2.5 only adds rules: every LIVR 2.0 schema works as before, except for the small fixes in section 1 of the specification.
+
+ * Types and numbers: `boolean`, `not_one_of`, `max_decimals`
+ * Strings: `digits`, `starts_with`, `ends_with`, `contains`
+ * Dates and times: `iso_date` with `min` and `max` (`{"iso_date": {"max": "today"}}`), `iso_datetime`, `iso_time`
+ * Presence: `required_if`
+ * Metarules: `when`, `values`, `keys`, `any`
+ * Lists: `list_length`, `unique`
+ * Modifiers: `split`
+ * Formats: `uuid`, `ip`, `cidr`, `hostname`, `base64`, `hex`, `digest`, `mongo_id`, `hex_color`, `mac`, `e164`, `semver`, `jwt`
+ * Checksums: `luhn`, `credit_card`, `iban`
+
+`required_if` and `when` refer to other fields: `"type"` is a field next to the validated one, `"address/country"` and `"items/0/id"` are paths down from there. Aliases, `or` branches and the rules of `when` see the fields next to the field that uses them; an item of `list_of` and the values and keys of `values` and `keys` see no fields. This also fixes `equal_to_field` in aliases and `or` branches, which compared with a made-up object before.
+
+A key that fails the rules of `keys` gives `{"code": "WRONG_KEY", "fieldValue": <the key>}` under that key.
+
+A rule that you register with the name of a standard rule replaces it.
+
+### Schema errors
+
+A LIVR 2.5 rule with wrong arguments (`{"boolean": 1}`, `{"uuid": "v9"}`, `{"iso_date": "today"}`, `{"when": ["type", []]}`) throws `IllegalArgumentException` when the validator is prepared: by `validator.prepare()`, or by the first `validate()`. An unknown rule throws `IOException`, as before. `iso_date` ignored its arguments in LIVR 2.0; now its first argument, if there is one, must be an options object.
+
+`{"rule": null}` is one `null` argument, not "no arguments". No LIVR 2.5 rule takes `null`, so `{"boolean": null}` and `{"uuid": null}` are schema errors. The LIVR 2.0 rules and custom rules get `null` as their argument, as before: `{"default": null}` sets `null`. `iso_date` ignored its arguments in LIVR 2.0, so `{"iso_date": null}` is the plain `iso_date`.
+
+### The current date
+
+`today`, `yesterday` and `tomorrow` are dates in UTC. Java cannot replace the system clock in tests, so the validator takes a `java.time.Clock` (`Clock.systemUTC()` by default):
+
+```java
+Validator validator = LIVR.validator()
+        .setClock(Clock.fixed(Instant.parse("2026-10-18T12:00:00Z"), ZoneOffset.UTC))
+        .init("{\"birth_date\": {\"iso_date\": {\"max\": \"today\"}}}", false);
+```
+
 # CLASS METHODS
 
 ## LIVR.validator().init(livr, isAutoTrim);
@@ -187,7 +223,9 @@ Then you can use "my\_rule" for validation:
 }
 ```
 
-The rule builder gets the argument as `objects.get(0)` (a `JSONArray` when there are several), and the map of registered rules as the last element.
+The rule builder gets the argument as `objects.get(0)` (a `JSONArray` when there are several), and the map of registered rules as the last element. `RuleArguments.get(objects)` gives the arguments as they are written in the schema, without unwrapping a single list argument: `{"my_rule": [["a", "b"]]}` gives one argument, the list `["a", "b"]`.
+
+A rule that gets wrong arguments should throw an unchecked exception from the rule builder, as the LIVR 2.5 rules do (see "Schema errors" above).
 
 All rules for the validator are equal. The validator does not distinguish "required", "list\_of\_different\_objects" and "trim" rules. So, you can extend validator with any rules you like.
 
@@ -212,6 +250,9 @@ if (validData != null) {
     JSONObject errors = validator.getErrors();
 }
 ```
+
+## validator.setClock(clock)
+Sets the `java.time.Clock` for `today`, `yesterday` and `tomorrow` of the date rules (`Clock.systemUTC()` by default). The dates are in UTC whatever the zone of the clock. Call it before the validator is prepared.
 
 ## validator.getErrors()
 Returns errors object.
