@@ -1,0 +1,159 @@
+{
+  "version1": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "v1.0.0"
+  },
+  "version2": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1"
+  },
+  "version3": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0"
+  },
+  "version4": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.2.3.4"
+  },
+  "version5": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "01.0.0"
+  },
+  "version6": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.01.0"
+  },
+  "version7": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.01"
+  },
+  "version8": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0-"
+  },
+  "version9": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0+"
+  },
+  "version10": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0-01"
+  },
+  "version11": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0-alpha..1"
+  },
+  "version12": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0-alpha_beta"
+  },
+  "version13": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0+build..1"
+  },
+  "version14": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0+meta+meta"
+  },
+  "version15": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0-+meta"
+  },
+  "version16": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "+justmeta"
+  },
+  "version17": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "-1.0.0"
+  },
+  "version18": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": " 1.0.0"
+  },
+  "version19": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0 "
+  },
+  "version20": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "a.b.c"
+  },
+  "version21": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0-alpha.01"
+  },
+  "number": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": 1.5
+  },
+  "trailing_newline": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0\n"
+  },
+  "pre_release_trailing_newline": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0-alpha\n"
+  },
+  "leading_newline": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "\n1.0.0"
+  },
+  "arabic_indic_major": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "١.0.0"
+  },
+  "arabic_indic_digits": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "١.٢.٣"
+  },
+  "fullwidth_minor": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.０.0"
+  },
+  "arabic_indic_pre_release": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0-alpha.١"
+  },
+  "arabic_indic_build": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0+build.١"
+  },
+  "non_ascii_letter_pre_release": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": "1.0.0-альфа"
+  },
+  "one_point_zero_number": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": 1
+  },
+  "boolean_true": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_SEMVER",
+    "fieldValue": false
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "capitalized_true": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": "True"
+  },
+  "uppercase_false": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": "FALSE"
+  },
+  "yes_string": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": "yes"
+  },
+  "on_string": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": "on"
+  },
+  "two_number": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": 2
+  },
+  "minus_one_number": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": -1
+  },
+  "decimal_string": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": "1.0"
+  },
+  "one_with_space": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": " 1"
+  },
+  "true_with_space": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": "true "
+  },
+  "space_string": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": " "
+  },
+  "null_string": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": "null"
+  },
+  "required_missing": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "fraction_number": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": 0.1
+  },
+  "thousand_exponent": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": 1000
+  },
+  "trailing_newline": {
+    "code": "NOT_BOOLEAN",
+    "fieldValue": "true\n"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

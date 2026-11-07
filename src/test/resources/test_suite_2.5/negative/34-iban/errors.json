@@ -1,0 +1,95 @@
+{
+  "wrong_checksum": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "GB82WEST12345698765431"
+  },
+  "wrong_check_digits": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "GB83WEST12345698765432"
+  },
+  "lowercase": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "gb82west12345698765432"
+  },
+  "lowercase_bban": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "GB82west12345698765432"
+  },
+  "spaces": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "GB82 WEST 1234 5698 7654 32"
+  },
+  "too_short_14": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "DE791234567890"
+  },
+  "too_long_35": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "GB901111111111111111111111111111111"
+  },
+  "letter_in_check_digits": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "GBX2WEST12345698765432"
+  },
+  "digits_in_country": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "1282WEST12345698765432"
+  },
+  "dash": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "GB82WEST1234569876543-"
+  },
+  "trailing_newline": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "GB82WEST12345698765432\n"
+  },
+  "number": {
+    "code": "WRONG_IBAN",
+    "fieldValue": 12345
+  },
+  "arabic_indic_check_digits": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "GB٨٢WEST12345698765432"
+  },
+  "fullwidth_letters": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "ＧＢ82WEST12345698765432"
+  },
+  "leading_newline": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "\nGB82WEST12345698765432"
+  },
+  "trailing_crlf": {
+    "code": "WRONG_IBAN",
+    "fieldValue": "GB82WEST12345698765432\r\n"
+  },
+  "boolean_true": {
+    "code": "WRONG_IBAN",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_IBAN",
+    "fieldValue": false
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

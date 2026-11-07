@@ -1,0 +1,95 @@
+{
+  "username1": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "admin"
+  },
+  "username2": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "root"
+  },
+  "status": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "deleted"
+  },
+  "number_vs_string": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 1
+  },
+  "string_vs_number": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "1"
+  },
+  "true_vs_string": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": true
+  },
+  "string_vs_true": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "true"
+  },
+  "false_vs_string": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": false
+  },
+  "number_one_point_zero": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 1
+  },
+  "number_trailing_zeros": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": -3
+  },
+  "number_fraction": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 0.5
+  },
+  "number_exponent": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 100
+  },
+  "argument_trailing_zero": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "2.5"
+  },
+  "minus_zero_vs_string": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 0
+  },
+  "exponent_vs_string": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 1000
+  },
+  "fraction_vs_string": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 0.1
+  },
+  "negative_fraction_vs_string": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": -12.25
+  },
+  "big_integer_vs_string": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 123456789012345
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

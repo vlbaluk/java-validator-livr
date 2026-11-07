@@ -1,0 +1,80 @@
+{
+  "stock": {
+    "sku-1": {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": "-5"
+    }
+  },
+  "several_failing": {
+    "a": {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": "x"
+    },
+    "b": {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    }
+  },
+  "null_inside": {
+    "a": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    }
+  },
+  "single_list_form": {
+    "a": {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    }
+  },
+  "prototype_keys": {
+    "__proto__": {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": "x"
+    },
+    "hasOwnProperty": {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    }
+  },
+  "nested_objects": {
+    "u2": {
+      "name": {
+        "code": "REQUIRED",
+        "fieldValue": null
+      }
+    }
+  },
+  "lists": {
+    "a": [
+      null,
+      {
+        "code": "NOT_POSITIVE_INTEGER",
+        "fieldValue": "x"
+      }
+    ],
+    "b": {
+      "code": "FORMAT_ERROR",
+      "fieldValue": "y"
+    }
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "5",
+      "6"
+    ]
+  },
+  "value_is_string": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": "abc"
+  },
+  "value_is_number": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": 5
+  },
+  "value_is_boolean": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": true
+  }
+}

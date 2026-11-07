@@ -1,0 +1,46 @@
+{
+  "translations": {
+    "fr": {
+      "code": "WRONG_KEY",
+      "fieldValue": "fr"
+    }
+  },
+  "keys_before_values": {
+    "fr": {
+      "code": "WRONG_KEY",
+      "fieldValue": "fr"
+    }
+  },
+  "values_after_keys": {
+    "en": {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    }
+  },
+  "like_keys": {
+    "firstName": {
+      "code": "WRONG_KEY",
+      "fieldValue": "firstName"
+    }
+  },
+  "empty_key": {
+    "": {
+      "code": "WRONG_KEY",
+      "fieldValue": ""
+    }
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "uk"
+    ]
+  },
+  "value_is_string": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": "uk"
+  },
+  "value_is_number": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": 5
+  }
+}

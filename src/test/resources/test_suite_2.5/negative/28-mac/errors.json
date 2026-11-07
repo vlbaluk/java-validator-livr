@@ -1,0 +1,133 @@
+{
+  "mixed_separators": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a-2b:3c:4d:5e"
+  },
+  "mixed_separators_last": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d-5e"
+  },
+  "dots": {
+    "code": "WRONG_MAC",
+    "fieldValue": "001a.2b3c.4d5e"
+  },
+  "without_separators": {
+    "code": "WRONG_MAC",
+    "fieldValue": "001a2b3c4d5e"
+  },
+  "five_pairs": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d"
+  },
+  "seven_pairs": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5e:6f"
+  },
+  "single_digit": {
+    "code": "WRONG_MAC",
+    "fieldValue": "0:1a:2b:3c:4d:5e"
+  },
+  "three_digits": {
+    "code": "WRONG_MAC",
+    "fieldValue": "000:1a:2b:3c:4d:5e"
+  },
+  "not_hex": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5g"
+  },
+  "trailing_separator": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5e:"
+  },
+  "space_separator": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00 1a 2b 3c 4d 5e"
+  },
+  "number": {
+    "code": "WRONG_MAC",
+    "fieldValue": 1
+  },
+  "trailing_newline": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5e\n"
+  },
+  "eui64_trailing_newline": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5e:6f:70\n"
+  },
+  "arabic_indic_digit": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5١"
+  },
+  "fullwidth_letter": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5ｅ"
+  },
+  "big_integer": {
+    "code": "WRONG_MAC",
+    "fieldValue": 123456789012345
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "mac48_given_eui64": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5e:6f:70"
+  },
+  "eui64_given_mac48": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5e"
+  },
+  "eui64_seven_pairs": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5e:6f"
+  },
+  "eui64_nine_pairs": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5e:6f:70:81"
+  },
+  "eui64_mixed_separators": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c-4d:5e:6f:70"
+  },
+  "eui64_without_separators": {
+    "code": "WRONG_MAC",
+    "fieldValue": "001a2b3c4d5e6f70"
+  },
+  "eui64_value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "00:1a:2b:3c:4d:5e:6f:70"
+    ]
+  },
+  "boolean_true": {
+    "code": "WRONG_MAC",
+    "fieldValue": true
+  },
+  "eui64_boolean_false": {
+    "code": "WRONG_MAC",
+    "fieldValue": false
+  },
+  "string_argument": {
+    "code": "WRONG_MAC",
+    "fieldValue": "00:1a:2b:3c:4d:5e"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "contact1": {
+    "email": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    },
+    "phone": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    }
+  },
+  "contact2": {
+    "phone": {
+      "code": "WRONG_E164",
+      "fieldValue": "555-0100"
+    }
+  },
+  "contact3": {
+    "code": "WRONG_CONTACT",
+    "fieldValue": {
+      "email": "",
+      "phone": null
+    }
+  }
+}

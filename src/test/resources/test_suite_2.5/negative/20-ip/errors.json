@@ -1,0 +1,207 @@
+{
+  "ipv4_leading_zero": {
+    "code": "WRONG_IP",
+    "fieldValue": "010.0.0.1"
+  },
+  "ipv4_leading_zero_last": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.01"
+  },
+  "ipv4_double_zero": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.00"
+  },
+  "ipv4_too_big": {
+    "code": "WRONG_IP",
+    "fieldValue": "256.0.0.1"
+  },
+  "ipv4_three_parts": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2"
+  },
+  "ipv4_five_parts": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.1.5"
+  },
+  "ipv4_negative": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.-1"
+  },
+  "ipv4_empty_part": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0..1"
+  },
+  "ipv4_trailing_dot": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.1."
+  },
+  "ipv4_leading_space": {
+    "code": "WRONG_IP",
+    "fieldValue": " 192.0.2.1"
+  },
+  "ipv4_trailing_newline": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.1\n"
+  },
+  "ipv4_prefix_length": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.1/24"
+  },
+  "ipv4_port": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.1:80"
+  },
+  "ipv6_brackets": {
+    "code": "WRONG_IP",
+    "fieldValue": "[2001:db8::1]"
+  },
+  "ipv6_zone_id": {
+    "code": "WRONG_IP",
+    "fieldValue": "fe80::1%eth0"
+  },
+  "ipv6_prefix_length": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8::/32"
+  },
+  "ipv6_two_double_colons": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8::1::1"
+  },
+  "ipv6_nine_groups": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8:0:0:0:0:0:0:1"
+  },
+  "ipv6_seven_groups": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8:0:0:0:0:1"
+  },
+  "ipv6_double_colon_with_eight_groups": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8:0:0:0:0:0::1"
+  },
+  "ipv6_five_hex_digits": {
+    "code": "WRONG_IP",
+    "fieldValue": "12345::1"
+  },
+  "ipv6_not_hex": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8::g"
+  },
+  "ipv6_triple_colon": {
+    "code": "WRONG_IP",
+    "fieldValue": ":::"
+  },
+  "ipv6_single_leading_colon": {
+    "code": "WRONG_IP",
+    "fieldValue": ":2001:db8::1"
+  },
+  "ipv6_single_trailing_colon": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8::1:"
+  },
+  "ipv6_embedded_ipv4_too_big": {
+    "code": "WRONG_IP",
+    "fieldValue": "::ffff:192.0.2.256"
+  },
+  "ipv6_embedded_ipv4_leading_zero": {
+    "code": "WRONG_IP",
+    "fieldValue": "::ffff:192.0.2.01"
+  },
+  "ipv6_embedded_ipv4_not_last": {
+    "code": "WRONG_IP",
+    "fieldValue": "::192.0.2.1:ffff"
+  },
+  "ipv6_embedded_ipv4_too_many_groups": {
+    "code": "WRONG_IP",
+    "fieldValue": "0:0:0:0:0:0:ffff:192.0.2.1"
+  },
+  "number": {
+    "code": "WRONG_IP",
+    "fieldValue": 1
+  },
+  "only_ipv4_given_ipv6": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8::1"
+  },
+  "only_ipv4_given_embedded": {
+    "code": "WRONG_IP",
+    "fieldValue": "::ffff:192.0.2.1"
+  },
+  "only_ipv6_given_ipv4": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.1"
+  },
+  "ipv4_arabic_indic_digits": {
+    "code": "WRONG_IP",
+    "fieldValue": "١٩٢.٠.٢.١"
+  },
+  "ipv4_arabic_indic_digit_in_octet": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.١"
+  },
+  "ipv4_fullwidth_digits": {
+    "code": "WRONG_IP",
+    "fieldValue": "１９２.0.2.1"
+  },
+  "ipv4_only_arabic_indic_digits": {
+    "code": "WRONG_IP",
+    "fieldValue": "١٩٢.٠.٢.١"
+  },
+  "ipv6_arabic_indic_digits": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8::١"
+  },
+  "ipv6_embedded_arabic_indic_ipv4": {
+    "code": "WRONG_IP",
+    "fieldValue": "::ffff:192.0.2.١"
+  },
+  "ipv6_fullwidth_hex": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8::ａ"
+  },
+  "ipv6_trailing_newline": {
+    "code": "WRONG_IP",
+    "fieldValue": "2001:db8::1\n"
+  },
+  "ipv4_only_trailing_newline": {
+    "code": "WRONG_IP",
+    "fieldValue": "192.0.2.1\n"
+  },
+  "fraction_number": {
+    "code": "WRONG_IP",
+    "fieldValue": 0.1
+  },
+  "exponent_number": {
+    "code": "WRONG_IP",
+    "fieldValue": 1000
+  },
+  "boolean_true": {
+    "code": "WRONG_IP",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_IP",
+    "fieldValue": false
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}
