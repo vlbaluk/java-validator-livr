@@ -52,5 +52,11 @@
     "FORMAT_ERROR",
     "FORMAT_ERROR",
     "FORMAT_ERROR"
-  ]
+  ],
+  "object_value": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "type": "a"
+    }
+  }
 }

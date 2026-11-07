@@ -35,6 +35,10 @@
     "code": "WRONG_DATE",
     "fieldValue": "2024-01-01\n"
   },
+  "iso_date10": {
+    "code": "WRONG_DATE",
+    "fieldValue": "1500-02-29"
+  },
   "like_iso_date": {
     "code": "WRONG_DATE",
     "fieldValue": "aaaa-bb-cc"
