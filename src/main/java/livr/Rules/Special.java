@@ -3,8 +3,6 @@ package livr.Rules;
 import livr.FunctionKeeper;
 import livr.LIVRUtils;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -56,18 +54,8 @@ public class Special {
         };
     };
 
-    public static Function<List<Object>, Function> iso_date = objects -> (Function<FunctionKeeper, Object>) (wrapper) -> {
-        if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
-        if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
-        String value = wrapper.getValue() + "";
-
-        if (!value.matches("\\d{4}-\\d{2}-\\d{2}")) return "WRONG_DATE";
-        try {
-            LocalDate.parse(value);
-        } catch (DateTimeParseException e) {
-            return "WRONG_DATE";
-        }
-        return "";
-
-    };
+    /**
+     * A date YYYY-MM-DD, also with "min" and "max" bounds since LIVR 2.5, see Dates
+     */
+    public static Function<List<Object>, Function> iso_date = Dates.iso_date;
 }

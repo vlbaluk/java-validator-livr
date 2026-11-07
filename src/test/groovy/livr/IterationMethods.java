@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +30,7 @@ public class IterationMethods {
                 try {
                     List<Path> files = Files.walk(Paths.get(basePath + "/" + dir.getFileName())).collect(Collectors.toList());
                     JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("name", dir.getFileName().toString());
                     for (Path path : files) {
                         if (path.toFile().isFile()) {
                             String fileName = path.getFileName().toString().replace(".json", "");
@@ -40,5 +44,12 @@ public class IterationMethods {
             });
         }
         return jsons;
+    }
+
+    /**
+     * A clock fixed at the "now" of options.json
+     */
+    public static Clock fixedClock(String now) {
+        return Clock.fixed(Instant.parse(now), ZoneOffset.UTC);
     }
 }

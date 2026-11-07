@@ -54,4 +54,47 @@ class StringRulesTest extends Specification {
         assert output == null;
         assert validator.getErrors().get("word").get("code") == "WRONG_FORMAT";
     }
+
+    @Unroll
+    def "#rules matches the boolean #value as \"true\" or \"false\", in both directions (LIVR 2.5, 2.3)"() {
+        when:
+        def validator = LIVR.validator().init(rules, false);
+        def output = validator.validate('{"flag": ' + value + '}');
+
+        then:
+        assert validator.getErrors() == null;
+        JSONAssert.assertEquals('{"flag": ' + expected + '}', output.toJSONString(), true);
+
+        where:
+        rules                                    | value   | expected
+        '{"flag": {"eq": "true"}}'               | 'true'  | '"true"'
+        '{"flag": {"eq": "false"}}'              | 'false' | '"false"'
+        '{"flag": {"one_of": ["true", "false"]}}' | 'true'  | '"true"'
+        '{"flag": {"one_of": ["true", "false"]}}' | 'false' | '"false"'
+        '{"flag": {"eq": true}}'                 | '"true"' | 'true'
+        '{"flag": {"eq": false}}'                | '"false"' | 'false'
+        '{"flag": {"one_of": [true, false]}}'    | '"true"' | 'true'
+        '{"flag": {"one_of": [true, false]}}'    | '"false"' | 'false'
+        '{"flag": {"eq": true}}'                 | 'true'  | 'true'
+    }
+
+    @Unroll
+    def "#rules does not match #value, as in LIVR 2.0"() {
+        when:
+        def validator = LIVR.validator().init(rules, false);
+        def output = validator.validate('{"flag": ' + value + '}');
+
+        then:
+        assert output == null;
+        assert validator.getErrors().get("flag").get("code") == "NOT_ALLOWED_VALUE";
+
+        where:
+        rules                                    | value
+        '{"flag": {"eq": "True"}}'               | 'true'
+        '{"flag": {"eq": "1"}}'                  | 'true'
+        '{"flag": {"one_of": ["1", "0"]}}'       | 'false'
+        '{"flag": {"eq": true}}'                 | '"True"'
+        '{"flag": {"eq": true}}'                 | '"1"'
+        '{"flag": {"one_of": [true]}}'           | '"TRUE"'
+    }
 }
