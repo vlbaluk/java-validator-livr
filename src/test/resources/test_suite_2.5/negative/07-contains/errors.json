@@ -1,0 +1,55 @@
+{
+  "missing_at": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "user.example.com"
+  },
+  "none_of_several": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "baz"
+  },
+  "case_sensitive": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "FOO"
+  },
+  "number": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 2
+  },
+  "boolean": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": false
+  },
+  "exponent": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 1000
+  },
+  "minus_zero": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 0
+  },
+  "one_point_zero": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 1
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

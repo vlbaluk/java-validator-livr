@@ -53,10 +53,53 @@ public class LIVR {
         rules.put("trim", Modifiers.trim);
         rules.put("remove", Modifiers.remove);
         rules.put("leave_only", Modifiers.leave_only);
+
+        // LIVR 2.5
+        rules.put("boolean", CommonRules.boolean1);
+        rules.put("not_one_of", StringRules.not_one_of);
+        rules.put("max_decimals", Numeric.max_decimals);
+
+        rules.put("digits", StringRules.digits);
+        rules.put("starts_with", StringRules.starts_with);
+        rules.put("ends_with", StringRules.ends_with);
+        rules.put("contains", StringRules.contains);
+
+        rules.put("iso_datetime", Dates.iso_datetime);
+        rules.put("iso_time", Dates.iso_time);
+
+        rules.put("required_if", CommonRules.required_if);
+
+        rules.put("when", Meta.when);
+        rules.put("values", Meta.values);
+        rules.put("keys", Meta.keys);
+        rules.put("any", Meta.any);
+
+        rules.put("list_length", ListRules.list_length);
+        rules.put("unique", ListRules.unique);
+
+        rules.put("split", Modifiers.split);
+
+        rules.put("uuid", Formats.uuid);
+        rules.put("ip", Formats.ip);
+        rules.put("cidr", Formats.cidr);
+        rules.put("hostname", Formats.hostname);
+        rules.put("base64", Formats.base64);
+        rules.put("hex", Formats.hex);
+        rules.put("digest", Formats.digest);
+        rules.put("mongo_id", Formats.mongo_id);
+        rules.put("hex_color", Formats.hex_color);
+        rules.put("mac", Formats.mac);
+        rules.put("e164", Formats.e164);
+        rules.put("semver", Formats.semver);
+        rules.put("jwt", Formats.jwt);
+
+        rules.put("luhn", Checksums.luhn);
+        rules.put("credit_card", Checksums.credit_card);
+        rules.put("iban", Checksums.iban);
     }
 
     public static void registerDefaultRules(Map<String, Function> rules) {
-        rules.putAll(rules);
+        LIVR.rules.putAll(rules);
     }
 
     public static Validator validator() {

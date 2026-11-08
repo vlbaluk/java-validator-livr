@@ -1,0 +1,41 @@
+{
+  "vat_number": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "data": {
+    "number": {
+      "code": "WRONG_CREDIT_CARD_NUMBER",
+      "fieldValue": "4111111111111112"
+    }
+  },
+  "person": {
+    "vat_number": {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "UA12345678"
+    }
+  },
+  "orders": [
+    {
+      "data": {
+        "code": "NOT_ALLOWED_VALUE",
+        "fieldValue": {
+          "number": "4111111111111111"
+        }
+      }
+    },
+    null
+  ],
+  "payments": [
+    {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": {
+        "number": "4111111111111111"
+      }
+    }
+  ],
+  "either": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  }
+}

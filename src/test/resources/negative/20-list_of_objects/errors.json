@@ -1,17 +1,13 @@
 {
-  "users": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": "not an array"
-  },
   "products": [
     {
-      "quantity": {
-        "code": "REQUIRED",
-        "fieldValue": ""
-      },
       "product_id": {
         "code": "NOT_POSITIVE_INTEGER",
         "fieldValue": 0
+      },
+      "quantity": {
+        "code": "REQUIRED",
+        "fieldValue": ""
       }
     },
     null,
@@ -22,5 +18,15 @@
       }
     },
     "FORMAT_ERROR"
-  ]
+  ],
+  "users": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": "not an array"
+  },
+  "object_value": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "a": 1
+    }
+  }
 }

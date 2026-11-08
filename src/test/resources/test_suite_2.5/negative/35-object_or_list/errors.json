@@ -1,0 +1,44 @@
+{
+  "values_empty_list": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "keys_empty_list": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "list_length_empty_list": {
+    "code": "TOO_FEW_ITEMS",
+    "fieldValue": []
+  },
+  "list_length_min_empty_list": {
+    "code": "TOO_FEW_ITEMS",
+    "fieldValue": []
+  },
+  "list_length_empty_object": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "unique_empty_object": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "unique_with_key_empty_object": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "keys_numeric_keys": {
+    "0": {
+      "code": "WRONG_KEY",
+      "fieldValue": "0"
+    },
+    "a": {
+      "code": "WRONG_KEY",
+      "fieldValue": "a"
+    }
+  },
+  "required_if_digit_key_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  }
+}

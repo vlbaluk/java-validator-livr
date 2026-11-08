@@ -1,0 +1,111 @@
+{
+  "one_segment": {
+    "code": "WRONG_JWT",
+    "fieldValue": "abc"
+  },
+  "two_segments": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  },
+  "four_segments": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.1VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4.1VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4"
+  },
+  "jwe": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZHQ00ifQ.a2tra2tra2tra2tra2tra2tra2tra2tra2tra2tra2s.aXZpdml2aXZpdml2.Y2lwaGVydGV4dCE.dHR0dHR0dHR0dHR0dHR0dA"
+  },
+  "empty_header": {
+    "code": "WRONG_JWT",
+    "fieldValue": ".eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.1VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4"
+  },
+  "empty_payload_segment": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..1VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4"
+  },
+  "padding": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.1VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4="
+  },
+  "standard_base64_alphabet": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.1VAmegkQOBsQ+iSZU96z6c8NY7QR9OhhYWYHwHTeGT4"
+  },
+  "segment_length_mod_1": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.1VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4AA"
+  },
+  "leading_space": {
+    "code": "WRONG_JWT",
+    "fieldValue": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.1VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4"
+  },
+  "bearer_prefix": {
+    "code": "WRONG_JWT",
+    "fieldValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.1VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4"
+  },
+  "none_two_segments": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJub25lIn0.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  },
+  "number": {
+    "code": "WRONG_JWT",
+    "fieldValue": 123
+  },
+  "arabic_indic_digit_in_signature": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.١VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4"
+  },
+  "non_ascii_letter_in_payload": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0é.1VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4"
+  },
+  "trailing_crlf": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJIUzI1NiJ9.e30.XmNK3GpH3Ys_7wsYBfq4C3M6goz71I7dTgUkuIa5lyQ\r\n"
+  },
+  "unsecured_trailing_newline": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJub25lIn0.e30.\n"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "dots_only": {
+    "code": "WRONG_JWT",
+    "fieldValue": ".."
+  },
+  "space_inside": {
+    "code": "WRONG_JWT",
+    "fieldValue": "a.b.c d"
+  },
+  "trailing_newline": {
+    "code": "WRONG_JWT",
+    "fieldValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.1VAmegkQOBsQ-iSZU96z6c8NY7QR9OhhYWYHwHTeGT4\n"
+  },
+  "boolean": {
+    "code": "WRONG_JWT",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_JWT",
+    "fieldValue": false
+  }
+}

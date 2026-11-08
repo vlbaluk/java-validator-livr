@@ -1,0 +1,46 @@
+{
+  "google_dot": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://www.google."
+  },
+  "trailing_dot": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://example.com."
+  },
+  "trailing_dot_path": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://example.com./path"
+  },
+  "trailing_dot_port": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://example.com.:8080"
+  },
+  "trailing_dot_query": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://example.com.?q=1"
+  },
+  "ipv4_trailing_dot": {
+    "code": "WRONG_URL",
+    "fieldValue": "http://192.0.2.1./"
+  },
+  "label_64": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.example.com/"
+  },
+  "tld_64": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://example.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "port_65536": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://example.com:65536"
+  },
+  "port_99999": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://example.com:99999/"
+  },
+  "port_six_digits": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://example.com:123456"
+  }
+}

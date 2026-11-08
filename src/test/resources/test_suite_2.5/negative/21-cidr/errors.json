@@ -1,0 +1,143 @@
+{
+  "ipv4_prefix_33": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/33"
+  },
+  "ipv4_prefix_64": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/64"
+  },
+  "ipv6_prefix_129": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "2001:db8::/129"
+  },
+  "prefix_leading_zero": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/024"
+  },
+  "prefix_leading_zero_short": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/08"
+  },
+  "prefix_double_zero": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/00"
+  },
+  "prefix_negative": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/-1"
+  },
+  "prefix_plus": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/+8"
+  },
+  "prefix_empty": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/"
+  },
+  "prefix_with_space": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/ 24"
+  },
+  "two_prefixes": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/24/8"
+  },
+  "without_prefix": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0"
+  },
+  "ipv6_without_prefix": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "2001:db8::"
+  },
+  "without_address": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "/24"
+  },
+  "ipv4_leading_zero": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "010.0.0.0/8"
+  },
+  "ipv4_too_big": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "256.0.0.0/8"
+  },
+  "ipv6_brackets": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "[2001:db8::]/32"
+  },
+  "ipv6_zone_id": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "fe80::1%eth0/64"
+  },
+  "netmask": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/255.255.255.0"
+  },
+  "number": {
+    "code": "WRONG_CIDR",
+    "fieldValue": 24
+  },
+  "only_ipv4_given_ipv6": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "2001:db8::/32"
+  },
+  "only_ipv6_given_ipv4": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/24"
+  },
+  "trailing_newline": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/24\n"
+  },
+  "ipv6_trailing_newline": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "2001:db8::/32\n"
+  },
+  "arabic_indic_prefix": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/٢٤"
+  },
+  "arabic_indic_address": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "١٩٢.0.2.0/24"
+  },
+  "fullwidth_prefix": {
+    "code": "WRONG_CIDR",
+    "fieldValue": "192.0.2.0/２４"
+  },
+  "fraction_number": {
+    "code": "WRONG_CIDR",
+    "fieldValue": 0.1
+  },
+  "boolean_true": {
+    "code": "WRONG_CIDR",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_CIDR",
+    "fieldValue": false
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

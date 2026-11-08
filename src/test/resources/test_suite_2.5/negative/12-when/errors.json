@@ -1,0 +1,359 @@
+{
+  "contact_none": {
+    "email": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    },
+    "phone": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    }
+  },
+  "contact_bad_email": {
+    "email": {
+      "code": "WRONG_EMAIL",
+      "fieldValue": "not-an-email"
+    }
+  },
+  "contact_empty_values": {
+    "email": {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    },
+    "phone": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    }
+  },
+  "vat_missing": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "vat_bad": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "12345"
+  },
+  "person_vat": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "UA12345678"
+  },
+  "person_vat_zero": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 0
+  },
+  "missing_type_vat": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "UA12345678"
+  },
+  "email_subscribe": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "email_subscribe_bad": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "bad"
+  },
+  "email_subscribe_true": {
+    "code": "REQUIRED",
+    "fieldValue": ""
+  },
+  "email_subscribe_true_string": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "pipe_false": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "cond_empty_ref": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "cond_missing_ref": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "cond_true_error": {
+    "code": "NOT_POSITIVE_INTEGER",
+    "fieldValue": "abc"
+  },
+  "cond_false_error": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "abc"
+  },
+  "zip": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "zip_bad": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "01-001"
+  },
+  "zip_us": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "01001"
+  },
+  "data_cash": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "number": "4111111111111111"
+    }
+  },
+  "data_upper": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "number": "4111111111111111"
+    }
+  },
+  "data_object": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "number": "4111111111111111"
+    }
+  },
+  "data_list": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "number": "4111111111111111"
+    }
+  },
+  "data_constructor": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "number": "4111111111111111"
+    }
+  },
+  "data_to_string": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "number": "4111111111111111"
+    }
+  },
+  "data_proto": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "number": "4111111111111111"
+    }
+  },
+  "data_card": {
+    "number": {
+      "code": "WRONG_CREDIT_CARD_NUMBER",
+      "fieldValue": "4111111111111112"
+    }
+  },
+  "data_card_empty": {
+    "number": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    }
+  },
+  "data_card_missing": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "data_card_not_object": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": "4111111111111111"
+  },
+  "level_decimal_string_case": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "abc"
+  },
+  "level_minus_zero_switch": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "abc"
+  },
+  "required_condition": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "buyer_vat": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "PL1234567890"
+  },
+  "buyer_ua_vat": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "switch_eq_empty": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "value"
+  },
+  "switch_required": {
+    "code": "REQUIRED",
+    "fieldValue": ""
+  },
+  "switch_required_missing": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "entries": [
+    {
+      "value": {
+        "code": "NOT_POSITIVE_INTEGER",
+        "fieldValue": "abc"
+      }
+    },
+    null,
+    {
+      "value": {
+        "code": "NOT_ALLOWED_VALUE",
+        "fieldValue": "1"
+      }
+    }
+  ],
+  "switch_missing_ref": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "abc"
+  },
+  "switch_empty_ref": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "abc"
+  },
+  "switch_null_ref": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "abc"
+  },
+  "switch_empty_ref_zero": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": 0
+  },
+  "switch_empty_ref_false": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": false
+  },
+  "switch_missing_ref_empty_object": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {}
+  },
+  "switch_missing_ref_empty_list": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": []
+  },
+  "switch_unknown_ref_any_case": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "a": 1
+    }
+  },
+  "data_type_missing": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "number": "4111111111111111"
+    }
+  },
+  "data_type_missing_without_required": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "number": "4111111111111111"
+    }
+  },
+  "data_type_empty": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": {
+      "iban": "GB82WEST12345698765432"
+    }
+  },
+  "data_type_null": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": [
+      {
+        "number": "4111111111111111"
+      }
+    ]
+  },
+  "data_type_missing_data_missing": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "data_type_missing_data_empty": {
+    "code": "REQUIRED",
+    "fieldValue": ""
+  },
+  "mode_padded_switch": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "5"
+  },
+  "mode_upper_switch": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "5"
+  },
+  "index_leading_zero_switch": {
+    "code": "NOT_ALLOWED_VALUE",
+    "fieldValue": "x"
+  },
+  "index_switch": {
+    "code": "NOT_POSITIVE_INTEGER",
+    "fieldValue": "x"
+  },
+  "or_switch": {
+    "code": "NOT_POSITIVE_INTEGER",
+    "fieldValue": "abc"
+  },
+  "or_condition": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "list_switch": [
+    {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "a"
+    },
+    null
+  ],
+  "value_switch": {
+    "a": {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "x"
+    },
+    "kind": {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "str"
+    }
+  },
+  "key_switch": {
+    "en": {
+      "code": "WRONG_KEY",
+      "fieldValue": "en"
+    }
+  },
+  "list_switch_index": [
+    {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "x"
+    },
+    {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "str"
+    },
+    null
+  ],
+  "list_condition": [
+    null,
+    {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "x"
+    }
+  ],
+  "nested_no_root": {
+    "v": {
+      "code": "NOT_ALLOWED_VALUE",
+      "fieldValue": "5"
+    }
+  },
+  "variable_entry": {
+    "value": {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": "x"
+    }
+  },
+  "different_entries": [
+    null,
+    {
+      "value": {
+        "code": "NOT_POSITIVE_INTEGER",
+        "fieldValue": "x"
+      }
+    }
+  ]
+}

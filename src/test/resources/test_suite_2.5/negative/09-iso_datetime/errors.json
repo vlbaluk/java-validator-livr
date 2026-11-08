@@ -1,0 +1,311 @@
+{
+  "date_only": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29"
+  },
+  "date_only_with_bounds": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29"
+  },
+  "date_only_empty_options": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29"
+  },
+  "without_offset": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00"
+  },
+  "without_offset_and_seconds": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00"
+  },
+  "lowercase_t": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29t10:00:00Z"
+  },
+  "lowercase_z": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00z"
+  },
+  "space_separator": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29 10:00:00Z"
+  },
+  "utc_word": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00 UTC"
+  },
+  "z_and_offset": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00Z+02:00"
+  },
+  "hour_24": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T24:00:00Z"
+  },
+  "minute_60": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:60Z"
+  },
+  "leap_second": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2016-12-31T23:59:60Z"
+  },
+  "dot_without_digits": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00.Z"
+  },
+  "comma_fraction": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00,5Z"
+  },
+  "fraction_without_seconds": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00.5Z"
+  },
+  "ten_fraction_digits": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00.1234567890Z"
+  },
+  "twelve_fraction_digits": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00.123456789012Z"
+  },
+  "hour_only": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10Z"
+  },
+  "one_digit_hour": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T1:00Z"
+  },
+  "one_digit_second": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:5Z"
+  },
+  "invalid_date": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-02-30T10:00Z"
+  },
+  "not_leap_year": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-02-29T10:00Z"
+  },
+  "month_13": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-13-01T10:00Z"
+  },
+  "offset_without_colon": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00+0200"
+  },
+  "offset_hours_only": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00+02"
+  },
+  "offset_hour_24": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00+24:00"
+  },
+  "offset_minute_60": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00+02:60"
+  },
+  "offset_one_digit_hour": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00+2:00"
+  },
+  "offset_with_seconds": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00+02:00:00"
+  },
+  "five_digit_year": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "10000-01-01T00:00:00Z"
+  },
+  "negative_year": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "-0001-01-01T00:00:00Z"
+  },
+  "before_first_year_in_utc": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "0000-01-01T00:00+01:00"
+  },
+  "after_last_year_in_utc": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "9999-12-31T23:30-01:00"
+  },
+  "trailing_newline": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00Z\n"
+  },
+  "trailing_newline_with_bounds": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00Z\n"
+  },
+  "leading_space": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": " 2026-10-29T10:00:00Z"
+  },
+  "arabic_indic_digits": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "٢٠٢٦-١٠-٢٩T١٠:٠٠Z"
+  },
+  "arabic_indic_digit_in_time": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T1٠:00Z"
+  },
+  "fullwidth_digits": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T１０:00Z"
+  },
+  "arabic_indic_fraction": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T10:00:00.١Z"
+  },
+  "relative_word_as_value": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "tomorrow"
+  },
+  "number_value": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": 20261018
+  },
+  "boolean_value": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": true
+  },
+  "plain_form_boolean": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": true
+  },
+  "plain_form_false": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": false
+  },
+  "empty_options_boolean": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": true
+  },
+  "after_last_year_in_utc_with_max": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "9999-12-31T23:30-01:00"
+  },
+  "before_first_year_in_utc_with_min": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "0000-01-01T00:00+01:00"
+  },
+  "invalid_value_with_bounds": {
+    "code": "WRONG_DATETIME",
+    "fieldValue": "2026-10-29T25:00Z"
+  },
+  "min_date": {
+    "code": "DATETIME_TOO_EARLY",
+    "fieldValue": "2025-12-31T23:59:59.999Z"
+  },
+  "min_date_offset": {
+    "code": "DATETIME_TOO_EARLY",
+    "fieldValue": "2026-01-01T01:00+02:00"
+  },
+  "max_date": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-01-02T00:00:00Z"
+  },
+  "max_date_offset": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-01-01T23:00:00-02:00"
+  },
+  "min_datetime": {
+    "code": "DATETIME_TOO_EARLY",
+    "fieldValue": "2026-01-01T11:59:59+02:00"
+  },
+  "max_datetime": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-01-01T08:00:01Z"
+  },
+  "max_datetime_one_ms_later": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-01-01T10:00:00.001Z"
+  },
+  "min_bound_truncated": {
+    "code": "DATETIME_TOO_EARLY",
+    "fieldValue": "2026-01-01T09:59:59.9999Z"
+  },
+  "max_bound_truncated": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-01-01T10:00:01Z"
+  },
+  "max_date_next_day": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-10-30T00:00:00Z"
+  },
+  "spec_bounds_example_low": {
+    "code": "DATETIME_TOO_EARLY",
+    "fieldValue": "2026-01-01T08:59:59.999Z"
+  },
+  "spec_bounds_example_high": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-10-20T00:00:00Z"
+  },
+  "max_today_next_day": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-10-19T00:00:00+00:00"
+  },
+  "max_today_offset": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-10-18T22:00:00-02:00"
+  },
+  "min_today_datetime": {
+    "code": "DATETIME_TOO_EARLY",
+    "fieldValue": "2026-10-17T23:59:59Z"
+  },
+  "min_today_offset": {
+    "code": "DATETIME_TOO_EARLY",
+    "fieldValue": "2026-10-18T01:00:00+02:00"
+  },
+  "min_yesterday": {
+    "code": "DATETIME_TOO_EARLY",
+    "fieldValue": "2026-10-16T23:59:59.999Z"
+  },
+  "max_yesterday": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-10-18T00:00Z"
+  },
+  "min_tomorrow_datetime": {
+    "code": "DATETIME_TOO_EARLY",
+    "fieldValue": "2026-10-18T23:59:59.999Z"
+  },
+  "max_tomorrow": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-10-20T00:00:00Z"
+  },
+  "date_min_after_relative_max_low": {
+    "code": "DATETIME_TOO_EARLY",
+    "fieldValue": "2026-10-01T00:00Z"
+  },
+  "date_min_after_relative_max_high": {
+    "code": "DATETIME_TOO_LATE",
+    "fieldValue": "2026-12-05T00:00Z"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

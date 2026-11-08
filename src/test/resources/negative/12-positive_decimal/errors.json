@@ -1,4 +1,24 @@
 {
+  "number1": {
+    "code": "NOT_POSITIVE_DECIMAL",
+    "fieldValue": "10.10.10"
+  },
+  "number2": {
+    "code": "NOT_POSITIVE_DECIMAL",
+    "fieldValue": "0"
+  },
+  "number3": {
+    "code": "NOT_POSITIVE_DECIMAL",
+    "fieldValue": -1.12
+  },
+  "number4": {
+    "code": "NOT_POSITIVE_DECIMAL",
+    "fieldValue": "0.0"
+  },
+  "value_is_string": {
+    "code": "NOT_POSITIVE_DECIMAL",
+    "fieldValue": "some_string"
+  },
   "value_is_hash": {
     "code": "FORMAT_ERROR",
     "fieldValue": {
@@ -9,14 +29,6 @@
     "code": "FORMAT_ERROR",
     "fieldValue": {}
   },
-  "value_is_empty_array": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": []
-  },
-  "value_is_string": {
-    "code": "NOT_POSITIVE_DECIMAL",
-    "fieldValue": "some_string"
-  },
   "value_is_array": {
     "code": "FORMAT_ERROR",
     "fieldValue": [
@@ -24,16 +36,8 @@
       1
     ]
   },
-  "number3": {
-    "code": "NOT_POSITIVE_DECIMAL",
-    "fieldValue": -1.12
-  },
-  "number1": {
-    "code": "NOT_POSITIVE_DECIMAL",
-    "fieldValue": "10.10.10"
-  },
-  "number2": {
-    "code": "NOT_POSITIVE_DECIMAL",
-    "fieldValue": "0"
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
   }
 }

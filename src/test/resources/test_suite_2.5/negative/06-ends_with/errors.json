@@ -1,0 +1,63 @@
+{
+  "other_extension": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "report.doc"
+  },
+  "uppercase": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "report.PDF"
+  },
+  "trailing_space": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "report.pdf "
+  },
+  "suffix_in_the_middle": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "report.pdf.exe"
+  },
+  "image": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "photo.gif"
+  },
+  "number_string_form": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 1.5
+  },
+  "boolean": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": true
+  },
+  "one_point_zero": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 1
+  },
+  "exponent": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 1000
+  },
+  "trailing_newline": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "report.pdf\n"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "hour_24": {
+    "code": "WRONG_TIME",
+    "fieldValue": "24:00"
+  },
+  "one_digit_hour": {
+    "code": "WRONG_TIME",
+    "fieldValue": "9:30"
+  },
+  "minute_60": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:60"
+  },
+  "second_60": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:30:60"
+  },
+  "one_digit_second": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:30:5"
+  },
+  "ten_fraction_digits": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:30:00.1234567890"
+  },
+  "dot_without_digits": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:30:00."
+  },
+  "fraction_without_seconds": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:30.5"
+  },
+  "utc_offset": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:30Z"
+  },
+  "numeric_offset": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:30:00+02:00"
+  },
+  "without_colon": {
+    "code": "WRONG_TIME",
+    "fieldValue": "0930"
+  },
+  "dot_separator": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09.30"
+  },
+  "t_prefix": {
+    "code": "WRONG_TIME",
+    "fieldValue": "T09:30"
+  },
+  "hour_only": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09"
+  },
+  "trailing_space": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:30 "
+  },
+  "trailing_newline": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:30\n"
+  },
+  "datetime": {
+    "code": "WRONG_TIME",
+    "fieldValue": "2026-10-29T09:30:00Z"
+  },
+  "number": {
+    "code": "WRONG_TIME",
+    "fieldValue": 930
+  },
+  "decimal_number": {
+    "code": "WRONG_TIME",
+    "fieldValue": 9.3
+  },
+  "boolean": {
+    "code": "WRONG_TIME",
+    "fieldValue": true
+  },
+  "boolean_false_empty_options": {
+    "code": "WRONG_TIME",
+    "fieldValue": false
+  },
+  "boolean_with_bounds": {
+    "code": "WRONG_TIME",
+    "fieldValue": true
+  },
+  "arabic_indic_digits": {
+    "code": "WRONG_TIME",
+    "fieldValue": "٠٩:٣٠"
+  },
+  "arabic_indic_digit_in_minutes": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:3٠"
+  },
+  "fullwidth_digits": {
+    "code": "WRONG_TIME",
+    "fieldValue": "０９:３０"
+  },
+  "arabic_indic_fraction": {
+    "code": "WRONG_TIME",
+    "fieldValue": "09:30:00.٥"
+  },
+  "arabic_indic_digits_with_bounds": {
+    "code": "WRONG_TIME",
+    "fieldValue": "١٠:٠٠"
+  },
+  "trailing_newline_with_bounds": {
+    "code": "WRONG_TIME",
+    "fieldValue": "10:00\n"
+  },
+  "trailing_newline_after_seconds": {
+    "code": "WRONG_TIME",
+    "fieldValue": "10:00:00\n"
+  },
+  "leading_newline": {
+    "code": "WRONG_TIME",
+    "fieldValue": "\n10:00"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  },
+  "bounds_before_min": {
+    "code": "TIME_TOO_EARLY",
+    "fieldValue": "08:59:59.999999999"
+  },
+  "bounds_after_max": {
+    "code": "TIME_TOO_LATE",
+    "fieldValue": "18:00:00.000000001"
+  },
+  "only_min_before": {
+    "code": "TIME_TOO_EARLY",
+    "fieldValue": "00:00"
+  },
+  "only_max_after": {
+    "code": "TIME_TOO_LATE",
+    "fieldValue": "18:01"
+  },
+  "same_min_and_max_other": {
+    "code": "TIME_TOO_LATE",
+    "fieldValue": "12:00:01"
+  },
+  "night_just_after_max": {
+    "code": "TIME_TOO_LATE",
+    "fieldValue": "06:00:01"
+  },
+  "night_near_max": {
+    "code": "TIME_TOO_LATE",
+    "fieldValue": "07:00"
+  },
+  "night_near_min": {
+    "code": "TIME_TOO_EARLY",
+    "fieldValue": "21:00"
+  },
+  "night_middle_of_gap": {
+    "code": "TIME_TOO_EARLY",
+    "fieldValue": "14:00"
+  },
+  "night_just_before_middle": {
+    "code": "TIME_TOO_LATE",
+    "fieldValue": "13:59:59.999999999"
+  },
+  "night_just_after_middle": {
+    "code": "TIME_TOO_EARLY",
+    "fieldValue": "14:00:00.000000001"
+  },
+  "night_middle_with_fraction": {
+    "code": "TIME_TOO_EARLY",
+    "fieldValue": "14:00:00.000000000"
+  },
+  "night_just_before_min": {
+    "code": "TIME_TOO_EARLY",
+    "fieldValue": "21:59:59.999"
+  },
+  "bounds_wrong_time": {
+    "code": "WRONG_TIME",
+    "fieldValue": "25:00"
+  },
+  "bounds_value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "a": 1
+    }
+  }
+}

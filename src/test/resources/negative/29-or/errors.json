@@ -1,25 +1,33 @@
 {
-  "id3-1": {
-    "code": "WRONG_EMAIL",
+  "id1-1": {
+    "code": "NOT_POSITIVE_INTEGER",
     "fieldValue": "Usermail.com"
   },
   "id2-1": {
     "code": "NOT_POSITIVE_INTEGER",
     "fieldValue": "Usermail.com"
   },
-  "id1-1": {
-    "code": "NOT_POSITIVE_INTEGER",
+  "id3-1": {
+    "code": "WRONG_EMAIL",
     "fieldValue": "Usermail.com"
+  },
+  "id4-1": {
+    "code": "CANNOT_BE_EMPTY",
+    "fieldValue": ""
+  },
+  "id4-2": {
+    "code": "REQUIRED",
+    "fieldValue": null
   },
   "products": [
     {
-      "product_type": {
-        "code": "NOT_ALLOWED_VALUE",
-        "fieldValue": "material"
-      },
       "name": {
         "code": "REQUIRED",
         "fieldValue": null
+      },
+      "product_type": {
+        "code": "NOT_ALLOWED_VALUE",
+        "fieldValue": "material"
       }
     },
     {

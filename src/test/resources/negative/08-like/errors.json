@@ -1,39 +1,55 @@
 {
-    "value_is_hash": {
-        "code": "FORMAT_ERROR",
-        "fieldValue": {
-            "test": 1
-        }
-    },
-    "value_is_empty_hash": {
-        "code": "FORMAT_ERROR",
-        "fieldValue": {}
-    },
-    "value_is_empty_array": {
-        "code": "FORMAT_ERROR",
-        "fieldValue": []
-    },
-    "value_is_array": {
-        "code": "FORMAT_ERROR",
-        "fieldValue": [
-            "test",
-            1
-        ]
-    },
-    "last_name": {
-        "code": "WRONG_FORMAT",
-        "fieldValue": "Pupkin"
-    },
-    "middle_name": {
-        "code": "WRONG_FORMAT",
-        "fieldValue": "Ivanovich"
-    },
-    "first_name": {
-        "code": "WRONG_FORMAT",
-        "fieldValue": "Vasya"
-    },
-    "age": {
-        "code": "WRONG_FORMAT",
-        "fieldValue": "35"
+  "first_name": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "Vasya"
+  },
+  "last_name": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "Pupkin"
+  },
+  "middle_name": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "Ivanovich"
+  },
+  "age": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "35"
+  },
+  "zip_trailing_newline": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "12345\n"
+  },
+  "zip_text_after_newline": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "12345\n<script>"
+  },
+  "zip_text_before_newline": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "<script>\n12345"
+  },
+  "code_trailing_newline": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "Abc\n"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
     }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
 }
