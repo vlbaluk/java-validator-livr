@@ -140,6 +140,8 @@ The rules added in LIVR 2.5 ([specification](https://github.com/koorchik/LIVR/bl
 
 A key that fails the rules of `keys` gives `{"code": "WRONG_KEY", "fieldValue": <the key>}` under that key.
 
+`url` has the three fixes of LIVR 2.5: a dot after the host gives `WRONG_URL` (`https://www.google.`, `https://example.com./path`), a label of the host has at most 63 characters, the top-level domain included, and a port has 1-5 digits and a value of 0-65535, so `https://example.com:8` passes and `https://example.com:65536` does not. The rest of the `url` grammar does not change.
+
 A rule that you register with the name of a standard rule replaces it.
 
 ### Schema errors
