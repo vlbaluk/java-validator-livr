@@ -40,10 +40,9 @@ public class Formats {
     private static final Pattern MAC64 = Pattern.compile(HEX + "{2}([:-])" + HEX + "{2}(?:\\1" + HEX + "{2}){6}");
     private static final Pattern E164 = Pattern.compile("\\+[1-9][0-9]{6,14}");
     private static final String SEMVER_NUMBER = "(?:0|[1-9][0-9]*)";
-    private static final String SEMVER_PRE_ID = "(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)";
-    private static final Pattern SEMVER = Pattern.compile(SEMVER_NUMBER + "\\." + SEMVER_NUMBER + "\\." + SEMVER_NUMBER
-            + "(?:-" + SEMVER_PRE_ID + "(?:\\." + SEMVER_PRE_ID + ")*)?"
-            + "(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?");
+    private static final Pattern SEMVER_CORE = Pattern.compile(SEMVER_NUMBER + "\\." + SEMVER_NUMBER + "\\." + SEMVER_NUMBER);
+    private static final Pattern SEMVER_PRE_ID = Pattern.compile("0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*");
+    private static final Pattern SEMVER_BUILD_ID = Pattern.compile("[0-9A-Za-z-]+");
 
     private static final Map<String, Integer> DIGEST_LENGTHS = new HashMap<>();
 
@@ -179,11 +178,19 @@ public class Formats {
     };
 
     /**
-     * Semantic Versioning 2.0.0, without a "v" prefix
+     * Semantic Versioning 2.0.0, without a "v" prefix. The identifiers after "-" and "+" are
+     * checked one by one: a regex group repeated over them overflows the stack on a long version
      */
     public static Function<List<Object>, Function> semver = objects -> {
         RuleArguments.none(objects, "semver");
-        return format("WRONG_SEMVER", value -> SEMVER.matcher(value).matches());
+        return format("WRONG_SEMVER", value -> {
+            int plus = value.indexOf('+');
+            String version = plus < 0 ? value : value.substring(0, plus);
+            int dash = version.indexOf('-');
+            return SEMVER_CORE.matcher(dash < 0 ? version : version.substring(0, dash)).matches()
+                    && (dash < 0 || identifiers(version.substring(dash + 1), SEMVER_PRE_ID))
+                    && (plus < 0 || identifiers(value.substring(plus + 1), SEMVER_BUILD_ID));
+        });
     };
 
     /**
@@ -218,6 +225,16 @@ public class Formats {
             wrapper.getFieldResultArr().add(string);
             return "";
         };
+    }
+
+    /**
+     * Dot-separated identifiers, each one matching the pattern
+     */
+    private static boolean identifiers(String value, Pattern identifier) {
+        for (String part : value.split("\\.", -1)) {
+            if (!identifier.matcher(part).matches()) return false;
+        }
+        return true;
     }
 
     /**
