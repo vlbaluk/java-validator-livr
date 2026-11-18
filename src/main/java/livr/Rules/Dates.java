@@ -8,8 +8,11 @@ import org.json.simple.JSONObject;
 import java.time.Clock;
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -26,7 +29,8 @@ public class Dates {
     private static final Pattern DATE = Pattern.compile("([0-9]{4})-([0-9]{2})-([0-9]{2})");
     private static final Pattern DATETIME = Pattern.compile(
             "([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2})(?::([0-9]{2})(?:\\.([0-9]{1,9}))?)?(?:Z|([+-])([0-9]{2}):([0-9]{2}))");
-    private static final Pattern TIME = Pattern.compile("([0-9]{2}):([0-9]{2})(?::([0-9]{2})(?:\\.([0-9]{1,9}))?)?");
+    private static final Pattern TIME = Pattern.compile("[0-9]{2}:[0-9]{2}(?::[0-9]{2}(?:\\.[0-9]{1,9})?)?");
+    private static final DateTimeFormatter UTC_MILLIS = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ROOT);
 
     private static final long DAY_MILLIS = 86400000L;
 
@@ -77,16 +81,13 @@ public class Dates {
             if (millis == null) return "WRONG_DATETIME";
 
             // It must be written as YYYY-MM-DDTHH:MM:SS.sssZ
-            LocalDateTime utc = LocalDateTime.ofEpochSecond(Math.floorDiv(millis, 1000L),
-                    (int) Math.floorMod(millis, 1000L) * 1000000, ZoneOffset.UTC);
+            OffsetDateTime utc = Instant.ofEpochMilli(millis).atOffset(ZoneOffset.UTC);
             if (utc.getYear() < 0 || utc.getYear() > 9999) return "WRONG_DATETIME";
 
             if (min != null && millis < min.millis(clock, false)) return "DATETIME_TOO_EARLY";
             if (max != null && millis > max.millis(clock, true)) return "DATETIME_TOO_LATE";
 
-            wrapper.getFieldResultArr().add(String.format(Locale.ROOT, "%04d-%02d-%02dT%02d:%02d:%02d.%03dZ",
-                    utc.getYear(), utc.getMonthValue(), utc.getDayOfMonth(),
-                    utc.getHour(), utc.getMinute(), utc.getSecond(), utc.getNano() / 1000000));
+            wrapper.getFieldResultArr().add(UTC_MILLIS.format(utc));
             return "";
         };
     };
@@ -278,19 +279,15 @@ public class Dates {
     }
 
     /**
-     * Nanoseconds since midnight of a time HH:MM[:SS[.fraction]], or null
+     * Nanoseconds since midnight of a time HH:MM[:SS[.fraction]], or null. The pattern keeps out
+     * what LocalTime.parse takes beyond that, like "12:00:00."
      */
     private static Long parseTime(String value) {
-        Matcher matcher = TIME.matcher(value);
-        if (!matcher.matches()) return null;
-
-        int hour = Integer.parseInt(matcher.group(1));
-        int minute = Integer.parseInt(matcher.group(2));
-        int second = matcher.group(3) == null ? 0 : Integer.parseInt(matcher.group(3));
-        String fraction = matcher.group(4) == null ? "" : matcher.group(4);
-        if (hour > 23 || minute > 59 || second > 59) return null;
-
-        long nanos = Long.parseLong((fraction + "000000000").substring(0, 9));
-        return ((hour * 60L + minute) * 60L + second) * 1000000000L + nanos;
+        if (!TIME.matcher(value).matches()) return null;
+        try {
+            return LocalTime.parse(value).toNanoOfDay();
+        } catch (DateTimeException e) {
+            return null;
+        }
     }
 }
