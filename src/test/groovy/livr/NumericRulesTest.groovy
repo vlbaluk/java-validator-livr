@@ -48,5 +48,17 @@ class NumericRulesTest extends Specification {
         '{"n": {"max_number": 1.5}}'                  | '{"n": "1.6"}'                              | "TOO_HIGH"
         '{"n": {"number_between": [0.5, 1.5]}}'       | '{"n": "1.6"}'                              | "TOO_HIGH"
         '{"n": {"number_between": [0.5, 1.5]}}'       | '{"n": 0.4}'                                | "TOO_LOW"
+        '{"n": {"max_decimals": 0}}'                  | '{"n": 1e400}'                              | "NOT_NUMBER"
+        '{"n": {"max_decimals": 0}}'                  | '{"n": "1e400"}'                            | "NOT_NUMBER"
+        '{"n": {"max_decimals": 1}}'                  | '{"n": "1.25"}'                             | "TOO_MANY_DECIMALS"
+    }
+
+    def "max_decimals keeps an integer string that fits in a Long exact"() {
+        when:
+        def output = LIVR.validator().init('{"n": {"max_decimals": 0}}', false).validate('{"n": "1234567890123456789"}')
+
+        then:
+        output.get("n") instanceof Long
+        output.get("n") == 1234567890123456789L
     }
 }

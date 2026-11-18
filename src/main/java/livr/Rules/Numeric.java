@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
-import java.util.regex.Pattern;
 
 /**
  * Created by vladislavbaluk on 9/28/2017.
@@ -107,8 +106,6 @@ public class Numeric {
         };
     };
 
-    private static final Pattern DECIMAL = Pattern.compile("-?[0-9]+(\\.[0-9]+)?");
-
     /**
      * At most that many digits after the decimal point, trailing zeros do not count. A string
      * in the grammar of "decimal" or a JSON number; the output is a number (LIVR 2.5, 2.4)
@@ -122,30 +119,21 @@ public class Numeric {
             Object value = wrapper.getValue();
             if (LIVRUtils.isEmpty(value)) return "";
             if (!LIVRUtils.isPrimitive(value)) return "FORMAT_ERROR";
-            if (value instanceof Boolean) return "NOT_NUMBER";
-
-            Object number = value;
-            if (value instanceof String) {
-                if (!DECIMAL.matcher((String) value).matches()) return "NOT_NUMBER";
-                double parsed = Double.parseDouble((String) value);
-                if (Double.isInfinite(parsed)) return "NOT_NUMBER";
-                number = ((String) value).indexOf('.') < 0 && ((String) value).length() < 19
-                        ? (Object) Long.valueOf((String) value)
-                        : (Object) parsed;
-            }
+            // json-simple reads a JSON number beyond the double range, like 1e400, as Infinity
+            if (value instanceof Number && !Double.isFinite(((Number) value).doubleValue())) return "NOT_NUMBER";
 
             // A JSON number is counted in its string form, a string as it is written
-            String digits = value instanceof String ? (String) value : LIVRUtils.stringForm(value);
-            int point = digits.indexOf('.');
-            int decimals = 0;
-            if (point >= 0) {
-                int end = digits.length();
-                while (end > point + 1 && digits.charAt(end - 1) == '0') end--;
-                decimals = end - point - 1;
-            }
-            if (decimals > maxDecimals) return "TOO_MANY_DECIMALS";
+            BigDecimal number = RuleArguments.number(value);
+            if (number == null || Double.isInfinite(number.doubleValue())) return "NOT_NUMBER";
+            if (number.stripTrailingZeros().scale() > maxDecimals) return "TOO_MANY_DECIMALS";
 
-            wrapper.getFieldResultArr().add(number);
+            Object output = value;
+            if (value instanceof String) {
+                // An integer that fits in a Long stays exact, anything else is a Double
+                boolean isLong = number.scale() == 0 && number.toBigInteger().bitLength() < 64;
+                output = isLong ? (Object) number.longValue() : (Object) number.doubleValue();
+            }
+            wrapper.getFieldResultArr().add(output);
             return "";
         };
     };
