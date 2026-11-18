@@ -11,21 +11,30 @@ signing {
     sign publishing.publications
 }
 
-group 'io.github.vlbaluk'
+group = 'io.github.vlbaluk'
 version = '2.0.2'
 
 repositories {
     mavenCentral()
 }
 
+// Build and test with another installed JDK than the one running Gradle, e.g. -PjavaVersion=8
+if (findProperty('javaVersion')) {
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(findProperty('javaVersion') as int)
+        }
+    }
+}
+
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = "sources";
+    archiveClassifier = "sources";
     from sourceSets.main.allSource;
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = "javadoc";
+    archiveClassifier = "javadoc";
     from javadoc.destinationDir;
 }
 
@@ -83,8 +92,8 @@ publishing {
             name = "iogithubvlbaluk-1002"
             url = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
             credentials {
-                username = ossrhUsername
-                password = ossrhPassword
+                username = findProperty('ossrhUsername')
+                password = findProperty('ossrhPassword')
             }
         }
     }

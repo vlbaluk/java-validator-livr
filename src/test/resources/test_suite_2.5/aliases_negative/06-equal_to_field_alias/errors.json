@@ -1,0 +1,56 @@
+{
+  "password2": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": "s3cret!"
+  },
+  "password3": {
+    "code": "PASSWORDS_DIFFER",
+    "fieldValue": "S3CRET"
+  },
+  "password4": {
+    "code": "REQUIRED",
+    "fieldValue": ""
+  },
+  "either": {
+    "code": "FIELDS_NOT_EQUAL",
+    "fieldValue": "other"
+  },
+  "account": {
+    "password2": {
+      "code": "FIELDS_NOT_EQUAL",
+      "fieldValue": "s3cret"
+    }
+  },
+  "users": [
+    null,
+    {
+      "password2": {
+        "code": "PASSWORDS_DIFFER",
+        "fieldValue": "s3cret"
+      }
+    }
+  ],
+  "copies": [
+    {
+      "code": "FIELDS_NOT_EQUAL",
+      "fieldValue": "s3cret"
+    },
+    null
+  ],
+  "alias_copies": [
+    {
+      "code": "PASSWORDS_DIFFER",
+      "fieldValue": "s3cret"
+    }
+  ],
+  "value_copies": {
+    "password": {
+      "code": "FIELDS_NOT_EQUAL",
+      "fieldValue": "s3cret"
+    },
+    "other": {
+      "code": "FIELDS_NOT_EQUAL",
+      "fieldValue": "s3cret"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "too_short": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": "507f1f77bcf86cd79943901"
+  },
+  "too_long": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": "507f1f77bcf86cd7994390111"
+  },
+  "not_hex": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": "507f1f77bcf86cd79943901z"
+  },
+  "with_space": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": " 507f1f77bcf86cd799439011"
+  },
+  "object_id_call": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": "ObjectId(\"507f1f77bcf86cd799439011\")"
+  },
+  "number": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": 123
+  },
+  "trailing_newline": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": "507f1f77bcf86cd799439011\n"
+  },
+  "arabic_indic_digit": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": "507f1f77bcf86cd79943901١"
+  },
+  "fullwidth_letter": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": "507ｆ1f77bcf86cd799439011"
+  },
+  "boolean_true": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_MONGO_ID",
+    "fieldValue": false
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

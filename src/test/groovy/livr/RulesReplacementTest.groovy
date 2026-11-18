@@ -45,4 +45,42 @@ class RulesReplacementTest extends Specification {
                 "            }\n" +
                 "        }", false);
     }
+
+    def "Validate data with registered default rules"() {
+        when:
+        def defaultRules = LIVR.validator().getDefaultRules();
+        def originalRules = new HashMap<>(defaultRules)
+        def newRules = new HashMap<>();
+
+        for (String key : defaultRules.keySet()) {
+            newRules.put(key, MyFuncClass.patchRule(key, defaultRules.get(key)));
+        }
+
+        LIVR.registerDefaultRules(newRules);
+
+        def validator = LIVR.validator().init("{" +
+                "            \"name\":  [\"required\"]," +
+                "            \"phone\": { \"max_length\": 10 }" +
+                "}", false);
+        def output = validator.validate("{" +
+                "\"phone\": \"123456789123456\"" +
+                "}");
+
+        then:
+        assert output == null;
+        JSONAssert.assertEquals(validator.getErrors().toJSONString(), "    {\n" +
+                "            \"name\": {\n" +
+                "                \"code\": \"REQUIRED\",\n" +
+                "                \"rule\": { \"required\": [] }\n" +
+                "            },\n" +
+                "\n" +
+                "            \"phone\": {\n" +
+                "                \"code\": \"TOO_LONG\",\n" +
+                "                \"rule\": { \"max_length\": [10] }\n" +
+                "            }\n" +
+                "        }", false);
+
+        cleanup:
+        LIVR.registerDefaultRules(originalRules);
+    }
 }

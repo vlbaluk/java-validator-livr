@@ -1,0 +1,147 @@
+{
+  "standard_no_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVsbG8"
+  },
+  "standard_no_double_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SA"
+  },
+  "standard_padding_in_the_middle": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SG=sbG8="
+  },
+  "standard_two_blocks_with_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVsbG8=SGVsbG8="
+  },
+  "standard_triple_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "S==="
+  },
+  "standard_only_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "===="
+  },
+  "standard_extra_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVsbG8==="
+  },
+  "standard_url_alphabet": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "-_-_"
+  },
+  "standard_space": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVs bG8="
+  },
+  "standard_line_break": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVs\nbG8="
+  },
+  "standard_trailing_newline": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVsbG8=\n"
+  },
+  "standard_wrong_char": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVsbG8*"
+  },
+  "number": {
+    "code": "WRONG_BASE64",
+    "fieldValue": 123
+  },
+  "url_standard_alphabet": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "+/+/"
+  },
+  "url_mod_1": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVsb"
+  },
+  "url_padding_in_the_middle": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SG=sbG8"
+  },
+  "url_space": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVs bG8"
+  },
+  "standard_partial_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SA="
+  },
+  "url_partial_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SA="
+  },
+  "url_partial_padding_long": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "a-_a-_="
+  },
+  "url_extra_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVsbG8=="
+  },
+  "url_trailing_newline": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGVsbG8\n"
+  },
+  "url_one_char": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "S"
+  },
+  "url_only_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "=="
+  },
+  "url_triple_padding": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "S==="
+  },
+  "boolean_true": {
+    "code": "WRONG_BASE64",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_BASE64",
+    "fieldValue": false
+  },
+  "url_boolean_true": {
+    "code": "WRONG_BASE64",
+    "fieldValue": true
+  },
+  "fullwidth_letters": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "ＳＧＶｓ"
+  },
+  "arabic_indic_digits": {
+    "code": "WRONG_BASE64",
+    "fieldValue": "SGV١"
+  },
+  "fraction_number": {
+    "code": "WRONG_BASE64",
+    "fieldValue": 0.5
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

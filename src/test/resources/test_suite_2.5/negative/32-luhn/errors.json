@@ -1,0 +1,87 @@
+{
+  "wrong_checksum": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": "79927398710"
+  },
+  "one_digit": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": "0"
+  },
+  "spaces": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": "7992 7398 713"
+  },
+  "dashes": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": "7992-7398-713"
+  },
+  "letter": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": "7992739871a"
+  },
+  "leading_space": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": " 18"
+  },
+  "non_ascii_digits": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": "١٨"
+  },
+  "negative_number": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": -18
+  },
+  "number": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": 79927398710
+  },
+  "trailing_newline": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": "79927398713\n"
+  },
+  "fullwidth_digits": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": "１８"
+  },
+  "arabic_indic_digit_mixed": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": "7992739871٣"
+  },
+  "fraction_number": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": 1.8
+  },
+  "minus_zero_number": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": 0
+  },
+  "boolean_true": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_CHECKSUM",
+    "fieldValue": false
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

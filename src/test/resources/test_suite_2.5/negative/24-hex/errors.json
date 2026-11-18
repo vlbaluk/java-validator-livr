@@ -1,0 +1,87 @@
+{
+  "prefix": {
+    "code": "WRONG_HEX",
+    "fieldValue": "0x1f"
+  },
+  "uppercase_prefix": {
+    "code": "WRONG_HEX",
+    "fieldValue": "0X1F"
+  },
+  "not_hex": {
+    "code": "WRONG_HEX",
+    "fieldValue": "xyz"
+  },
+  "g_letter": {
+    "code": "WRONG_HEX",
+    "fieldValue": "abcdefg"
+  },
+  "space": {
+    "code": "WRONG_HEX",
+    "fieldValue": "12 34"
+  },
+  "dash": {
+    "code": "WRONG_HEX",
+    "fieldValue": "12-34"
+  },
+  "hash_sign": {
+    "code": "WRONG_HEX",
+    "fieldValue": "#fff"
+  },
+  "trailing_newline": {
+    "code": "WRONG_HEX",
+    "fieldValue": "ff\n"
+  },
+  "negative_number": {
+    "code": "WRONG_HEX",
+    "fieldValue": -1
+  },
+  "decimal_number": {
+    "code": "WRONG_HEX",
+    "fieldValue": 1.5
+  },
+  "boolean": {
+    "code": "WRONG_HEX",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_HEX",
+    "fieldValue": false
+  },
+  "fraction_number": {
+    "code": "WRONG_HEX",
+    "fieldValue": 0.1
+  },
+  "negative_fraction_number": {
+    "code": "WRONG_HEX",
+    "fieldValue": -12.25
+  },
+  "arabic_indic_digits": {
+    "code": "WRONG_HEX",
+    "fieldValue": "١٢"
+  },
+  "fullwidth_letters": {
+    "code": "WRONG_HEX",
+    "fieldValue": "ＦＦ"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

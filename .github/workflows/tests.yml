@@ -1,0 +1,44 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (JDK ${{ matrix.java }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: [8, 11, 17, 21, 25, 27]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up JDK ${{ matrix.java }} to build and test with
+        id: jdk
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+
+      # Gradle 9 needs JDK 17+ to run; the matrix JDK is used as a toolchain.
+      - name: Set up JDK 21 to run Gradle
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: 9.8.2
+
+      - name: Test
+        run: >-
+          gradle test
+          -PjavaVersion=${{ matrix.java }}
+          -Dorg.gradle.java.installations.paths=${{ steps.jdk.outputs.path }}
+          -Dorg.gradle.java.installations.auto-download=false

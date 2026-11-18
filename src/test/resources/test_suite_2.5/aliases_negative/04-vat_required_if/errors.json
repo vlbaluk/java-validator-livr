@@ -1,0 +1,41 @@
+{
+  "vat_number": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "strict_vat_number": {
+    "code": "REQUIRED",
+    "fieldValue": ""
+  },
+  "bad_strict_vat_number": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "ua12345678"
+  },
+  "person": {
+    "vat_number": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    }
+  },
+  "company": {
+    "vat_number": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    }
+  },
+  "members": [
+    {
+      "vat_number": {
+        "code": "VAT_REQUIRED",
+        "fieldValue": null
+      }
+    },
+    null,
+    {
+      "vat_number": {
+        "code": "VAT_REQUIRED",
+        "fieldValue": ""
+      }
+    }
+  ]
+}

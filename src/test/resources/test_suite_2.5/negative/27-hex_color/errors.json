@@ -1,0 +1,95 @@
+{
+  "without_hash": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "fff"
+  },
+  "one": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#f"
+  },
+  "two": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#ff"
+  },
+  "five": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#fffff"
+  },
+  "seven": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#fffffff"
+  },
+  "nine": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#123456789"
+  },
+  "not_hex": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#ggg"
+  },
+  "double_hash": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "##fff"
+  },
+  "color_name": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "red"
+  },
+  "only_hash": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#"
+  },
+  "number": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": 123
+  },
+  "trailing_newline": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#fff\n"
+  },
+  "six_trailing_newline": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#a1b2c3\n"
+  },
+  "arabic_indic_digits": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#١٢٣"
+  },
+  "fullwidth_letters": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": "#ｆｆｆ"
+  },
+  "leading_space": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": " #fff"
+  },
+  "boolean_true": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_HEX_COLOR",
+    "fieldValue": false
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

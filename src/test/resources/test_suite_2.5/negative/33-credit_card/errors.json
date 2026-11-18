@@ -1,0 +1,79 @@
+{
+  "wrong_checksum": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": "4111111111111112"
+  },
+  "eleven_digits": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": "40000000006"
+  },
+  "twenty_digits": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": "50000000000000000009"
+  },
+  "spaces": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": "4111 1111 1111 1111"
+  },
+  "dashes": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": "4111-1111-1111-1111"
+  },
+  "letter": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": "411111111111111a"
+  },
+  "number": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": 4111111111111112
+  },
+  "trailing_newline": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": "4111111111111111\n"
+  },
+  "leading_space": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": " 4111111111111111"
+  },
+  "arabic_indic_digits": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": "٤١١١١١١١١١١١١١١١"
+  },
+  "fullwidth_digit": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": "411111111111111１"
+  },
+  "fraction_number": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": 4111111111111.5
+  },
+  "boolean_true": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_CREDIT_CARD_NUMBER",
+    "fieldValue": false
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

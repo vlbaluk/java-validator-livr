@@ -1,0 +1,150 @@
+{
+  "email": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "email_empty": {
+    "code": "REQUIRED",
+    "fieldValue": ""
+  },
+  "email_null": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "email_string_ref": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "vat": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "company_code": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "zip": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "order_zip": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "second_item_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "second_tag_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "count_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "count_string_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "level_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "number_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "flag_false_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "zero_ref_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "slash_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "tilde_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "escape_order_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "field_unruled_ref": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "padded_zip": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "account": {
+    "permissions": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    }
+  },
+  "contacts": [
+    null,
+    {
+      "email": {
+        "code": "REQUIRED",
+        "fieldValue": null
+      }
+    },
+    null
+  ],
+  "object_key_with_leading_zero_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "first_tag_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "tag_two_digit_index_note": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "category_account": {
+    "vat": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    }
+  },
+  "members": [
+    null,
+    {
+      "vat": {
+        "code": "REQUIRED",
+        "fieldValue": null
+      }
+    }
+  ],
+  "partners": [
+    {
+      "vat": {
+        "code": "REQUIRED",
+        "fieldValue": null
+      }
+    },
+    null
+  ],
+  "or_vat": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "or_vat_empty": {
+    "code": "REQUIRED",
+    "fieldValue": ""
+  },
+  "kind_upper_vat": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  }
+}

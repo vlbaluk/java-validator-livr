@@ -1,0 +1,71 @@
+{
+  "other_scheme": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "ftp://example.com"
+  },
+  "uppercase": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "HTTPS://example.com"
+  },
+  "leading_space": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": " https://example.com"
+  },
+  "shorter_than_prefix": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "http"
+  },
+  "prefix_in_the_middle": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "X-ID-1"
+  },
+  "number": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 312
+  },
+  "number_string_form": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 1
+  },
+  "boolean": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": false
+  },
+  "minus_zero": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 0
+  },
+  "exponent": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 1000
+  },
+  "fraction_without_leading_zero": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": 0.1
+  },
+  "number_argument": {
+    "code": "WRONG_FORMAT",
+    "fieldValue": "21"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

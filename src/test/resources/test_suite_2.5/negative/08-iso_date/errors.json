@@ -1,0 +1,211 @@
+{
+  "plain_form_datetime": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-10-29T10:00:00Z"
+  },
+  "empty_options_given_datetime": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-10-18T01:00:00Z"
+  },
+  "bounds_given_datetime": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-10-18T01:00Z"
+  },
+  "bounds_given_datetime_date_part_valid": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-01-01T00:00:00Z"
+  },
+  "empty_options_invalid_date": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-02-29"
+  },
+  "empty_options_not_leap_century": {
+    "code": "WRONG_DATE",
+    "fieldValue": "1900-02-29"
+  },
+  "empty_options_month_13": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-13-01"
+  },
+  "empty_options_day_00": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-01-00"
+  },
+  "empty_options_one_digit_month": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-1-01"
+  },
+  "empty_options_slashes": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026/10/18"
+  },
+  "empty_options_compact": {
+    "code": "WRONG_DATE",
+    "fieldValue": "20261018"
+  },
+  "empty_options_trailing_newline": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-10-18\n"
+  },
+  "bounds_trailing_newline": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-10-18\n"
+  },
+  "bounds_leading_space": {
+    "code": "WRONG_DATE",
+    "fieldValue": " 2026-10-18"
+  },
+  "arabic_indic_digits": {
+    "code": "WRONG_DATE",
+    "fieldValue": "٢٠٢٦-١٠-١٨"
+  },
+  "arabic_indic_digits_with_bounds": {
+    "code": "WRONG_DATE",
+    "fieldValue": "٢٠٢٦-١٠-١٨"
+  },
+  "fullwidth_digits": {
+    "code": "WRONG_DATE",
+    "fieldValue": "２０２６-10-18"
+  },
+  "relative_word_as_value": {
+    "code": "WRONG_DATE",
+    "fieldValue": "today"
+  },
+  "invalid_value_with_bounds": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2026-13-01"
+  },
+  "invalid_value_out_of_bounds": {
+    "code": "WRONG_DATE",
+    "fieldValue": "2025-02-29"
+  },
+  "number_value": {
+    "code": "WRONG_DATE",
+    "fieldValue": 20261018
+  },
+  "boolean_value": {
+    "code": "WRONG_DATE",
+    "fieldValue": true
+  },
+  "plain_form_boolean": {
+    "code": "WRONG_DATE",
+    "fieldValue": true
+  },
+  "plain_form_false": {
+    "code": "WRONG_DATE",
+    "fieldValue": false
+  },
+  "plain_form_number": {
+    "code": "WRONG_DATE",
+    "fieldValue": 20261018
+  },
+  "empty_arguments_boolean": {
+    "code": "WRONG_DATE",
+    "fieldValue": false
+  },
+  "empty_options_boolean": {
+    "code": "WRONG_DATE",
+    "fieldValue": true
+  },
+  "empty_options_number": {
+    "code": "WRONG_DATE",
+    "fieldValue": 1
+  },
+  "min_date": {
+    "code": "DATE_TOO_EARLY",
+    "fieldValue": "2025-12-31"
+  },
+  "max_date": {
+    "code": "DATE_TOO_LATE",
+    "fieldValue": "2026-01-02"
+  },
+  "min_max_low": {
+    "code": "DATE_TOO_EARLY",
+    "fieldValue": "2025-06-15"
+  },
+  "min_max_high": {
+    "code": "DATE_TOO_LATE",
+    "fieldValue": "2027-06-15"
+  },
+  "season_before": {
+    "code": "DATE_TOO_EARLY",
+    "fieldValue": "2026-05-31"
+  },
+  "season_after": {
+    "code": "DATE_TOO_LATE",
+    "fieldValue": "2026-09-01"
+  },
+  "same_min_and_max_before": {
+    "code": "DATE_TOO_EARLY",
+    "fieldValue": "2024-02-28"
+  },
+  "same_min_and_max_after": {
+    "code": "DATE_TOO_LATE",
+    "fieldValue": "2024-03-01"
+  },
+  "options_in_argument_list": {
+    "code": "DATE_TOO_EARLY",
+    "fieldValue": "2025-12-31"
+  },
+  "max_today": {
+    "code": "DATE_TOO_LATE",
+    "fieldValue": "2026-10-19"
+  },
+  "min_today": {
+    "code": "DATE_TOO_EARLY",
+    "fieldValue": "2026-10-17"
+  },
+  "min_yesterday_max_tomorrow_low": {
+    "code": "DATE_TOO_EARLY",
+    "fieldValue": "2026-10-16"
+  },
+  "min_yesterday_max_tomorrow_high": {
+    "code": "DATE_TOO_LATE",
+    "fieldValue": "2026-10-20"
+  },
+  "max_yesterday": {
+    "code": "DATE_TOO_LATE",
+    "fieldValue": "2026-10-18"
+  },
+  "min_tomorrow": {
+    "code": "DATE_TOO_EARLY",
+    "fieldValue": "2026-10-18"
+  },
+  "date_min_after_relative_max_low": {
+    "code": "DATE_TOO_EARLY",
+    "fieldValue": "2026-10-01"
+  },
+  "date_min_after_relative_max_high": {
+    "code": "DATE_TOO_LATE",
+    "fieldValue": "2026-12-05"
+  },
+  "relative_min_after_date_max_low": {
+    "code": "DATE_TOO_EARLY",
+    "fieldValue": "2025-12-31"
+  },
+  "relative_min_after_date_max_high": {
+    "code": "DATE_TOO_LATE",
+    "fieldValue": "2026-10-19"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

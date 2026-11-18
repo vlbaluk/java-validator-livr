@@ -1,0 +1,41 @@
+{
+  "required_missing": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "required_null": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "required_empty": {
+    "code": "REQUIRED",
+    "fieldValue": ""
+  },
+  "empty_kept_for_next_rule": {
+    "code": "REQUIRED",
+    "fieldValue": ""
+  },
+  "null_kept_for_next_rule": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "object_to_nested_object": {
+    "a": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    }
+  },
+  "list_to_list_of": [
+    null,
+    {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": "x"
+    }
+  ],
+  "object_to_string": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "a": 1
+    }
+  }
+}

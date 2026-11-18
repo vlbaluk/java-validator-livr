@@ -1,0 +1,99 @@
+{
+  "leading_zero": {
+    "code": "WRONG_E164",
+    "fieldValue": "+0123456"
+  },
+  "too_short": {
+    "code": "WRONG_E164",
+    "fieldValue": "+123456"
+  },
+  "too_long": {
+    "code": "WRONG_E164",
+    "fieldValue": "+1234567890123456"
+  },
+  "without_plus": {
+    "code": "WRONG_E164",
+    "fieldValue": "15555550100"
+  },
+  "double_plus": {
+    "code": "WRONG_E164",
+    "fieldValue": "++15555550100"
+  },
+  "international_prefix": {
+    "code": "WRONG_E164",
+    "fieldValue": "0015555550100"
+  },
+  "spaces": {
+    "code": "WRONG_E164",
+    "fieldValue": "+1 555 555 0100"
+  },
+  "dashes": {
+    "code": "WRONG_E164",
+    "fieldValue": "+1-555-555-0100"
+  },
+  "parentheses": {
+    "code": "WRONG_E164",
+    "fieldValue": "+1(555)5550100"
+  },
+  "letters": {
+    "code": "WRONG_E164",
+    "fieldValue": "+1555CALLNOW"
+  },
+  "trailing_newline": {
+    "code": "WRONG_E164",
+    "fieldValue": "+15555550100\n"
+  },
+  "number": {
+    "code": "WRONG_E164",
+    "fieldValue": 15555550100
+  },
+  "arabic_indic_digits": {
+    "code": "WRONG_E164",
+    "fieldValue": "+١٥٥٥٥٥٥٠١٠٠"
+  },
+  "fullwidth_digit": {
+    "code": "WRONG_E164",
+    "fieldValue": "+１5555550100"
+  },
+  "fullwidth_plus": {
+    "code": "WRONG_E164",
+    "fieldValue": "＋15555550100"
+  },
+  "trailing_crlf": {
+    "code": "WRONG_E164",
+    "fieldValue": "+15555550100\r\n"
+  },
+  "leading_newline": {
+    "code": "WRONG_E164",
+    "fieldValue": "\n+15555550100"
+  },
+  "boolean_true": {
+    "code": "WRONG_E164",
+    "fieldValue": true
+  },
+  "boolean_false": {
+    "code": "WRONG_E164",
+    "fieldValue": false
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

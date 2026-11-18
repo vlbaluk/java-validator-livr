@@ -1,16 +1,18 @@
 {
-  "user_ids": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": "not an array"
-  },
-  "product_ids3": [
+  "product_ids1": [
     {
       "code": "NOT_POSITIVE_INTEGER",
       "fieldValue": -10
     },
+    {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    },
     null,
-    null,
-    null
+    {
+      "code": "TOO_HIGH",
+      "fieldValue": 120
+    }
   ],
   "product_ids2": [
     {
@@ -27,19 +29,23 @@
       "fieldValue": 120
     }
   ],
-  "product_ids1": [
+  "product_ids3": [
     {
       "code": "NOT_POSITIVE_INTEGER",
       "fieldValue": -10
     },
-    {
-      "code": "REQUIRED",
-      "fieldValue": ""
-    },
     null,
-    {
-      "code": "TOO_HIGH",
-      "fieldValue": 120
+    null,
+    null
+  ],
+  "user_ids": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": "not an array"
+  },
+  "object_value": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "a": 1
     }
-  ]
+  }
 }

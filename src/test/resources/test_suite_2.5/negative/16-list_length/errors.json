@@ -1,0 +1,100 @@
+{
+  "tags_too_many": {
+    "code": "TOO_MANY_ITEMS",
+    "fieldValue": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "pair_one": {
+    "code": "TOO_FEW_ITEMS",
+    "fieldValue": [
+      1
+    ]
+  },
+  "pair_three": {
+    "code": "TOO_MANY_ITEMS",
+    "fieldValue": [
+      1,
+      2,
+      3
+    ]
+  },
+  "pair_in_list": {
+    "code": "TOO_MANY_ITEMS",
+    "fieldValue": [
+      1,
+      2,
+      3
+    ]
+  },
+  "exact_zero": {
+    "code": "TOO_MANY_ITEMS",
+    "fieldValue": [
+      1
+    ]
+  },
+  "items_max": {
+    "code": "TOO_MANY_ITEMS",
+    "fieldValue": [
+      1,
+      2,
+      3
+    ]
+  },
+  "min_and_max_object_low": {
+    "code": "TOO_FEW_ITEMS",
+    "fieldValue": [
+      1
+    ]
+  },
+  "min_and_max_object_high": {
+    "code": "TOO_MANY_ITEMS",
+    "fieldValue": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "string_argument": {
+    "code": "TOO_FEW_ITEMS",
+    "fieldValue": [
+      1
+    ]
+  },
+  "string_option": {
+    "code": "TOO_MANY_ITEMS",
+    "fieldValue": [
+      1,
+      2
+    ]
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_string": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": "abc"
+  },
+  "value_is_number": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": 5
+  },
+  "value_is_boolean": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": true
+  }
+}

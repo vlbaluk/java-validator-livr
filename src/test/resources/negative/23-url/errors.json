@@ -1,18 +1,4 @@
 {
-  "value_is_hash": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": {
-      "test": 1
-    }
-  },
-  "value_is_empty_hash": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": {}
-  },
-  "value_is_empty_array": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": []
-  },
   "url1": {
     "code": "WRONG_URL",
     "fieldValue": "www.google.com"
@@ -25,11 +11,33 @@
     "code": "WRONG_URL",
     "fieldValue": "http://g_oogle.com"
   },
+  "url4": {
+    "code": "WRONG_URL",
+    "fieldValue": "https://google.com\n"
+  },
+  "url5": {
+    "code": "WRONG_URL",
+    "fieldValue": "http://webbylab.com/?param_1=123\n"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
   "value_is_array": {
     "code": "FORMAT_ERROR",
     "fieldValue": [
       "test",
       1
     ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
   }
 }

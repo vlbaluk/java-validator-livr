@@ -1,4 +1,20 @@
 {
+  "number1": {
+    "code": "TOO_LOW",
+    "fieldValue": "5"
+  },
+  "number2": {
+    "code": "TOO_LOW",
+    "fieldValue": "-10"
+  },
+  "number3": {
+    "code": "TOO_LOW",
+    "fieldValue": 1.2
+  },
+  "value_is_string": {
+    "code": "NOT_NUMBER",
+    "fieldValue": "some_string"
+  },
   "value_is_hash": {
     "code": "FORMAT_ERROR",
     "fieldValue": {
@@ -9,14 +25,6 @@
     "code": "FORMAT_ERROR",
     "fieldValue": {}
   },
-  "value_is_empty_array": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": []
-  },
-  "value_is_string": {
-    "code": "NOT_NUMBER",
-    "fieldValue": "some_string"
-  },
   "value_is_array": {
     "code": "FORMAT_ERROR",
     "fieldValue": [
@@ -24,12 +32,8 @@
       1
     ]
   },
-  "number1": {
-    "code": "TOO_LOW",
-    "fieldValue": "5"
-  },
-  "number2": {
-    "code": "TOO_LOW",
-    "fieldValue": "-10"
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
   }
 }

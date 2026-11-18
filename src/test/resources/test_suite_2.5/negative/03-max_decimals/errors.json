@@ -1,0 +1,95 @@
+{
+  "too_many": {
+    "code": "TOO_MANY_DECIMALS",
+    "fieldValue": 1.234
+  },
+  "too_many_string": {
+    "code": "TOO_MANY_DECIMALS",
+    "fieldValue": "1.234"
+  },
+  "string_trailing_zero_still_too_many": {
+    "code": "TOO_MANY_DECIMALS",
+    "fieldValue": "1.2340"
+  },
+  "long_string_decimals": {
+    "code": "TOO_MANY_DECIMALS",
+    "fieldValue": "0.10000000000000000001"
+  },
+  "zero_decimals_fraction": {
+    "code": "TOO_MANY_DECIMALS",
+    "fieldValue": 0.5
+  },
+  "negative": {
+    "code": "TOO_MANY_DECIMALS",
+    "fieldValue": "-1.25"
+  },
+  "comma_decimal": {
+    "code": "NOT_NUMBER",
+    "fieldValue": "1,5"
+  },
+  "not_a_number": {
+    "code": "NOT_NUMBER",
+    "fieldValue": "abc"
+  },
+  "trailing_dot": {
+    "code": "NOT_NUMBER",
+    "fieldValue": "1."
+  },
+  "exponent_string": {
+    "code": "NOT_NUMBER",
+    "fieldValue": "1e-3"
+  },
+  "boolean": {
+    "code": "NOT_NUMBER",
+    "fieldValue": true
+  },
+  "fraction_number": {
+    "code": "TOO_MANY_DECIMALS",
+    "fieldValue": 0.1
+  },
+  "negative_two_decimals": {
+    "code": "TOO_MANY_DECIMALS",
+    "fieldValue": -12.25
+  },
+  "small_exponent": {
+    "code": "TOO_MANY_DECIMALS",
+    "fieldValue": 0.001
+  },
+  "trailing_newline": {
+    "code": "NOT_NUMBER",
+    "fieldValue": "1.5\n"
+  },
+  "non_ascii_digits": {
+    "code": "NOT_NUMBER",
+    "fieldValue": "١.٥"
+  },
+  "too_large_for_double": {
+    "code": "NOT_NUMBER",
+    "fieldValue": "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "string_argument": {
+    "code": "TOO_MANY_DECIMALS",
+    "fieldValue": 1.234
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

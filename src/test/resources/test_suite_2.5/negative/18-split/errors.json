@@ -1,0 +1,75 @@
+{
+  "ids_wrong_item": [
+    null,
+    {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": "x"
+    },
+    null
+  ],
+  "ids_empty_part": [
+    null,
+    {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    },
+    null
+  ],
+  "ids_trailing_separator": [
+    null,
+    null,
+    {
+      "code": "REQUIRED",
+      "fieldValue": ""
+    }
+  ],
+  "ids_list_kept": [
+    null,
+    {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": "x"
+    }
+  ],
+  "ids_list_not_split": [
+    {
+      "code": "NOT_POSITIVE_INTEGER",
+      "fieldValue": "1,2"
+    }
+  ],
+  "number_one_item": [
+    {
+      "code": "TOO_LOW",
+      "fieldValue": "5"
+    }
+  ],
+  "object_kept": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "a": "1,2"
+    }
+  },
+  "empty_kept": {
+    "code": "REQUIRED",
+    "fieldValue": ""
+  },
+  "null_kept": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "missing_kept": {
+    "code": "REQUIRED",
+    "fieldValue": null
+  },
+  "too_few_parts": {
+    "code": "TOO_FEW_ITEMS",
+    "fieldValue": "a,b"
+  },
+  "multi_char_separator": {
+    "code": "TOO_FEW_ITEMS",
+    "fieldValue": "a, b,c"
+  },
+  "regexp_char_separator": {
+    "code": "TOO_FEW_ITEMS",
+    "fieldValue": "abc"
+  }
+}

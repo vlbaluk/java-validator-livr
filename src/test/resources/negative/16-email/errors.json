@@ -1,15 +1,111 @@
 {
-  "email3": {
+  "email1": {
     "code": "WRONG_EMAIL",
-    "fieldValue": "test+test.t_e_s_t@ma_il.in.ua"
+    "fieldValue": "testmail.com"
   },
   "email2": {
     "code": "WRONG_EMAIL",
     "fieldValue": "test@test@mail.com.ua"
   },
-  "email1": {
+  "email3": {
     "code": "WRONG_EMAIL",
-    "fieldValue": "testmail.com"
+    "fieldValue": "test+test.t_e_s_t@ma_il.in.ua"
+  },
+  "email4": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "user name@gmail.com"
+  },
+  "email5": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "username@mail.c om"
+  },
+  "email6": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "en ny@enny.devoffice.com"
+  },
+  "email7": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "enny..tester@devoffice.com"
+  },
+  "email8": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": ".enny@enny.devoffice.com"
+  },
+  "email9": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "enny.devoffice.com"
+  },
+  "email10": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "test@test"
+  },
+  "email11": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "tester@enny..devoffice.com"
+  },
+  "email12": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "en(ny@enny.devoffice.com"
+  },
+  "email13": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "en)ny@enny.devoffice.com"
+  },
+  "email14": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "en[enny@devoffice.com"
+  },
+  "email15": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "en]ny@devoffice.com"
+  },
+  "email16": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "ho:rhe@tester.devoffice.com"
+  },
+  "email17": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "enny;tester@devoffice.com"
+  },
+  "email18": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "te,st@devoffice.com"
+  },
+  "email19": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "test<er@devoffice.com"
+  },
+  "email20": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "tes>ter@devoffice.com"
+  },
+  "email21": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "tester@@devoffice.com"
+  },
+  "email22": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "tester@tes ter.devoffice.com"
+  },
+  "email23": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "@enny tm.devoffice.com"
+  },
+  "email24": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "тестувальник@пошта.укр "
+  },
+  "email25": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "test@mail.com\n"
+  },
+  "email26": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "te\nst@mail.com"
+  },
+  "email27": {
+    "code": "WRONG_EMAIL",
+    "fieldValue": "test@ma\nil.com"
   },
   "value_is_hash": {
     "code": "FORMAT_ERROR",
@@ -21,10 +117,6 @@
     "code": "FORMAT_ERROR",
     "fieldValue": {}
   },
-  "value_is_empty_array": {
-    "code": "FORMAT_ERROR",
-    "fieldValue": []
-  },
   "value_is_array": {
     "code": "FORMAT_ERROR",
     "fieldValue": [
@@ -32,12 +124,8 @@
       1
     ]
   },
-  "email5": {
-    "code": "WRONG_EMAIL",
-    "fieldValue": "username@mail.c om"
-  },
-  "email4": {
-    "code": "WRONG_EMAIL",
-    "fieldValue": "user name@gmail.com"
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
   }
 }

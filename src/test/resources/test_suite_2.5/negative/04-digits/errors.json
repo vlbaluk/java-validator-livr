@@ -1,0 +1,111 @@
+{
+  "with_letter": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "12a"
+  },
+  "minus_string": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "-1"
+  },
+  "minus_number": {
+    "code": "NOT_DIGITS",
+    "fieldValue": -1
+  },
+  "plus_string": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "+1"
+  },
+  "decimal_number": {
+    "code": "NOT_DIGITS",
+    "fieldValue": 1.5
+  },
+  "decimal_string": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "1.0"
+  },
+  "inner_space": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "1 2"
+  },
+  "leading_space": {
+    "code": "NOT_DIGITS",
+    "fieldValue": " 12"
+  },
+  "trailing_newline": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "123\n"
+  },
+  "space_only": {
+    "code": "NOT_DIGITS",
+    "fieldValue": " "
+  },
+  "non_ascii_digits": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "١٢٣"
+  },
+  "fullwidth_digits": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "１２３"
+  },
+  "boolean": {
+    "code": "NOT_DIGITS",
+    "fieldValue": true
+  },
+  "otp_too_short": {
+    "code": "TOO_SHORT",
+    "fieldValue": "12345"
+  },
+  "otp_not_digits": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "12345a"
+  },
+  "fraction": {
+    "code": "NOT_DIGITS",
+    "fieldValue": 0.1
+  },
+  "negative_fraction": {
+    "code": "NOT_DIGITS",
+    "fieldValue": -12.25
+  },
+  "negative_integral_number": {
+    "code": "NOT_DIGITS",
+    "fieldValue": -3
+  },
+  "mixed_ascii_and_arabic_indic": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "12١"
+  },
+  "devanagari_digits": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "१२३"
+  },
+  "leading_newline": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "\n123"
+  },
+  "trailing_crlf": {
+    "code": "NOT_DIGITS",
+    "fieldValue": "123\r\n"
+  },
+  "value_is_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {
+      "test": 1
+    }
+  },
+  "value_is_empty_hash": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": {}
+  },
+  "value_is_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": [
+      "test",
+      1
+    ]
+  },
+  "value_is_empty_array": {
+    "code": "FORMAT_ERROR",
+    "fieldValue": []
+  }
+}

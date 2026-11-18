@@ -1,0 +1,60 @@
+{
+  "point1": {
+    "code": "TOO_FEW_ITEMS",
+    "fieldValue": [
+      30.5234
+    ]
+  },
+  "point2": {
+    "code": "TOO_MANY_ITEMS",
+    "fieldValue": [
+      200,
+      50,
+      1
+    ]
+  },
+  "point3": [
+    null,
+    {
+      "code": "NOT_DECIMAL",
+      "fieldValue": "x"
+    }
+  ],
+  "path": [
+    null,
+    [
+      null,
+      {
+        "code": "REQUIRED",
+        "fieldValue": ""
+      }
+    ],
+    {
+      "code": "FORMAT_ERROR",
+      "fieldValue": "x"
+    }
+  ],
+  "place1": {
+    "lat": {
+      "code": "TOO_HIGH",
+      "fieldValue": 95
+    }
+  },
+  "place2": {
+    "lat": {
+      "code": "REQUIRED",
+      "fieldValue": null
+    },
+    "lng": {
+      "code": "TOO_LOW",
+      "fieldValue": "-200"
+    }
+  },
+  "places": [
+    null,
+    {
+      "code": "FORMAT_ERROR",
+      "fieldValue": "x"
+    }
+  ]
+}
