@@ -87,10 +87,6 @@ public class Validator {
         return this;
     }
 
-    public Clock getClock() {
-        return clock;
-    }
-
     public void registerAliasedDefaultRule(JSONObject alias) throws IOException {
         if (((String) alias.get("name")).isEmpty()) throw new IOException("Alias name required");
         String name = (String) alias.get("name");
@@ -305,12 +301,6 @@ public class Validator {
             return jsonArray.get(0);
         }
         return jsonArray;
-    }
-
-    public FunctionKeeper _buildValidator(String name, List<Object> args) throws IOException {
-        List<Object> arguments = args.isEmpty() ? new ArrayList<>()
-                : args.get(0) instanceof JSONArray ? (JSONArray) args.get(0) : Lists.newArrayList(args.get(0));
-        return _buildValidator(name, args, arguments);
     }
 
     /**

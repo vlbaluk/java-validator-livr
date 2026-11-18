@@ -3,13 +3,10 @@ package livr;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Pattern;
-
-import org.json.simple.JSONArray;
 
 /**
  * The list that a rule builder gets: the rule arguments and the rule builders, as before, and
@@ -39,21 +36,14 @@ public class RuleArguments extends ArrayList<Object> {
      * for them; the LIVR 2.0 rules and custom rules get null as one argument, as in LIVR 2.0
      */
     public static List<Object> get(List<Object> objects) {
-        if (objects instanceof RuleArguments) return ((RuleArguments) objects).arguments;
-
-        // A rule builder called directly, without a validator: the arguments are the first object
-        if (objects.size() < 2) return Collections.emptyList();
-        Object args = objects.get(0);
-        if (args instanceof JSONArray) return (JSONArray) args;
-        return Collections.singletonList(args);
+        return ((RuleArguments) objects).arguments;
     }
 
     /**
      * The clock of the validator that builds the rule, for "today", "yesterday" and "tomorrow"
      */
     public static Clock clock(List<Object> objects) {
-        if (objects instanceof RuleArguments) return ((RuleArguments) objects).clock;
-        return Clock.systemUTC();
+        return ((RuleArguments) objects).clock;
     }
 
     /**
