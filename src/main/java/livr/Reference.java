@@ -1,7 +1,6 @@
 package livr;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -27,12 +26,6 @@ public class Reference {
             throw RuleArguments.schemaError("a reference of \"" + ruleName + "\" must be a non-empty string");
         }
         String string = (String) reference;
-
-        // The common case: a field name without escapes
-        if (string.indexOf('/') < 0 && string.indexOf('~') < 0) {
-            this.path = Collections.singletonList(string);
-            return;
-        }
 
         List<String> path = new ArrayList<>();
         for (String segment : string.split("/", -1)) {
