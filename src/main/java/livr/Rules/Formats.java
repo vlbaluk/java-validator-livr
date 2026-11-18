@@ -29,7 +29,7 @@ public class Formats {
     private static final Pattern IPV6_GROUP = Pattern.compile(HEX + "{1,4}");
     private static final Pattern PREFIX_LENGTH = Pattern.compile("0|[1-9][0-9]{0,2}");
     private static final Pattern HOSTNAME_LABEL = Pattern.compile("[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?");
-    private static final Pattern DIGITS = Pattern.compile("[0-9]+");
+    static final Pattern DIGITS = Pattern.compile("[0-9]+");
     private static final Pattern BASE64 = Pattern.compile("(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?");
     private static final Pattern BASE64URL_PADDED = Pattern.compile("(?:[A-Za-z0-9_-]{4})*(?:[A-Za-z0-9_-]{2}==|[A-Za-z0-9_-]{3}=)");
     private static final Pattern BASE64URL = Pattern.compile("[A-Za-z0-9_-]*");
@@ -215,8 +215,8 @@ public class Formats {
     static Function<FunctionKeeper, Object> format(String errorCode, Predicate<String> isValid) {
         return (wrapper) -> {
             Object value = wrapper.getValue();
-            if (LIVRUtils.isEmpty(value)) return "";
-            if (!LIVRUtils.isPrimitive(value)) return "FORMAT_ERROR";
+            if (LIVRUtils.isNoValue(value)) return "";
+            if (!LIVRUtils.isPrimitiveValue(value)) return "FORMAT_ERROR";
             if (value instanceof Boolean) return errorCode;
 
             String string = LIVRUtils.stringForm(value);

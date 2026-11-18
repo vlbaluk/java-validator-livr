@@ -43,8 +43,8 @@ public class Dates {
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
             Object value = wrapper.getValue();
-            if (LIVRUtils.isEmpty(value)) return "";
-            if (!LIVRUtils.isPrimitive(value)) return "FORMAT_ERROR";
+            if (LIVRUtils.isNoValue(value)) return "";
+            if (!LIVRUtils.isPrimitiveValue(value)) return "FORMAT_ERROR";
             if (!(value instanceof String)) return "WRONG_DATE";
 
             LocalDate date = parseDate((String) value);
@@ -69,8 +69,8 @@ public class Dates {
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
             Object value = wrapper.getValue();
-            if (LIVRUtils.isEmpty(value)) return "";
-            if (!LIVRUtils.isPrimitive(value)) return "FORMAT_ERROR";
+            if (LIVRUtils.isNoValue(value)) return "";
+            if (!LIVRUtils.isPrimitiveValue(value)) return "FORMAT_ERROR";
             if (!(value instanceof String)) return "WRONG_DATETIME";
 
             Long millis = parseDatetime((String) value);
@@ -102,8 +102,8 @@ public class Dates {
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
             Object value = wrapper.getValue();
-            if (LIVRUtils.isEmpty(value)) return "";
-            if (!LIVRUtils.isPrimitive(value)) return "FORMAT_ERROR";
+            if (LIVRUtils.isNoValue(value)) return "";
+            if (!LIVRUtils.isPrimitiveValue(value)) return "FORMAT_ERROR";
             if (!(value instanceof String)) return "WRONG_TIME";
 
             Long time = parseTime((String) value);

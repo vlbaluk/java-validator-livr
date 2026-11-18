@@ -59,8 +59,8 @@ public class CommonRules {
         RuleArguments.none(objects, "boolean");
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
-            if (LIVRUtils.isEmpty(wrapper.getValue())) return "";
-            if (!LIVRUtils.isPrimitive(wrapper.getValue())) return "FORMAT_ERROR";
+            if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
+            if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
 
             String value = LIVRUtils.stringForm(wrapper.getValue());
             if (value.equals("true") || value.equals("1")) {
@@ -92,7 +92,7 @@ public class CommonRules {
 
             Set<String> allowed = new HashSet<>();
             for (Object value : values) {
-                if (!LIVRUtils.isPrimitive(value) || "".equals(value)) {
+                if (!LIVRUtils.isPrimitiveValue(value) || "".equals(value)) {
                     throw RuleArguments.schemaError("the values of \"required_if\" must be non-empty strings, numbers or booleans");
                 }
                 allowed.add(LIVRUtils.stringForm(value));
@@ -103,11 +103,11 @@ public class CommonRules {
         }
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
-            if (!LIVRUtils.isEmpty(wrapper.getValue())) return "";
+            if (!LIVRUtils.isNoValue(wrapper.getValue())) return "";
 
             for (Map.Entry<Reference, Set<String>> condition : conditions.entrySet()) {
                 Object referenced = condition.getKey().resolve(wrapper.getArgs());
-                boolean matches = LIVRUtils.isPrimitive(referenced) && !LIVRUtils.isEmpty(referenced)
+                boolean matches = LIVRUtils.isPrimitiveValue(referenced) && !LIVRUtils.isNoValue(referenced)
                         && condition.getValue().contains(LIVRUtils.stringForm(referenced));
                 if (!matches) return "";
             }

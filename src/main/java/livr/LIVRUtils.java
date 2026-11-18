@@ -17,11 +17,11 @@ public class LIVRUtils {
         return new JSONParser();
     }
 
+    /**
+     * A string, a number or a boolean (LIVR 2.5, 2.2)
+     */
     public static boolean isPrimitiveValue(Object value) {
-        if (value.getClass() == String.class || value.getClass() == Boolean.class) return true;
-        if (value instanceof Number) return true;
-        if (value.equals("true") || value.equals("false")) return true;
-        return false;
+        return value instanceof String || value instanceof Number || value instanceof Boolean;
     }
 
     public static boolean looksLikeNumber(Object value) {
@@ -37,8 +37,11 @@ public class LIVRUtils {
         return map.isEmpty();
     }
 
+    /**
+     * An empty value: a missing field, null or "" (LIVR 2.5, 2.1)
+     */
     public static boolean isNoValue(Object value) {
-        return value == null || (value + "").equals("");
+        return value == null || "".equals(value);
     }
 
     public static boolean isInteger(Object value) {
@@ -60,20 +63,6 @@ public class LIVRUtils {
             return false;
         }
         return true;
-    }
-
-    /**
-     * An empty value: a missing field, null or "" (LIVR 2.5, 2.1)
-     */
-    public static boolean isEmpty(Object value) {
-        return value == null || "".equals(value);
-    }
-
-    /**
-     * A string, a number or a boolean (LIVR 2.5, 2.2)
-     */
-    public static boolean isPrimitive(Object value) {
-        return value instanceof String || value instanceof Number || value instanceof Boolean;
     }
 
     /**

@@ -295,12 +295,12 @@ public class Meta {
 
             return (Function<FunctionKeeper, Object>) (wrapper) -> {
                 Object referenced = reference.resolve(wrapper.getArgs());
-                Validator validator = LIVRUtils.isPrimitive(referenced) && !LIVRUtils.isEmpty(referenced)
+                Validator validator = LIVRUtils.isPrimitiveValue(referenced) && !LIVRUtils.isNoValue(referenced)
                         ? cases.get(LIVRUtils.stringForm(referenced))
                         : null;
 
                 // No case can be chosen: only an empty value passes, an unchecked value would pass otherwise
-                if (validator == null) return LIVRUtils.isEmpty(wrapper.getValue()) ? "" : "NOT_ALLOWED_VALUE";
+                if (validator == null) return LIVRUtils.isNoValue(wrapper.getValue()) ? "" : "NOT_ALLOWED_VALUE";
 
                 return validator.validateValue(wrapper.getValue(), wrapper.getArgs(), wrapper.getFieldResultArr());
             };
@@ -313,7 +313,7 @@ public class Meta {
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
             // The condition rules see the containing object of the validated field, their output is discarded
             Object referenced = reference.resolve(wrapper.getArgs());
-            boolean isTrue = !LIVRUtils.isEmpty(referenced)
+            boolean isTrue = !LIVRUtils.isNoValue(referenced)
                     && "".equals(condition.validateValue(referenced, wrapper.getArgs(), new ArrayList<>(1)));
 
             Validator validator = isTrue ? ifTrue : ifFalse;
@@ -330,7 +330,7 @@ public class Meta {
         Validator validator = valueValidator(listOfRules(objects), objects, "values");
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
-            if (LIVRUtils.isEmpty(wrapper.getValue())) return "";
+            if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
             if (!(wrapper.getValue() instanceof Map)) return "FORMAT_ERROR";
 
             JSONObject results = new JSONObject();
@@ -359,7 +359,7 @@ public class Meta {
         Validator validator = valueValidator(listOfRules(objects), objects, "keys");
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
-            if (LIVRUtils.isEmpty(wrapper.getValue())) return "";
+            if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
             if (!(wrapper.getValue() instanceof Map)) return "FORMAT_ERROR";
 
             JSONObject errors = new JSONObject();

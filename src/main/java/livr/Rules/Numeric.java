@@ -117,8 +117,8 @@ public class Numeric {
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
             Object value = wrapper.getValue();
-            if (LIVRUtils.isEmpty(value)) return "";
-            if (!LIVRUtils.isPrimitive(value)) return "FORMAT_ERROR";
+            if (LIVRUtils.isNoValue(value)) return "";
+            if (!LIVRUtils.isPrimitiveValue(value)) return "FORMAT_ERROR";
             // json-simple reads a JSON number beyond the double range, like 1e400, as Infinity
             if (value instanceof Number && !Double.isFinite(((Number) value).doubleValue())) return "NOT_NUMBER";
 

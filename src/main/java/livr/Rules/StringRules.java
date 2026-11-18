@@ -165,15 +165,15 @@ public class StringRules {
 
         Set<String> forbiddenValues = new HashSet<>();
         for (Object arg : args) {
-            if (!LIVRUtils.isPrimitive(arg)) {
+            if (!LIVRUtils.isPrimitiveValue(arg)) {
                 throw RuleArguments.schemaError("the values of \"not_one_of\" must be strings, numbers or booleans");
             }
             forbiddenValues.add(LIVRUtils.stringForm(arg));
         }
 
         return (Function<FunctionKeeper, Object>) (FunctionKeeper wrapper) -> {
-            if (LIVRUtils.isEmpty(wrapper.getValue())) return "";
-            if (!LIVRUtils.isPrimitive(wrapper.getValue())) return "FORMAT_ERROR";
+            if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
+            if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
 
             if (forbiddenValues.contains(LIVRUtils.stringForm(wrapper.getValue()))) return "NOT_ALLOWED_VALUE";
             return "";
@@ -185,17 +185,7 @@ public class StringRules {
      */
     public static Function<List<Object>, Function> digits = objects -> {
         RuleArguments.none(objects, "digits");
-        Pattern digits = Pattern.compile("[0-9]+");
-
-        return (Function<FunctionKeeper, Object>) (FunctionKeeper wrapper) -> {
-            if (LIVRUtils.isEmpty(wrapper.getValue())) return "";
-            if (!LIVRUtils.isPrimitive(wrapper.getValue())) return "FORMAT_ERROR";
-
-            String value = LIVRUtils.stringForm(wrapper.getValue());
-            if (!digits.matcher(value).matches()) return "NOT_DIGITS";
-            wrapper.getFieldResultArr().add(value);
-            return "";
-        };
+        return Formats.format("NOT_DIGITS", value -> Formats.DIGITS.matcher(value).matches());
     };
 
     public static Function<List<Object>, Function> starts_with = objects -> affix(objects, "starts_with", String::startsWith);
@@ -213,8 +203,8 @@ public class StringRules {
         if (parts.contains("")) throw RuleArguments.schemaError("the arguments of \"" + ruleName + "\" must be non-empty strings");
 
         return (Function<FunctionKeeper, Object>) (FunctionKeeper wrapper) -> {
-            if (LIVRUtils.isEmpty(wrapper.getValue())) return "";
-            if (!LIVRUtils.isPrimitive(wrapper.getValue())) return "FORMAT_ERROR";
+            if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
+            if (!LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "FORMAT_ERROR";
 
             String value = LIVRUtils.stringForm(wrapper.getValue());
             for (String part : parts) {

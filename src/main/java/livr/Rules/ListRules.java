@@ -43,7 +43,7 @@ public class ListRules {
         if (min > max) throw RuleArguments.schemaError("\"min\" of \"list_length\" is greater than \"max\"");
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
-            if (LIVRUtils.isEmpty(wrapper.getValue())) return "";
+            if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
             if (!(wrapper.getValue() instanceof List)) return "FORMAT_ERROR";
 
             int size = ((List) wrapper.getValue()).size();
@@ -62,18 +62,18 @@ public class ListRules {
         List<String> keys = args.isEmpty() ? new ArrayList<>() : RuleArguments.strings(objects, "unique");
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
-            if (LIVRUtils.isEmpty(wrapper.getValue())) return "";
+            if (LIVRUtils.isNoValue(wrapper.getValue())) return "";
             if (!(wrapper.getValue() instanceof List)) return "FORMAT_ERROR";
 
             // A wrong item gives FORMAT_ERROR even after duplicates, so check every item
             Set<Object> seen = new HashSet<>();
             boolean hasDuplicates = false;
             for (Object item : (List<?>) wrapper.getValue()) {
-                if (LIVRUtils.isEmpty(item)) continue;
+                if (LIVRUtils.isNoValue(item)) continue;
 
                 Object itemKey;
                 if (keys.isEmpty()) {
-                    if (!LIVRUtils.isPrimitive(item)) return "FORMAT_ERROR";
+                    if (!LIVRUtils.isPrimitiveValue(item)) return "FORMAT_ERROR";
                     itemKey = LIVRUtils.stringForm(item);
                 } else {
                     if (!(item instanceof Map)) return "FORMAT_ERROR";
@@ -82,9 +82,9 @@ public class ListRules {
                     boolean hasEmptyValue = false;
                     for (String key : keys) {
                         Object value = ((Map<?, ?>) item).get(key);
-                        if (LIVRUtils.isEmpty(value)) {
+                        if (LIVRUtils.isNoValue(value)) {
                             hasEmptyValue = true;
-                        } else if (!LIVRUtils.isPrimitive(value)) {
+                        } else if (!LIVRUtils.isPrimitiveValue(value)) {
                             return "FORMAT_ERROR";
                         } else {
                             values.add(LIVRUtils.stringForm(value));

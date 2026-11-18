@@ -86,7 +86,7 @@ public class Modifiers {
         Pattern pattern = Pattern.compile(separator, Pattern.LITERAL);
 
         return (Function<FunctionKeeper, Object>) (wrapper) -> {
-            if (LIVRUtils.isEmpty(wrapper.getValue()) || !LIVRUtils.isPrimitive(wrapper.getValue())) return "";
+            if (LIVRUtils.isNoValue(wrapper.getValue()) || !LIVRUtils.isPrimitiveValue(wrapper.getValue())) return "";
 
             JSONArray parts = new JSONArray();
             parts.addAll(Arrays.asList(pattern.split(LIVRUtils.stringForm(wrapper.getValue()), -1)));
