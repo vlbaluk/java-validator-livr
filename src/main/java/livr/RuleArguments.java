@@ -103,14 +103,14 @@ public class RuleArguments extends ArrayList<Object> {
     }
 
     /**
-     * A non-negative integer argument (LIVR 2.5, 2.6)
+     * A non-negative integer argument (LIVR 2.5, 2.6). No list is longer and no number has more
+     * decimals than Integer.MAX_VALUE, so a larger argument works as Integer.MAX_VALUE
      */
     public static int nonNegativeInteger(Object arg, String ruleName) {
         BigDecimal number = number(arg);
-        boolean isValid = number != null && number.signum() >= 0 && number.stripTrailingZeros().scale() <= 0
-                && number.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) <= 0;
+        boolean isValid = number != null && number.signum() >= 0 && number.stripTrailingZeros().scale() <= 0;
         if (!isValid) throw schemaError("an argument of \"" + ruleName + "\" must be a non-negative integer");
-        return number.intValueExact();
+        return number.min(BigDecimal.valueOf(Integer.MAX_VALUE)).intValueExact();
     }
 
     public static IllegalArgumentException schemaError(String message) {

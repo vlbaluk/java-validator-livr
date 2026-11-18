@@ -53,6 +53,8 @@ class ArgumentsTest extends Specification {
                 '{"a": {"mac": "64.0"}}',
                 '{"a": {"list_length": "3"}}',
                 '{"a": {"list_length": [{"min": 1}, "x"]}}',
+                '{"a": {"list_length": {"max": 2147483648}}}',
+                '{"a": {"max_decimals": 10000000000}}',
                 '{"a": {"split": [",", {}]}}',
                 '{"a": {"iso_date": [{"min": "2026-01-01"}, "x"]}}',
                 '{"a": {"iso_date": {"min": "2026-12-01", "max": "today"}}}',
