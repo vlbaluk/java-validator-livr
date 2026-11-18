@@ -112,6 +112,37 @@ class ArgumentsTest extends Specification {
         ]
     }
 
+    @Unroll
+    def "a rule that is not registered in #rules fails prepare()"() {
+        when:
+        validator(rules).prepare()
+
+        then:
+        thrown(IOException)
+
+        where:
+        rules << [
+                '{"a": {"nested_object": {"b": "unknown"}}}',
+                '{"a": {"list_of": "unknown"}}',
+                '{"a": {"or": ["string", "unknown"]}}',
+                '{"a": {"values": "unknown"}}',
+                '{"a": {"values": {"nested_object": {"b": "unknown"}}}}',
+                '{"a": {"when": ["b", "required", "unknown"]}}',
+        ]
+    }
+
+    def "an alias with a rule that is not registered fails prepare()"() {
+        given:
+        def validator = validator('{"a": "my_alias"}')
+        validator.registerAliasedRule((JSONObject) new JSONParser().parse('{"name": "my_alias", "rules": "unknown"}'))
+
+        when:
+        validator.prepare()
+
+        then:
+        thrown(IOException)
+    }
+
     def "the result of a custom rule in a LIVR 2.5 metarule"() {
         when:
         def validator = validator('{"a": {"when": ["b", {"eq": "x"}, "my_trim"]}, "b": "string"}')

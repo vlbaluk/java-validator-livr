@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.*;
 import java.util.function.Function;
 
@@ -41,9 +42,8 @@ public class Meta {
                 return null;
             };
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new UncheckedIOException(e);
         }
-        return null;
     };
 
     public static Function<List<Object>, Function> list_of = (List<Object> objects) -> {
@@ -89,9 +89,8 @@ public class Meta {
                 }
             };
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new UncheckedIOException(e);
         }
-        return null;
     };
 
     public static Function<List<Object>, Function> list_of_objects = (List<Object> objects) -> {
@@ -137,9 +136,8 @@ public class Meta {
                 return null;
             };
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new UncheckedIOException(e);
         }
-        return null;
     };
 
     public static Function<List<Object>, Function> list_of_different_objects = (List<Object> objects) -> {
@@ -201,9 +199,8 @@ public class Meta {
                 return null;
             };
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new UncheckedIOException(e);
         }
-        return null;
     };
 
 
@@ -248,9 +245,8 @@ public class Meta {
                 return null;
             };
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new UncheckedIOException(e);
         }
-        return null;
     };
 
 
@@ -274,9 +270,8 @@ public class Meta {
                 return lastError;
             };
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new UncheckedIOException(e);
         }
-        return null;
     };
 
     /**
@@ -408,7 +403,7 @@ public class Meta {
         try {
             return new Validator(RuleArguments.ruleBuilders(objects)).setClock(RuleArguments.clock(objects)).init(livr, false).prepare();
         } catch (IOException e) {
-            throw RuleArguments.schemaError(e.getMessage());
+            throw new UncheckedIOException(e);
         }
     }
 

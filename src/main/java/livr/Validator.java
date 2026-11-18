@@ -2,6 +2,7 @@ package livr;
 
 import com.google.common.collect.Lists;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.time.Clock;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -115,9 +116,8 @@ public class Validator {
                     return alias.get("error") == null ? error : alias.get("error");
                 };
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new UncheckedIOException(e);
             }
-            return null;
         };
         return aliasFunction;
     }
@@ -326,7 +326,12 @@ public class Validator {
         Function func = this.validatorBuilders.get(name);
 
         args.add(this.getRules());
-        func = (Function) func.apply(new RuleArguments(args, arguments, clock));
+        try {
+            func = (Function) func.apply(new RuleArguments(args, arguments, clock));
+        } catch (UncheckedIOException e) {
+            // A rule in a metarule or an alias is not registered: the same IOException as for a field
+            throw e.getCause();
+        }
 
         return new FunctionKeeper(null, func);
     }
