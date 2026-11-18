@@ -93,7 +93,7 @@ public class Dates {
     };
 
     /**
-     * A time of day HH:MM, HH:MM:SS or HH:MM:SS.fraction without an offset. min > max is a range
+     * A time of day HH:MM, HH:MM:SS or HH:MM:SS.fraction without an offset. {@code min > max} is a range
      * over midnight. The output is the value unchanged
      */
     public static Function<List<Object>, Function> iso_time = objects -> {
