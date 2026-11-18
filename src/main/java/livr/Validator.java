@@ -360,8 +360,12 @@ public class Validator {
     }
 
 
+    /**
+     * A copy of the input for the rules, the objects and lists stay JSONObject and JSONArray: the
+     * rules check these types, also on the fields that "when" refers to
+     */
     public static Map<String, Object> toMap(JSONObject object) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new JSONObject();
 
         Iterator<String> keysItr = object.keySet().iterator();
         while (keysItr.hasNext()) {
@@ -379,7 +383,7 @@ public class Validator {
     }
 
     public static List<Object> toList(JSONArray array) {
-        List<Object> list = new ArrayList<Object>();
+        List<Object> list = new JSONArray();
         for (int i = 0; i < array.size(); i++) {
             Object value = array.get(i);
             if (value instanceof JSONArray) {
